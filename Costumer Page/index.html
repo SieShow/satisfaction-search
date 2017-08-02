@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="http://www.mafrainformatica.com/wp-content/uploads/2015/12/favicon.png" type="image/x-icon"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
+    <link href="Style.css" rel="stylesheet" type="text/css" />
+    <title>Mafra - Pesquisa de satisfação</title>
+
+    <body>
+        <!--HEDAER-->
+        <div class="headdivcontainer">
+            <div class="headerdiv">
+                <div class="contact">
+                    <label>Fale conosco: Belo Horizonte Tel - (031) 3479-2900</label>
+                </div>
+
+                <div class="headdivbottom" style="color: #FFFFFF">
+                    <div class="topheader">
+                        <a href="http://www.mafrainformatica.com.br" target="_blank">
+                            <img src="http://www.mafrainformatica.com/wp-content/uploads/2015/12/mafra.png" style="padding: 4px 2px 2px 13px" /></a>
+                        <div class="buttondiv">
+                            <button id="btnsender" Text="Enviar" />Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/HEADER-->
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header" id="modalhead">
+                    <span class="close">&times;</span>
+                    <h2>Enviando sua resposta...</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="loader"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="frmmain">
+            <div class="squares" id="starsdiv1">
+                <div id="firstlabelfield">
+                    <label>Como você avalia a cordialidade do técnico ?</label>
+                    <div class="required">
+                        *
+                        <span class="msgrequired">Campo Obrigatório</span>
+                    </div>
+                </div>
+                <div class="stars">
+                    <form action="">
+                        <input class="star star-5" id="star-5" type="radio" name="star" />
+                        <label data-toggle="tooltip" title="Excelente" class="star star-5" for="star-5"></label>
+                        <input class="star star-4" id="star-4" type="radio" name="star" />
+                        <label data-toggle="tooltip" title="Muito bom" class="star star-4" for="star-4"></label>
+                        <input class="star star-3" id="star-3" type="radio" name="star" />
+                        <label data-toggle="tooltip" title="Bom" class="star star-3" for="star-3"></label>
+                        <input class="star star-2" id="star-2" type="radio" name="star" />
+                        <label data-toggle="tooltip" title="Regular" class="star star-2" for="star-2"></label>
+                        <input class="star star-1" id="star-1" type="radio" name="star" />
+                        <label data-toggle="tooltip" title="Ruim" class="star star-1" for="star-1"></label>
+                    </form>
+                </div>
+            </div>
+            <div class="squares" id="starsdiv2">
+                <div class="labelsfield">
+                    <label>A sua solicitação foi atendida ?</label>
+                    <div class="required">
+                        *
+                        <span class="msgrequired">Campo Obrigatório</span>
+                    </div>
+                </div>
+                <div class="radioyesno">
+                    <div class="buttonsradios">
+                        <input type="radio" id="radio01" class="radios" name="radio" />
+                        <label for="radio01" class="radiolabels"><span></span>Sim</label>
+                        <div class="check">
+                            <div class="inside"></div>
+                        </div>
+                    </div>
+                    <div class="buttonsradios">
+                        <input type="radio" id="radio02" class="radios" name="radio" />
+                        <label for="radio02" class="radiolabels"><span></span>Não</label>
+                        <div class="check">
+                            <div class="inside"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="lasttopic">
+                <div class="labelsfield">
+                    <label>Deixe-nos um comentário:</label>
+                    <div>
+                        <textarea runat="server" id="txtopnion" name="txtopnion" maxlength="100"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+            //for when the radio buttons been setted
+            $('#starsdiv1 input').on('change', function () {
+                $('#starsdiv1').css('border', 'none');
+                $('#starsdiv1').css("border-bottom", "1px solid #D6D6D6");
+            });
+            $('#starsdiv2 input').on('change', function () {
+                $('#starsdiv2').css('border', 'none');
+                $('#starsdiv2').css("border-bottom", "1px solid #D6D6D6");
+            });
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            //Check if the required field are marked
+            $('#btnsender').click(function () {
+                var trysend1, trysend2;
+                if ($('#star-1').is(':checked') || $('#star-2').is(':checked') || $('#star-3').is(':checked') || $('#star-4').is(':checked') || $('#star-5').is(':checked')) {
+                    trysend1 = true;
+                }
+                else {
+                    $('#starsdiv1').css({ 'border': 'solid', 'border-color': '#B8040E' });
+                }
+                if ($('#radio01').is(':checked') || $('#radio02').is(':checked')) {
+                    trysend2 = true;
+                }
+                else {
+                    trysend = false;
+                    $('#starsdiv2').css({
+                        'border': 'solid', 'border-color': '#B8040E',
+                    });
+                }
+                if (trysend1 == true && trysend2 == true) {
+                    // When the user clicks the button, open the modal 
+                    modal.style.display = "block";
+                }
+            });
+        </script>
+    </body>
+
+</html>
