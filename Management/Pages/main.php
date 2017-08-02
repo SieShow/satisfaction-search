@@ -1,6 +1,11 @@
 <?php
 session_start();
 $user = $_SESSION['login'];
+$pass = $_SESSION['password'];
+
+if($user == null){
+    header("location: ../index.php");
+}
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -14,16 +19,16 @@ $user = $_SESSION['login'];
 <body>
     <div id="headpage">
         <div id="usernameoption">
-        <img src="../Img/user_unknown.png" onclick="divVisibility()" >
+        <img src="../Img/User-unknown.png" id="imgclick" >
         <div id="full-options-block">
             <div id="arrow">
                 </div>
-        <div class="options">
-        <a href="">Alterar senha</a>
-        </div>
-        <div class="options">
-        <a href="">Logout</a>
-        </div>
+                <div id="userinfo">
+                    <img src="../Img/User-unknown.png">
+                    <label><?php echo $user ?></label>
+                </div>     
+        <a href="">Editar perfil</a>
+        <a href="">Sair</a>
         </div>
         </div>
     <div id="menu">
@@ -76,21 +81,23 @@ $user = $_SESSION['login'];
     </tbody>
     </table>
     </div>
-</body>
-<script>
+    <script>
 var modal = document.getElementById('full-options-block');
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-function divVisibility(){
-    if(modal.style.display == 'block'){
+var img = document.getElementById('imgclick');
+
+document.onclick = function(e){
+    if(e.target == img){
+        if(modal.style.display == 'block'){
         modal.style.display = 'none';
     }
     else{
         modal.style.display = 'block';
     }
+    }
+    else{
+          modal.style.display = 'none';
+    }
 }
 </script>
+</body>
 </html>
