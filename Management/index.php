@@ -1,5 +1,11 @@
-<?php 
-include('PHP/login.php');
+<?php
+//include('PHP/login.php');
+include('/PHP/User.php');
+$userif = new User();
+
+if(isset($_POST['btnlogin'])){
+$userif->Login();
+}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -21,7 +27,7 @@ include('PHP/login.php');
             <input style="margin-left: 10px;" type="password" name="senha" required/>
             <div id="subdiv">
         <input style="font-weight: bold;" name="btnlogin" type="submit" value="Entrar"/>
-                  <span><?php echo $error; ?></span>
+                  <span><?php echo $userif->error; ?></span>
                 </div>
             </div>    
     </form>

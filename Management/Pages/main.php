@@ -1,10 +1,11 @@
 <?php
 session_start();
-$user = $_SESSION['login'];
-$pass = $_SESSION['password'];
-
-if($user == null){
+if($_SESSION['login'] == null){
     header("location: ../index.php");
+}
+else{
+    $user = $_SESSION['login'];
+    $pass = $_SESSION['password'];  
 }
 ?>
 <!DOCTYPE HTML>
@@ -28,7 +29,7 @@ if($user == null){
                     <label><?php echo $user ?></label>
                 </div>     
         <a href="">Editar perfil</a>
-        <a href="">Sair</a>
+        <a href="../PHP/logout.php">Sair</a>
         </div>
         </div>
     <div id="menu">
