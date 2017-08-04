@@ -1,17 +1,18 @@
 <?php
+include('../PHP/tableload.php');
 session_start();
 if($_SESSION['login'] == null){
     header("location: ../index.php");
 }
 else{
     $user = $_SESSION['login'];
-    $pass = $_SESSION['password'];  
+    $pass = $_SESSION['password'];
 }
 ?>
 <!DOCTYPE HTML>
 <HTML>
 <head>
-    <meta charset="utf-8" />
+    <meta charset = "utf-8"/>
     <link href="../CSS/MainPageBonito.css" rel="stylesheet" type="text/css" />
     <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
@@ -29,7 +30,7 @@ else{
                     <label><?php echo $user ?></label>
                 </div>     
         <a href="">Editar perfil</a>
-        <a href="../PHP/logout.php">Sair</a>
+        <a href="../PHP/Logout.php">Sair</a>
         </div>
         </div>
     <div id="menu">
@@ -45,7 +46,7 @@ else{
     </div>
     <div id="allblock">
         <div id="searchdiv">
-    <input type="text" placeholder="Procure aqui !" name="pesquisa"/>
+    <input type="text" placeholder="Ache os clientes e funcionários !" name="pesquisa"/>
         </div>
     <table>
         <thead id="thead">
@@ -55,30 +56,9 @@ else{
         <td>Proporção resolução do problema(%)</td>
         </thead>
    <tbody id="tbody">
-    <tr>
-        <td>lucas</td>
-        <td>32</td>
-        <td>Thiago</td>
-        <td>56.5</td>
-    </tr>
-        <tr>
-        <td>lucas</td>
-        <td>32</td>
-        <td>Thiago</td>
-        <td>56.5</td>
-    </tr>
-        <tr>
-        <td>lucas</td>
-        <td>32</td>
-        <td>Thiago</td>
-        <td>56.5</td>
-    </tr>
-        <tr>
-        <td>lucas</td>
-        <td>32</td>
-        <td>Thiago</td>
-        <td>56.5</td>
-    </tr>
+    <?php
+    $colums = array("name","note_avarage","issue_sol_avarage");
+     load("select * from employee", $colums);?>
     </tbody>
     </table>
     </div>

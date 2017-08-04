@@ -139,7 +139,7 @@ body{
     #searchdiv input{
     font-family: Lato;
     border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 4px;
     font-size: 14px;
     width: 897px;
     height: 39px;
@@ -174,7 +174,11 @@ thead td{
     font-weight: 100;
     letter-spacing: 2px;
 }
-
+.linkname{
+    text-decoration: none;
+    font-family: 'Lato';
+    color: black;
+}
 tbody tr{
     height: 40px;
     background-color: #fff; 
@@ -195,3 +199,27 @@ tbody tr{
     #textsearch{
         height: 30px;
     }
+#profilebody{
+    border: 1px solid #CDCDCD;
+    margin: 0 auto;
+    margin-top: 25px;
+    width: 800px;
+    height: 500px;
+    background-color: #fff;
+}
+#profilebody img{
+    border-radius: 100%;
+    border: 1px solid #cdcdcd;
+    margin: 20px 20px;
+}
+#content{
+    position: relative;
+    float: right;
+    width: 50px;
+    height: 30px;
+    margin-right: 50px;
+    margin-top: 100px;
+}
+#content label{
+    display: block;
+}

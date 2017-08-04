@@ -38,30 +38,19 @@ else{
         <ul>
             <li><a href="main.php">Inicial</a></li>
             <li><a href="mainclientes.php">Clientes</a></li>
-            <li><a href="">Funcionários</a></li>
+            <li><a href="mainfunc.php">Funcionários</a></li>
             <li><a href="maingeral.php">Relatório geral</a></li>
             </ul>
         </div>
     </div>
     </div>
-    <div id="allblock">
-        <div id="searchdiv">
-    <input type="text" placeholder="Ache os funcionários !" name="pesquisa"/>
+    <div id="profilebody">
+        <img src="../Img/User-unknown.png">
+        <div id="content">
+        <label><?php echo $_GET['profile']?></label>
+        <label><?php echo $_GET['profile']?></label>
         </div>
-    <table>
-        <thead id="thead">
-        <td>Nome</td>
-        <td>Nota média</td>
-        <td>Média de efetividade do atendimento</td>
-        <td>Atendimentos</td>
-        </thead>
-   <tbody id="tbody">
-    <?php
-    $colums = array("name","note_avarage","issue_sol_avarage");
-     load("select * from employee", $colums);?>
-    </tbody>
-    </table>
-    </div>
+        </div>
     <script>
 var modal = document.getElementById('full-options-block');
 var img = document.getElementById('imgclick');
