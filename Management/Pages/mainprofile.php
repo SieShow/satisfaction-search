@@ -47,9 +47,26 @@ else{
     <div id="profilebody">
         <img src="../Img/User-unknown.png">
         <div id="content">
-        <label><?php echo $_GET['profile']?></label>
-        <label><?php echo $_GET['profile']?></label>
+        <h2>Lucas</h2>
+        <spanclass="rating" data-stars="10"></span>
+        <label>Email:</label>
+        <label>Visitas Técnicas:</label>
+        <label>Email:</label>
+        <label>Ultima visita técnica:</label>
         </div>
+        <h3>Histórico</h3>
+        <table>
+            <tr>
+                <td>Cliente</td>
+                <td>Nome do Cliente</td>
+                <td>Nota</td>
+                <td>Comentário</td>
+                <td>Data da visita</td>
+            </tr>
+            <?php 
+            load("SELECT ")
+            ?>
+        </table>
         </div>
     <script>
 var modal = document.getElementById('full-options-block');

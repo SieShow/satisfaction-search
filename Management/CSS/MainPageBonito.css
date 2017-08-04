@@ -164,7 +164,7 @@ td, tr{
  padding-left: 7px;
      font-family: Lato;
 }
-thead td{
+thead td, #profilebody td{
     background-color: #88CCF1;
     height: 60px;
     text-transform: uppercase;
@@ -173,6 +173,46 @@ thead td{
     font-size: 16px;
     font-weight: 100;
     letter-spacing: 2px;
+}
+#profilebody h3, table{
+    margin-left: 18px;
+}
+#profilebody h3{
+    color: #5594BF;
+}
+#profilebody td{
+    height: 40px;
+    font-size: 14px;
+}
+#profilebody{
+    border: 1px solid #CDCDCD;
+    margin: 0 auto;
+    margin-top: 25px;
+    width: 800px;
+    height: 500px;
+    background-color: #fff;
+}
+#profilebody img{
+    border-radius: 100%;
+    border: 1px solid #cdcdcd;
+    margin: 20px 50px;
+    height: 200px;
+}
+#content{
+    position: relative;
+    float: right;
+    width: 300px;
+    height: 200px;
+    align-content: center;
+    right: 90px;
+    top: 50px;
+}
+#content label,h3{
+    display: block;
+}
+
+#profilebody table{
+    width: 750px;
 }
 .linkname{
     text-decoration: none;
@@ -189,9 +229,6 @@ tbody tr{
         height: 500px;
         width: 800px;
     }
-    caption{
-        border-bottom: none;
-    }
     table{
         width: 900px; 
     }
@@ -199,27 +236,3 @@ tbody tr{
     #textsearch{
         height: 30px;
     }
-#profilebody{
-    border: 1px solid #CDCDCD;
-    margin: 0 auto;
-    margin-top: 25px;
-    width: 800px;
-    height: 500px;
-    background-color: #fff;
-}
-#profilebody img{
-    border-radius: 100%;
-    border: 1px solid #cdcdcd;
-    margin: 20px 20px;
-}
-#content{
-    position: relative;
-    float: right;
-    width: 50px;
-    height: 30px;
-    margin-right: 50px;
-    margin-top: 100px;
-}
-#content label{
-    display: block;
-}

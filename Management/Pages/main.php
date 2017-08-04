@@ -48,7 +48,7 @@ else{
         <div id="searchdiv">
     <input type="text" placeholder="Ache os clientes e funcionários !" name="pesquisa"/>
         </div>
-    <table>
+    <table id="maintable">
         <thead id="thead">
         <td>Nome do cliente</td>
         <td>Avaliação média</td>
