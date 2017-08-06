@@ -6,15 +6,15 @@ if(isset($_POST['btnlogin'])){
         $user = $_POST['login'];
         $pass = $_POST['passw'];
         $sql = "select login from users where login='$user' and password='$pass'";
-        $connection = mysqli_connect("localhost", "root", "123", "satisfactionbd");
+        $connection = mysqli_connect("localhost", "root", "", "satisfactionbd");
         if(!$connection){
-        die("Parece que encontramos algum problema em conectar com o banco de dados :(");
+        header("location:Pages/conection_fail.html");
    }
         $result = $connection->query($sql);
         if($result->num_rows > 0){
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['password'] = $_POST['passw'];
-            header('location:../management/Pages/main.php');
+            header('location:management/Pages/main.php');
         }
         else{
             $error="Usuário inválido";
