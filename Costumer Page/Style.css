@@ -4,11 +4,12 @@
 body {
     background-color: #EDE7F6;
     font-family: 'Helvetica';
-     font-style: normal; 
-     font-size: 26px;
-      font-weight: 400; 
-      margin: 0px;
+    font-style: normal; 
+    font-size: 26px;
+    font-weight: 400; 
+    margin: 0px;
 }
+
 div[style*="margin: 16px 0;"] 
 { margin: 0 !important; }
 
@@ -23,7 +24,7 @@ input.star, input.startwo {
 label.star, label.startwo {
     float: right;
     padding: 10px;
-    font-size: 3vw;
+    font-size: 37px;
     color: #444;
     transition: all .2s;
 }
@@ -51,15 +52,7 @@ label.star:before, label.startwo:before {
     content: '\f006';
     font-family: FontAwesome;
 }
-@media not screen and (min-width: 500px)
-{
-    label{
-        font-size: 15px;
-    }
-    img{
-        height: 50px;
-    }
-}
+
     #btnsender {
     background-color: #4CAF50;
     font-size: 20px;
@@ -107,7 +100,6 @@ label.star:before, label.startwo:before {
 .headdivcontainer {
     position: relative;
     height: 135px;
-
     background-color: #0064C8;
 }
 
@@ -171,7 +163,6 @@ textarea{
 .labelsfield {
     margin-top: 10px;
     width: 100%;
-    font-size: 2vw;
 }
 #firstlabelfield{
     font-size: 30px;
@@ -354,14 +345,6 @@ textarea{
         transform: rotate(360deg);
     }
 }
-
-/* MOBILE STYLES */
-@media screen and (max-width:600px) {
-    h1 {
-        font-size: 32px !important;
-        line-height: 32px !important;
-    }
-}
 .radioyesno {
 padding: 10px;
 width: 300px;
@@ -440,9 +423,9 @@ padding: 10px;
 
 #txtopnion{
   resize: none;
-     font-family: 'Helvetica';
-     font-style: normal; 
-     font-size: 20px;
+  font-family: 'Helvetica';
+  font-style: normal; 
+  font-size: 20px;
   margin-top: 10px;
   height: 150px;
   position: relative;
