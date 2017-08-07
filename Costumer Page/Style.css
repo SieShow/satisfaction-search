@@ -156,7 +156,7 @@ textarea{
     height: 90%;
     width: 90%;
     position: relative; 
-    padding: 10px 3px 10px 30px;
+    padding: 5px 1px;
  }
 .topheader, img {
     height: 100%;

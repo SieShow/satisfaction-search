@@ -1,3 +1,17 @@
+<?php
+$img = 0;
+if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
+    $sql = "INSERT INTO form(idform, commentary, idcustomer, idemployee, 
+    evaluation_value,issue_solve, request_sent, request_answered) VALUES (not null,'".$_GET['commentary']."'
+    ,1,1,".$_GET['star_note'].",'".$_GET['issue_solved']."','2017/06/21', '2017/06/21')";
+    $connection = mysqli_connect("localhost", "root", "123", "satisfactionbd");
+        $result = $connection->query($sql);
+        if($result == 1){
+            $img = 1;
+            header("location: http://www.mafrainformatica.com.br"); 
+        }
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -10,12 +24,12 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="Things.js"></script>
     <link rel="shortcut icon" href="http://www.mafrainformatica.com/wp-content/uploads/2015/12/favicon.png" type="image/x-icon"
     />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
     <link href="Style.css" rel="stylesheet" type="text/css" />
     <title>Mafra - Pesquisa de satisfação</title>
-
     <body>
         <!--HEDAER-->
         <div class="headdivcontainer">
@@ -42,10 +56,17 @@
             <div class="modal-content">
                 <div class="modal-header" id="modalhead">
                     <span class="close">&times;</span>
-                    <h2>Enviando sua resposta...</h2>
+                    <?php if($img == 0){echo "<h2>Enviando sua resposta...</h2>";}
+                    else{echo "<h2>Resposta enviada com sucesso!</h2>";}
+                    ?>
                 </div>
                 <div class="modal-body">
-                    <div class="loader"></div>
+                <?php 
+                if($img == 0){echo " <div class='loader'></div>";}
+                else{echo "<img style='height: 90px;z-index: 1;position: relative;
+                margin-top: 10px;left: 40%;'src='Img/sucessfull.png'>";
+               }
+                ?>
                 </div>
             </div>
 
@@ -103,14 +124,21 @@
                 <div class="labelsfield">
                     <label>Deixe-nos um comentário:</label>
                     <div>
-                        <textarea runat="server" id="txtopnion" name="txtopnion" maxlength="100"></textarea>
+                        <textarea runat="server" id="txtopnion" name="txtopnion" maxlength="200"></textarea>
                     </div>
                 </div>
             </div>
         </div>
         <script>
+            // Get the modal
+            var modal = document.getElementById('myModal');
+            var issue_solve;
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
+                $get = window.location.href.split("/").pop();
+                if($get != "index.php"){
+                modal.style.display = "block";
+                }
             });
 
             //for when the radio buttons been setted
@@ -122,8 +150,6 @@
                 $('#starsdiv2').css('border', 'none');
                 $('#starsdiv2').css("border-bottom", "1px solid #D6D6D6");
             });
-            // Get the modal
-            var modal = document.getElementById('myModal');
 
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
@@ -161,9 +187,33 @@
                 if (trysend1 == true && trysend2 == true) {
                     // When the user clicks the button, open the modal 
                     modal.style.display = "block";
+                    var starvalue;
+
+                    if(document.getElementById('star-1').checked){
+                        starvalue = 1;
+                    }
+                    else if(document.getElementById('star-2').checked){
+                        starvalue = 2;
+                    }
+                    else if(document.getElementById('star-3').checked){
+                        starvalue = 3;
+                    }
+                    else if(document.getElementById('star-4').checked){
+                        starvalue = 4;
+                    }
+                    else{
+                        starvalue = 5;
+                    }
+                     if(document.getElementById('radio01').checked){
+                        issue_solve = "yes";
+                    }
+                     if(document.getElementById('radio02').checked){
+                        issue_solve = "no";
+                     }
+                    var comment = document.getElementById('txtopnion').value;
+                    window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="+issue_solve+"\u0026commentary="+comment;
                 }
             });
         </script>
     </body>
-
 </html>
