@@ -29,7 +29,7 @@ else{
                     <img src="../Img/User-unknown.png">
                     <label><?php echo $user ?></label>
                 </div>     
-        <a href="">Editar perfil</a>
+        <a href="" id="prof">Editar perfil</a>
         <a href="../PHP/Logout.php">Sair</a>
         </div>
         </div>
@@ -62,6 +62,24 @@ else{
     </tbody>
     </table>
     </div>
+    <div id="conf">
+    <div id="profileinfo">
+        <img src="../Img/User-unknown.png">
+        <button>Selecionar imagem</button>
+        <label>Usuário</label>
+        <input type="text" value="" />
+        <label>Senha</label>
+        <input type="password" value="" />
+        <label>Confirma senha</label>
+        <input type="password" value="" />
+        <label>Email</label>
+        <input type="text" value="" />
+        <div>
+        <button id="cancel">Cancelar</button>
+        <button id="save">Salvar</button>
+        </div>
+    </div>
+    </div>
     <script>
 var modal = document.getElementById('full-options-block');
 var img = document.getElementById('imgclick');
@@ -79,6 +97,10 @@ document.onclick = function(e){
           modal.style.display = 'none';
     }
 }
+document.getElementById("prof").onclick = function(){
+    document.getElementById('conf').style.display='block';
+}
+
 </script>
 </body>
 </html>

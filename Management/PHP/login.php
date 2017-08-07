@@ -11,6 +11,7 @@ if(isset($_POST['btnlogin'])){
         header("location:Pages/conection_fail.html");
    }
         $result = $connection->query($sql);
+        error_reporting(0);
         if($result->num_rows > 0){
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['password'] = $_POST['passw'];
