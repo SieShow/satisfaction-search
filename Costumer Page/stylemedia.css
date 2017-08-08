@@ -1,16 +1,55 @@
+@media not screen and (min-width: 1350px)
+{
+    .required{
+        display: none;
+    }
+}
+@media not screen and (min-width: 925px){
+    .topheader img {
+    width: 63%;
+}
+    .buttondiv{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+@media not screen and (min-width: 650px){
+.frmmain, .headdivcontainer, .headdivbottom{
+    width: 100%;
+    margin:0;
+    margin-top: 0;
+    }
+    img{
+        width: 10%;
+    }
+    .frmmain{
+        height: 720px;
+    }
+    .headdivcontainer{
+        background-color: #fff;
+    }
+    .squares{
+        padding:0;
+    }
+    #lasttopic{
+        margin-left: -30px;
+    }
+    #lasttopic textarea{
+        width: 96%;
+        margin-top: 20px;
+    }
+}
 /*IPHONE 5 */
 @media not screen and (min-width: 325px)
 {
-    label{
-        font-size: 22px;
-    }
     .frmmain, .headdivcontainer, .headdivbottom{
         width: 100%;
         margin:0;
         margin-top: 0;
     }
     img{
-        height: 70px;
+        width: 10%;
     }
     .frmmain{
         height: 530px;
@@ -20,9 +59,6 @@
     }
     .squares{
         padding:0;
-    }
-    .contact, .required{
-        display:none;
     }
     #lasttopic{
         margin-left: -30px;

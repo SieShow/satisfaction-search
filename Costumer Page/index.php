@@ -1,10 +1,22 @@
 <?php
+    ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $img = 0;
 if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
+    mysqli_report(MYSQLI_REPORT_STRICT);
     $sql = "INSERT INTO form(idform, commentary, idcustomer, idemployee, 
     evaluation_value,issue_solve, request_sent, request_answered) VALUES (not null,'".$_GET['commentary']."'
     ,1,1,".$_GET['star_note'].",'".$_GET['issue_solved']."','2017/06/21', '2017/06/21')";
+    try{
     $connection = mysqli_connect("localhost", "root", "123", "satisfactionbd");
+    }
+    catch(Exception $e){
+        //If found some problem to conect to database, then, a xml file is created and sent to google drive
+        //directory. (This function will be created[not now because i have no idea about how to do that])
+        //so for now..
+         header("location: http://www.mafrainformatica.com.br"); 
+    }
         $result = $connection->query($sql);
         if($result == 1){
             $img = 1;
@@ -34,20 +46,8 @@ if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
     <body>
         <!--HEDAER-->
         <div class="headdivcontainer">
-            <div class="headerdiv">
-                <div class="contact">
-                    <label>Fale conosco: Belo Horizonte Tel - (031) 3479-2900</label>
-                </div>
-
-                <div class="headdivbottom" style="color: #FFFFFF">
-                    <div class="topheader">
-                        <a href="http://www.mafrainformatica.com.br" target="_blank">
-                            <img src="http://www.mafrainformatica.com/wp-content/uploads/2015/12/mafra.png" style="padding: 4px 2px 2px 13px" /></a>
-                        <div class="buttondiv">
-                            <button id="btnsender" Text="Enviar" />Enviar</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="contact">
+            <label>Fale conosco: Belo Horizonte Tel - (031) 3479-2900<br>Juiz de Fora - (032) 3231-0482</label>
             </div>
         </div>
         <!--/HEADER-->
@@ -70,9 +70,15 @@ if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
                 ?>
                 </div>
             </div>
-
         </div>
         <div class="frmmain">
+             <div class="topheader">
+                        <a href="http://www.mafrainformatica.com.br" target="_blank">
+                            <img src="Img/mafra.png" style="padding: 4px 2px 2px 13px" /></a>
+                        <div class="buttondiv">
+                            <button id="btnsender" Text="Enviar" />Enviar</button>
+                        </div>
+                    </div>
             <div class="squares" id="starsdiv1">
                 <div id="firstlabelfield">
                     <label>Como você avalia a cordialidade do técnico ?</label>
@@ -141,7 +147,6 @@ if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
                 modal.style.display = "block";
                 }
             });
-
             //for when the radio buttons been setted
             $('#starsdiv1 input').on('change', function () {
                 $('#starsdiv1').css('border', 'none');
@@ -151,23 +156,21 @@ if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
                 $('#starsdiv2').css('border', 'none');
                 $('#starsdiv2').css("border-bottom", "1px solid #D6D6D6");
             });
-
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
-
             // When the user clicks on <span> (x), close the modal
             span.onclick = function () {
                 modal.style.display = "none";
             }
-
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
             }
-
-            //Check if the required field are marked
+</script>
+<script>
+                //Check if the required field are marked
             $('#btnsender').click(function () {
                 var trysend1, trysend2;
                 if ($('#star-1').is(':checked') || $('#star-2').is(':checked') || $('#star-3').is(':checked') || $('#star-4').is(':checked') || $('#star-5').is(':checked')) {
@@ -215,6 +218,6 @@ if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
                     window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="+issue_solve+"\u0026commentary="+comment;
                 }
             });
-        </script>
+    </script>
     </body>
 </html>
