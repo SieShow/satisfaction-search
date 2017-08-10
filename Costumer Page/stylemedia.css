@@ -1,30 +1,27 @@
-@media not screen and (min-width: 1350px)
-{
-    .required{
-        display: none;
-    }
-}
 @media not screen and (min-width: 925px){
-    .topheader img {
-    width: 63%;
-}
     .buttondiv{
         position: absolute;
         right: 0;
         top: 0;
     }
 }
-@media not screen and (min-width: 650px){
-.frmmain, .headdivcontainer, .headdivbottom{
+@media not screen and (min-width: 800px){
+    .frmmain, .headdivcontainer, .headdivbottom{
     width: 100%;
     margin:0;
     margin-top: 0;
+    font-size: 22px;
+    min-width: 100px; 
+    }
+    .required{
+        display: none;
     }
     img{
         width: 10%;
     }
     .frmmain{
-        height: 720px;
+        position: absolute;
+        height: 650px;
     }
     .headdivcontainer{
         background-color: #fff;
@@ -37,7 +34,25 @@
     }
     #lasttopic textarea{
         width: 96%;
-        margin-top: 20px;
+        margin-top: 3%;
+    }
+}
+@media not screen and (min-width: 466px){
+    .topheader img{
+        width: 60%;
+    }
+}
+@media not screen and (min-width: 426px){
+    .loader{
+        left: 31%;
+    }
+    .modal-header h2{
+        font-size: 25px;
+    }
+}
+@media not screen and (min-width: 365px){
+    .topheader img{
+        width: 50%;
     }
 }
 /*IPHONE 5 */
@@ -47,12 +62,10 @@
         width: 100%;
         margin:0;
         margin-top: 0;
+        height: 610px;
     }
-    img{
-        width: 10%;
-    }
-    .frmmain{
-        height: 530px;
+    .topheader img{
+        width: 50%;
     }
     .headdivcontainer{
         background-color: #fff;
@@ -65,5 +78,13 @@
     }
     #lasttopic textarea{
         width: 96%;
+    }
+}
+@media not screen and (min-width: 288px){
+    html{
+        width: 100%;
+    }
+    .topheader img{
+       visibility: hidden;
     }
 }
