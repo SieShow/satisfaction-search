@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Ago-2017 às 17:23
--- Versão do servidor: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: 11-Ago-2017 às 20:47
+-- Versão do servidor: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -31,7 +33,8 @@ CREATE TABLE `customer` (
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `emails` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `tecnical_visits` int(11) NOT NULL,
-  `forms_answereds` int(11) NOT NULL
+  `forms_answereds` int(11) NOT NULL,
+  `V11_ID` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,8 +62,17 @@ CREATE TABLE `form` (
   `idcustomer` int(11) DEFAULT NULL,
   `idemployee` int(11) DEFAULT NULL,
   `evaluation_value` int(11) DEFAULT NULL,
-  `issue_solve` varchar(10) DEFAULT NULL
+  `issue_solve` varchar(10) DEFAULT NULL,
+  `request_sent` date NOT NULL,
+  `request_answered` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `form`
+--
+
+INSERT INTO `form` (`idform`, `commentary`, `idcustomer`, `idemployee`, `evaluation_value`, `issue_solve`, `request_sent`, `request_answered`) VALUES
+(5, '123', 123, 321, 4, 'yes', '0000-00-00', '2017-08-11');
 
 -- --------------------------------------------------------
 
@@ -70,8 +82,8 @@ CREATE TABLE `form` (
 
 CREATE TABLE `users` (
   `idusers` int(10) UNSIGNED NOT NULL,
-  `nome` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `senha` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `img_perfil` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -121,10 +133,16 @@ ALTER TABLE `customer`
 ALTER TABLE `employee`
   MODIFY `idemployee` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `form`
+--
+ALTER TABLE `form`
+  MODIFY `idform` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `idusers` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idusers` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

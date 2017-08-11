@@ -1,27 +1,44 @@
 <?php
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 $img = 0;
-if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
-    mysqli_report(MYSQLI_REPORT_STRICT);
-    $sql = "INSERT INTO form(idform, commentary, idcustomer, idemployee, 
-    evaluation_value,issue_solve, request_sent, request_answered) VALUES (not null,'".$_GET['commentary']."'
-    ,1,1,".$_GET['star_note'].",'".$_GET['issue_solved']."','2017/06/21', '2017/06/21')";
-    try{
-    $connection = mysqli_connect("localhost", "root", "123", "satisfactionbd");
-    }
-    catch(Exception $e){
-        //If found some problem to conect to database, then, a xml file is created and sent to google drive
-        //directory. (This function will be created[not now because i have no idea about how to do that])
-        //so for now..
-         header("location: http://www.mafrainformatica.com.br"); 
-    }
+$customid = '';
+$emplid = '';
+$datesent = '';
+
+if(isset($_POST['custoid']) && isset($_POST['emplid']) && isset($_POST['datesent'])) {
+
+    $customid = $_POST['custoid'];
+    $emplid = $_POST['emplid'];
+    $datesent = $_POST['datesent'];
+}
+
+else if(isset($_GET['empid']) && isset($_GET['custoid']) && isset($_GET['datesent']))
+{
+    if(isset($_GET['star_note']) && isset($_GET['issue_solved']))
+        {
+            $customid = $_GET['custoid'];
+            $emplid = $_GET['empid'];
+            $datesent = $_GET['datesent'];
+
+            $today = date("Y/m/d");
+            $sql = "INSERT INTO form(commentary, idcustomer, idemployee, 
+            evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."'
+            ,".$customid.",".$emplid.",".$_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."')";
+
+            $connection = mysqli_connect("127.0.0.1", "root", "123", "satisfactionbd");
+
         $result = $connection->query($sql);
         if($result == 1){
             $img = 1;
             header("location: http://www.mafrainformatica.com.br"); 
         }
+        else{
+            header("location: http://www.mafrainformatica.com.br"); 
+        }
+}
+}
+else{
+     header("location: http://www.mafrainformatica.com.br"); 
 }
 ?>
 <!doctype html>
@@ -44,6 +61,9 @@ if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
     <link rel="stylesheet" href="stylemedia.css" rel="text/css" />
     <title>Mafra - Pesquisa de satisfação</title>
     <body>
+        <input type="hidden" name="custoid"  id="custoids" value="<?php echo $customid ?>" />
+		<input type="hidden" name="emplid" id="empids" value="<?php echo $emplid ?>" />
+		<input type="hidden" name="datesent" id="datesents" value="<?php echo $datesent ?>" />
         <!--HEDAER-->
         <div class="headdivcontainer">
             <div class="contact">
@@ -214,8 +234,13 @@ if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
                      if(document.getElementById('radio02').checked){
                         issue_solve = "no";
                      }
+
+                    var empid = document.getElementById('empids').value;
+                    var custoid = document.getElementById('custoids').value;
+                    var datesent = document.getElementById('datesents').value;
                     var comment = document.getElementById('txtopnion').value;
-                    window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="+issue_solve+"\u0026commentary="+comment;
+                    window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="
+                    +issue_solve+"\u0026commentary="+comment+"\u0026empid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent;
                 }
             });
     </script>
