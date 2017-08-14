@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Ago-2017 às 20:47
+-- Generation Time: 14-Ago-2017 às 19:23
 -- Versão do servidor: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -47,7 +47,8 @@ CREATE TABLE `employee` (
   `idemployee` int(10) UNSIGNED NOT NULL,
   `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `note_avarage` double NOT NULL,
-  `issue_sol_avarage` double NOT NULL
+  `issue_sol_avarage` double NOT NULL,
+  `V11_code` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
