@@ -5,21 +5,14 @@ $customid = '';
 $emplid = '';
 $datesent = '';
 
-if(isset($_POST['custoid']) && isset($_POST['emplid']) && isset($_POST['datesent'])) {
-
-    $customid = $_POST['custoid'];
-    $emplid = $_POST['emplid'];
-    $datesent = $_POST['datesent'];
-}
-
-else if(isset($_GET['empid']) && isset($_GET['custoid']) && isset($_GET['datesent']))
+ if(isset($_GET['emplid']) && isset($_GET['custoid']) && isset($_GET['datesent']))
 {
-    if(isset($_GET['star_note']) && isset($_GET['issue_solved']))
-        {
             $customid = $_GET['custoid'];
-            $emplid = $_GET['empid'];
+            $emplid = $_GET['emplid'];
             $datesent = $_GET['datesent'];
 
+    if(isset($_GET['star_note']) && isset($_GET['issue_solved']))
+        {
             $today = date("Y/m/d");
             $sql = "INSERT INTO form(commentary, idcustomer, idemployee, 
             evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."'
@@ -36,9 +29,6 @@ else if(isset($_GET['empid']) && isset($_GET['custoid']) && isset($_GET['datesen
             header("location: http://www.mafrainformatica.com.br"); 
         }
 }
-}
-else{
-     header("location: http://www.mafrainformatica.com.br"); 
 }
 ?>
 <!doctype html>
@@ -162,8 +152,10 @@ else{
             var issue_solve;
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
-                $get = window.location.href.split("/").pop();
-                if($get != "index.php"){
+              //  $get = window.location.href.split("/").pop();
+              $get = window.location.href.split("=");
+              var g = $get.LastIndexOf("dwAfwACafWgeWQSQ");
+                if(g != -1){
                 modal.style.display = "block";
                 }
             });
@@ -240,7 +232,7 @@ else{
                     var datesent = document.getElementById('datesents').value;
                     var comment = document.getElementById('txtopnion').value;
                     window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="
-                    +issue_solve+"\u0026commentary="+comment+"\u0026empid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent;
+                    +issue_solve+"\u0026commentary="+comment+"\u0026empid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent+"\u0026passnext=dwAfwACafWgeWQSQ";
                 }
             });
     </script>
