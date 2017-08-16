@@ -10,9 +10,10 @@ $datesent = '';
             $customid = $_GET['custoid'];
             $emplid = $_GET['emplid'];
             $datesent = $_GET['datesent'];
-
+echo "teste";
     if(isset($_GET['star_note']) && isset($_GET['issue_solved']))
         {
+            echo "teste1";
             $today = date("Y/m/d");
             $sql = "INSERT INTO form(commentary, idcustomer, idemployee, 
             evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."'
@@ -29,7 +30,9 @@ $datesent = '';
             header("location: http://www.mafrainformatica.com.br"); 
         }
 }
+echo "erro";
 }
+echo "erro2";
 ?>
 <!doctype html>
 <html>
@@ -148,14 +151,11 @@ $datesent = '';
         </div>
         <script>
             // Get the modal
-            var modal = document.getElementById('myModal');
+            var modal = document.getElementById("myModal");
             var issue_solve;
             $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-              //  $get = window.location.href.split("/").pop();
               $get = window.location.href.split("=");
-              var g = $get.LastIndexOf("dwAfwACafWgeWQSQ");
-                if(g != -1){
+                if($get[$get.length - 1] == "3f3af326d6552aeb7524c72e5b31d5a8"){
                 modal.style.display = "block";
                 }
             });
@@ -204,7 +204,7 @@ $datesent = '';
                     // When the user clicks the button, open the modal 
                     modal.style.display = "block";
                     var starvalue;
-
+                    
                     if(document.getElementById('star-1').checked){
                         starvalue = 1;
                     }
@@ -226,13 +226,13 @@ $datesent = '';
                      if(document.getElementById('radio02').checked){
                         issue_solve = "no";
                      }
-
+                     // 3f3af326d6552aeb7524c72e5b31d5a8 mean "IT'S_WORKING_BITCH"
                     var empid = document.getElementById('empids').value;
                     var custoid = document.getElementById('custoids').value;
                     var datesent = document.getElementById('datesents').value;
                     var comment = document.getElementById('txtopnion').value;
                     window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="
-                    +issue_solve+"\u0026commentary="+comment+"\u0026empid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent+"\u0026passnext=dwAfwACafWgeWQSQ";
+                    +issue_solve+"\u0026commentary="+comment+"\u0026empid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent+"\u0026passnext=3f3af326d6552aeb7524c72e5b31d5a8";
                 }
             });
     </script>
