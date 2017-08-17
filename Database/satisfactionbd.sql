@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Ago-2017 às 19:23
+-- Generation Time: 17-Ago-2017 às 13:28
 -- Versão do servidor: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -45,7 +45,7 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `employee` (
   `idemployee` int(10) UNSIGNED NOT NULL,
-  `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `note_avarage` double NOT NULL,
   `issue_sol_avarage` double NOT NULL,
   `V11_code` int(11) NOT NULL
@@ -67,13 +67,6 @@ CREATE TABLE `form` (
   `request_sent` date NOT NULL,
   `request_answered` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `form`
---
-
-INSERT INTO `form` (`idform`, `commentary`, `idcustomer`, `idemployee`, `evaluation_value`, `issue_solve`, `request_sent`, `request_answered`) VALUES
-(5, '123', 123, 321, 4, 'yes', '0000-00-00', '2017-08-11');
 
 -- --------------------------------------------------------
 
@@ -127,17 +120,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `idcustomer` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idcustomer` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `idemployee` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idemployee` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `idform` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idform` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `users`
 --

@@ -10,10 +10,9 @@ $datesent = '';
             $customid = $_GET['custoid'];
             $emplid = $_GET['emplid'];
             $datesent = $_GET['datesent'];
-echo "teste";
+
     if(isset($_GET['star_note']) && isset($_GET['issue_solved']))
         {
-            echo "teste1";
             $today = date("Y/m/d");
             $sql = "INSERT INTO form(commentary, idcustomer, idemployee, 
             evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."'
@@ -24,15 +23,15 @@ echo "teste";
         $result = $connection->query($sql);
         if($result == 1){
             $img = 1;
-            header("location: http://www.mafrainformatica.com.br"); 
         }
         else{
             header("location: http://www.mafrainformatica.com.br"); 
         }
 }
-echo "erro";
 }
-echo "erro2";
+else{
+    header("location: http://www.mafrainformatica.com.br");   
+}
 ?>
 <!doctype html>
 <html>
@@ -153,8 +152,8 @@ echo "erro2";
             // Get the modal
             var modal = document.getElementById("myModal");
             var issue_solve;
-            $(document).ready(function () {
-              $get = window.location.href.split("=");
+            $get = window.location.href.split("=");
+            $(document).ready(function () {             
                 if($get[$get.length - 1] == "3f3af326d6552aeb7524c72e5b31d5a8"){
                 modal.style.display = "block";
                 }
@@ -172,16 +171,24 @@ echo "erro2";
             var span = document.getElementsByClassName("close")[0];
             // When the user clicks on <span> (x), close the modal
             span.onclick = function () {
+                if($get[$get.length - 1] == "3f3af326d6552aeb7524c72e5b31d5a8"){
+                    window.location.replace("http://mafrainformatica.com.br");
+                }
+                else{
                 modal.style.display = "none";
+                }
             }
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
                 if (event.target == modal) {
+                    if($get[$get.length - 1] == "3f3af326d6552aeb7524c72e5b31d5a8"){
+                    window.location.replace("http://mafrainformatica.com.br");
+                }
+                else{
                     modal.style.display = "none";
                 }
+                }
             }
-</script>
-<script>
                 //Check if the required field are marked
             $('#btnsender').click(function () {
                 var trysend1, trysend2;
@@ -232,7 +239,7 @@ echo "erro2";
                     var datesent = document.getElementById('datesents').value;
                     var comment = document.getElementById('txtopnion').value;
                     window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="
-                    +issue_solve+"\u0026commentary="+comment+"\u0026empid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent+"\u0026passnext=3f3af326d6552aeb7524c72e5b31d5a8";
+                    +issue_solve+"\u0026commentary="+comment+"\u0026emplid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent+"\u0026passnext=3f3af326d6552aeb7524c72e5b31d5a8";
                 }
             });
     </script>
