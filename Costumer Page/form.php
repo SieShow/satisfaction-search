@@ -18,7 +18,7 @@ $datesent = '';
             evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."'
             ,".$customid.",".$emplid.",".$_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."')";
 
-            $connection = mysqli_connect("127.0.0.1", "root", "123", "satisfactionbd");
+            $connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
 
         $result = $connection->query($sql);
         if($result == 1){
@@ -30,7 +30,7 @@ $datesent = '';
 }
 }
 else{
-    header("location: http://www.mafrainformatica.com.br");   
+    header("location: http://www.mafrainformatica.com.br"); 
 }
 ?>
 <!doctype html>
@@ -93,7 +93,7 @@ else{
                     </div>
             <div class="squares" id="starsdiv1">
                 <div id="firstlabelfield">
-                    <label>Como você avalia a cordialidade do técnico ?</label>
+                    <label>Como você avalia o atendimento do técnico ?</label>
                     <div class="required">
                         *
                         <span class="msgrequired">Campo Obrigatório</span>
@@ -141,7 +141,7 @@ else{
             </div>
             <div id="lasttopic">
                 <div class="labelsfield">
-                    <label>Deixe-nos um comentário:</label>
+                    <label>Deixe-nos um comentário (opcional):</label>
                     <div>
                         <textarea runat="server" id="txtopnion" name="txtopnion" maxlength="200"></textarea>
                     </div>
@@ -238,7 +238,7 @@ else{
                     var custoid = document.getElementById('custoids').value;
                     var datesent = document.getElementById('datesents').value;
                     var comment = document.getElementById('txtopnion').value;
-                    window.location.href = "index.php?star_note=" +starvalue+"\u0026issue_solved="
+                    window.location.href = "form.php?star_note=" +starvalue+"\u0026issue_solved="
                     +issue_solve+"\u0026commentary="+comment+"\u0026emplid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent+"\u0026passnext=3f3af326d6552aeb7524c72e5b31d5a8";
                 }
             });
