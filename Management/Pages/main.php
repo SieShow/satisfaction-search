@@ -60,7 +60,7 @@ else{
    <tbody id="tbody">
     <?php
     $colums = array("name","note_avarage","issue_sol_avarage");
-     load("select * from employee", $colums);?>
+     load("select * from customer", $colums);?>
     </tbody>
     </table>
     </div>

@@ -53,7 +53,6 @@ else{
         <td>Nome</td>
         <td>Nota média</td>
         <td>Média de efetividade do atendimento</td>
-        <td>Atendimentos</td>
         </thead>
    <tbody id="tbody">
     <?php
