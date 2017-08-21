@@ -1,5 +1,6 @@
 <?php
 include('../PHP/tableload.php');
+include('../PHP/updateprofile.php');
 session_start();
 if($_SESSION['login'] == null){
     header("location: ../index.php");
@@ -15,6 +16,7 @@ else{
     <meta charset = "utf-8"/>
     <link href="../CSS/MainPageBonito.css" rel="stylesheet" type="text/css" />
     <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
     <title>Gerenciamento</title>
 </head>
@@ -27,9 +29,9 @@ else{
                 </div>
                 <div id="userinfo">
                     <img src="../Img/User-unknown.png">
-                    <label><?php echo $user ?></label>
+                    <label id="username"><?php echo $user ?></label>
                 </div>     
-        <a href="" id="prof">Editar perfil</a>
+        <a id="prof" onclick="document.getElementById('profileinfo').style.display='block'">Editar perfil</a>
         <a href="../PHP/Logout.php">Sair</a>
         </div>
         </div>
@@ -63,24 +65,24 @@ else{
     </table>
     </div>
     <div id="conf">
-    <div id="profileinfo">
-        <img src="../Img/User-unknown.png">
-        <button>Selecionar imagem</button>
+    <form method="POST" action="" id="profileinfo">
+        <img id="profileimg" src="../Img/User-unknown.png">
+        <input id="imageinput" type="file" accept="image/*" title="" onchange="loadimg(this);" />
         <label>Usuário</label>
-        <input type="text" value="" />
-        <label>Senha</label>
-        <input type="password" value="" />
+        <input class="otinput" id="txtuser" name="newname" type="text" value="<?php echo $user ?>" />
+        <label>Nova senha</label>
+        <input class="otinput" id="txtpassword" name="newpass"type="password" value="" />
         <label>Confirma senha</label>
-        <input type="password" value="" />
-        <label>Email</label>
-        <input type="text" value="" />
+        <input class="otinput" id="txtpassconfirm" name="newpassconfirm" type="password" value="" />
+        <span id="fail"><?php echo $msg; ?></span>
         <div>
-        <button id="cancel">Cancelar</button>
-        <button id="save">Salvar</button>
+        <button type="button" id="cancel">Cancelar</button>
+        <button name="btnupdate" id="save">Salvar</button>
         </div>
-    </div>
+</form>
     </div>
     <script>
+
 var modal = document.getElementById('full-options-block');
 var img = document.getElementById('imgclick');
 
@@ -97,10 +99,27 @@ document.onclick = function(e){
           modal.style.display = 'none';
     }
 }
+
 document.getElementById("prof").onclick = function(){
-    document.getElementById('conf').style.display='block';
+    document.getElementById('profileinfo').style.display='block';
 }
 
+document.getElementById("cancel").onclick = function(){
+    document.getElementById('profileinfo').style.display='none';
+    document.getElementById("profileimg").value = "";
+}
+
+function loadimg(input){
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        var file = document.getElementById("imageinput").value;
+        reader.onload = function (e) {
+            $('#profileimg').attr('src', e.target.result).width(120).height(120);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 </body>
 </html>

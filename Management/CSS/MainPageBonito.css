@@ -1,7 +1,6 @@
     *{
         box-sizing: border-box;
     }
-
 body{
     font-family: Verdana;
     margin: 0;
@@ -44,6 +43,9 @@ body{
         padding: 8px 11px;
         text-decoration: none;
     }
+#full-options-block a:hover{
+    cursor:pointer;
+}
         #userinfo label{
        position: absolute;
        display: inline-block;
@@ -55,6 +57,7 @@ body{
        overflow: hidden !important;
        text-overflow: ellipsis;
        width: 127px;
+       margin-left: -5px;
        top: 38px;
     }
      #full-options-block a:hover{
@@ -74,7 +77,38 @@ body{
         background-color: #fff;
         box-shadow: 2px 2px 5px #888888;
         display: none;
+        -webkit-animation-name: showw;
+        -webkit-animation-duration: 0.4s;
+        animation-name: showw;
+        animation-duration: 0.4s;
     }
+/* Add Animation */
+@-webkit-keyframes showw {
+    from {
+        margin-top: 0px;
+        right: 4px;
+        opacity: 0;
+    }
+
+    to {
+        margin-top: 9px;
+        right: 10px;
+        opacity: 1;
+    }
+}
+@keyframes showw {
+    from {
+        margin-top: 0px;
+        right: 4px;
+        opacity: 0;
+    }
+
+    to {
+        margin-top: 9px;
+        right: 10px;
+        opacity: 1;
+    }
+}
     #arrow{
         position: absolute;
         height: 0;
@@ -130,7 +164,6 @@ body{
     margin: auto;
 }
     /* END OF HEAD PAGE CSS CONTENT */
-
     #allblock{
         width: 800px;
         margin: auto;
@@ -143,22 +176,15 @@ body{
     font-size: 14px;
     width: 897px;
     height: 39px;
-    padding: 6px 10px;
     margin-bottom: 15px;
     outline: none;
+    margin-left: 20px;
+    background-color: white;
+    background-image: url('../Img/searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
     }
-#searchdiv input:hover{
-        box-shadow: 1px 1px 1px #888888;
-    outline: none;
-}
-#searchdiv button{
-    border: none;
-    width: 80px;
-    height: 28px;
-    border-radius: 2px;
-    cursor: pointer;
-    background-color: #6C86C4;
-}
 td, tr{
  padding-left: 7px;
      font-family: Lato;
@@ -257,8 +283,7 @@ tbody tr{
 @-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)} 
     to {-webkit-transform: scale(1)}
-}
-    
+}   
 @keyframes animatezoom {
     from {transform: scale(0)} 
     to {transform: scale(1)}
@@ -268,7 +293,7 @@ tbody tr{
     width: 500px;
     background-color: #fff;
     margin: 0 auto;
-    display: inline-block;
+    display: none;
     top: 70px;
     left: 33%;
     position: fixed;
@@ -277,15 +302,40 @@ tbody tr{
     border-radius: 2px;
     overflow: auto;
     background-color: #fefefe;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
-#profileinfo img,label, input{
-    margin-left: 30px;
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -800px;
+        opacity: 0;
+    }
+
+    to {
+        top: 70px;
+        opacity: 1;
+    }
+}
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    to {
+        top: 70px;
+        opacity: 1;
+    }
+}
+#profileinfo img,label, .otinput{
+    margin: 5px 30px;
     padding: 7px;
-}
-#profileinfo img,label,input{
     display: block;
 }
-#profileinfo input{
+.otinput{
     width: 300px;
     border: 1px;
     border: 1px solid #ccc;
@@ -299,8 +349,15 @@ tbody tr{
     margin-right: 40px;
     margin-top: 40px;    
 }
-#profileinfo button{
+#profileinfo button, #imageinput{
     margin-left: 30px;
+}
+#fail{
+    margin-left: 35px;
+    margin-top: 6px;
+    color: red;
+    font-family: Lato;
+    display: none;
 }
 #save, #cancel{
     height: 30px;

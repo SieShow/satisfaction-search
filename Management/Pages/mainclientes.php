@@ -63,7 +63,7 @@ else{
     </tbody>
     </table>
     </div>
-    <script>
+<script>
 var modal = document.getElementById('full-options-block');
 var img = document.getElementById('imgclick');
 
