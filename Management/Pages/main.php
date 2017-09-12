@@ -1,6 +1,6 @@
 <?php
-include('../PHP/tableload.php');
 include('../PHP/updateprofile.php');
+include('../PHP/Counter.php');
 session_start();
 if($_SESSION['login'] == null){
     header("location: ../index.php");
@@ -15,6 +15,7 @@ else{
 <head>
     <meta charset = "utf-8"/>
     <link href="../CSS/MainPageBonito.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/main-blocks.css" rel="stylesheet" type="text/css" />
     <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
@@ -41,28 +42,68 @@ else{
             <li><a href="">Inicial</a></li>
             <li><a href="mainclientes.php">Clientes</a></li>
             <li><a href="mainfunc.php">Funcionários</a></li>
-            <li><a href="maingeral.php">Relatório geral</a></li>
             </ul>
         </div>
     </div>
     </div>
-    <div id="allblock">
-        <div id="searchdiv">
-    <input type="text" placeholder="Ache os clientes e funcionários !" name="pesquisa"/>
+    <div class="container">
+        <div id="container-textdescrit">
+            <div id="subcontainer">
+                <h1>Registros</h1>
+            </div>
         </div>
-    <table id="maintable">
-        <thead id="thead">
-        <td>Nome do cliente</td>
-        <td>Avaliação média</td>
-        <td>Funcionário solicitado</td>
-        <td>Proporção resolução do problema(%)</td>
-        </thead>
-   <tbody id="tbody">
-    <?php
-    $colums = array("name","note_avarage","issue_sol_avarage");
-     load("select * from customer", $colums);?>
-    </tbody>
-    </table>
+        <div id="block1" class="block">
+          <div class="align-content">
+            <div class="sub-cont">
+                <img src="../Img/customer.png" />
+            </div>
+            <div class="textright">
+                <div class="textright huge"><?php Customers();?></div>
+                <div>Clientes</div>
+            </div>
+        </div>
+         <a class="footerlink" id="footerlink1" href="mainclientes.php">
+            <div id="blockfooter1" class="blockfooter">
+              <span>Ir para página</span>
+               <img src="../Img/follow-button-green.png" />         
+            </div>
+         </a>
+        </div>
+        <div id="block2" class="block">
+            <div class="align-content">
+            <div class="sub-cont">
+                <img src="../Img/employee.png" />
+            </div>
+            <div class="textright">
+                <div class="textright huge"><?php Employee(); ?></div>
+                <div>Funcionários</div>
+            </div>
+         </div>
+         <a class="footerlink" id="footerlink2" href="mainfunc.php">
+            <div id="blockfooter2" class="blockfooter">
+              <span>Ir para página</span>
+               <img src="../Img/follow-button-blue.png" />         
+            </div>
+         </a>
+         </div>
+          <div id="block3" class="block">
+            <div class="align-content">
+            <div class="sub-cont">
+                <img src="../Img/check-form.png" />
+            </div>
+            <div class="textright">
+                <div class="textright huge"><?php Forms(); ?></div>
+                <div>Formulários respondidos</div>
+            </div>
+         </div>
+         <a class="footerlink" id="footerlink3" href="#">
+            <div id="blockfooter3" class="blockfooter">
+              <span>Ir para página</span>
+               <img src="../Img/follow-button-red.png" />         
+            </div>
+         </a>
+         </div>
+        </div>
     </div>
     <div id="conf">
     <form method="POST" action="" id="profileinfo">

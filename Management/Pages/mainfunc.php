@@ -39,7 +39,6 @@ else{
             <li><a href="main.php">Inicial</a></li>
             <li><a href="mainclientes.php">Clientes</a></li>
             <li><a href="">Funcionários</a></li>
-            <li><a href="maingeral.php">Relatório geral</a></li>
             </ul>
         </div>
     </div>
@@ -55,9 +54,7 @@ else{
         <td>Média de efetividade do atendimento</td>
         </thead>
    <tbody id="tbody">
-    <?php
-    $colums = array("name","note_avarage","issue_sol_avarage");
-     load("select * from employee", $colums);?>
+    <?php LoadEmpl();?>
     </tbody>
     </table>
     </div>
