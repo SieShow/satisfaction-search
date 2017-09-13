@@ -1,0 +1,63 @@
+        #profilebody h3,
+        h2,
+        table {
+            margin-left: 18px;
+        }
+        
+        #profilebody h3,
+        h2 {
+            color: #5594BF;
+        }
+        
+        #profilebody td {
+            height: 40px;
+            font-size: 14px;
+        }
+        
+        #profilebody {
+            border: 1px solid #CDCDCD;
+            margin: 0 auto;
+            margin-top: 25px;
+            width: 800px;
+            height: 500px;
+            background-color: #fff;
+        }
+        
+        #profilebody div {
+            display: inline-block;
+        }
+        
+        #content {
+            width: 100%;
+            align-content: center;
+            padding: 0px 15px;
+        }
+        
+        #content {
+            margin-bottom: 10px;
+        }
+        
+        #sub-cont2 {
+            width: 100%;
+            height: 232px;
+            border-bottom: 1px solid #C5C5C5;
+            border-spacing: 1px 10px;
+            border-collapse: separate;
+        }
+        
+        #content label {
+            color: rgb(59, 59, 59);
+        }
+        
+        #content label,
+        h3 {
+            display: block;
+        }
+        
+        #profilebody table {
+            width: 750px;
+        }
+        
+        .content-sub {
+            width: 100%;
+        }

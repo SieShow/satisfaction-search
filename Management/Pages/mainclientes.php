@@ -1,27 +1,19 @@
 <?php
-include('../PHP/tableload.php');
+include('../PHP/DataBaseQuerys.php');
 include('../PHP/updateprofile.php');
-session_start();
-if($_SESSION['login'] == null){
-    header("location: ../index.php");
-}
-else{
-    $user = $_SESSION['login'];
-    $pass = $_SESSION['password'];
-}
+include('../PHP/PageMainValidation.php');
+LoginValidation();
 ?>
     <!DOCTYPE HTML>
     <HTML>
-
     <head>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <link href="../CSS/MainPageBonito.css" rel="stylesheet" type="text/css" />
         <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
         <title>Gerenciamento</title>
     </head>
-
     <body>
         <div id="headpage">
             <div id="usernameoption">
@@ -60,11 +52,7 @@ else{
                     <td>Efetividade(%)</td>
                 </thead>
                 <tbody id="tbody">
-                    <?php
-    //$colums = array("name","note_avarage","issue_sol_avarage");
-     //load("select * from customer order by name asc", $colums);
-     LoadClient();
-     ?>
+                    <?php LoadClient();?>
                 </tbody>
             </table>
         </div>

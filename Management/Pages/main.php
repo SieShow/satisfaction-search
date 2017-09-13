@@ -1,14 +1,8 @@
 <?php
 include('../PHP/updateprofile.php');
 include('../PHP/Counter.php');
-session_start();
-if($_SESSION['login'] == null){
-    header("location: ../index.php");
-}
-else{
-    $user = $_SESSION['login'];
-    $pass = $_SESSION['password'];
-}
+include('../PHP/PageMainValidation.php');
+LoginValidation();
 ?>
 <!DOCTYPE HTML>
 <HTML>

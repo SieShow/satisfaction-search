@@ -1,13 +1,7 @@
 <?php
-include('../PHP/tableload.php');
-session_start();
-if($_SESSION['login'] == null){
-    header("location: ../index.php");
-}
-else{
-    $user = $_SESSION['login'];
-    $pass = $_SESSION['password'];
-}
+include('../PHP/DataBaseQuerys.php');
+include('../PHP/PageMainValidation.php');
+LoginValidation();
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -49,7 +43,7 @@ else{
         </div>
     <table>
         <thead id="thead">
-        <td>Nome</td>
+        <td id="nametd">Nome</td>
         <td>Nota média</td>
         <td>Média de efetividade do atendimento</td>
         </thead>

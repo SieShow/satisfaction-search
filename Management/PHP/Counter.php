@@ -1,12 +1,12 @@
 <?php
-include('SqlQuery.php');
+include('DataBaseQuerys.php');
 function Customers(){
-  echo RunQuery("select count(*) from customer");
+  echo GetNumberFromQuery("select count(*) from customer");
 }
 function Employee(){
-  echo RunQuery("select count(*) from employee");
+  echo GetNumberFromQuery("select count(*) from employee");
 }
 function Forms(){
-  echo RunQuery("select count(*) from form");
+  echo GetNumberFromQuery("select count(*) from form");
 }
 ?>

@@ -1,21 +1,20 @@
 <?php
-include('../PHP/tableload.php');
-session_start();
-if($_SESSION['login'] == null){
-    header("location: ../index.php");
-}
-else{
-    $user = $_SESSION['login'];
-    $pass = $_SESSION['password'];
-}
+include('../PHP/DataBaseQuerys.php');
+include('../PHP/PageMainValidation.php');
+include_once('../PHP/Profile.php');
+
+LoginValidation();
+ProfileValidation();
+$prof = new Profile($_GET["profile"], $_GET["type"]);
 ?>
 <!DOCTYPE HTML>
 <HTML>
 <head>
     <meta charset = "utf-8"/>
     <link href="../CSS/MainPageBonito.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/ProfileInfos.css" rel="stylesheet" type="text/css" />
     <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
-    <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet" />
     <title>Gerenciamento</title>
 </head>
 <body>
@@ -39,34 +38,33 @@ else{
             <li><a href="main.php">Inicial</a></li>
             <li><a href="mainclientes.php">Clientes</a></li>
             <li><a href="mainfunc.php">Funcionários</a></li>
-            <li><a href="maingeral.php">Relatório geral</a></li>
             </ul>
         </div>
     </div>
     </div>
     <div id="profilebody">
-        <img src="../Img/User-unknown.png">
         <div id="content">
-        <h2>Lucas</h2>
-        <spanclass="rating" data-stars="10"></span>
-        <label>Email:</label>
-        <label>Visitas Técnicas:</label>
-        <label>Email:</label>
-        <label>Ultima visita técnica:</label>
+        <div id="sub-cont2">
+        <h2><?php  echo $prof->GetName(); ?></h2>
+        <label>Visitas Técnicas: <?php echo $prof->TotalOfVisits(); ?></label>
+        <label>Ultima visita técnica: <?php $prof->GetLastVisit(); ?></label>
+        <?php 
+        if($_GET["type"] == "c"){
+            echo "<label>Email:".$prof->GetEmails(). "</label>";
+        }
+        ?>
         </div>
+        </div>
+        <div class="content-sub">
         <h3>Histórico</h3>
         <table>
             <tr>
-                <td>Cliente</td>
-                <td>Nome do Cliente</td>
-                <td>Nota</td>
-                <td>Comentário</td>
-                <td>Data da visita</td>
+                <?php  LoadTableColuns($_GET["type"]);               
+                LoadCustomerProfile($_GET["profile"], $prof->GetKind());
+                ?>
             </tr>
-            <?php 
-            load("SELECT ")
-            ?>
         </table>
+        </div>
         </div>
     <script>
 var modal = document.getElementById('full-options-block');
