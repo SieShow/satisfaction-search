@@ -79,6 +79,25 @@ function LoadEmpl(){
           }
        }
 }
+function LoadForms(){
+    global $connection;
+    $result = $connection->query("select idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form order by idform asc");
+     if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            $result2 = $connection->query("select name from customer where V11_ID =".$row['idcustomer']);
+            $row2 = $result2->fetch_assoc();
+            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row2["name"]."</a></td>";
+            $result2 = $connection->query("select name from employee where V11_code =". $row["idemployee"]);
+            $row2 = $result2->fetch_assoc();
+            echo "<td>".$row2["name"]."</td>";
+            echo "<td>".$row["evaluation_value"]."</td>";
+            echo "<td>".$row["issue_solve"]."</td>";
+            echo "<td>".$row["commentary"]."</td>";
+            echo "<td>".$row["request_sent"]."</td>";
+            echo "<td>".$row["request_answered"]."</td>";
+        }
+    }
+}
 /**
 * Check in mainprofile's GET what is the table of database referenced
 */

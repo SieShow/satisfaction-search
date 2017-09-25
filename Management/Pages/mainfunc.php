@@ -33,6 +33,7 @@ LoginValidation();
             <li><a href="main.php">Inicial</a></li>
             <li><a href="mainclientes.php">Clientes</a></li>
             <li><a href="">Funcionários</a></li>
+            <li><a href="mainfomsanswereds.php">Formulários</a></li>
             </ul>
         </div>
     </div>

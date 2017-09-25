@@ -35,7 +35,6 @@ LoginValidation();
                         <li><a href="main.php">Inicial</a></li>
                         <li><a href="">Clientes</a></li>
                         <li><a href="mainfunc.php">Funcionários</a></li>
-                        <li><a href="mainfomsanswereds.php">Formulários</a></li>
                     </ul>
                 </div>
             </div>
@@ -47,13 +46,15 @@ LoginValidation();
             <table id="maintable">
                 <thead id="thead">
                     <td id="tdname">Nome do cliente</td>
-                    <td>Formulários respondidos</td>
-                    <td>Visitas técnicas</td>
-                    <td>Avaliação média</td>
-                    <td>Efetividade(%)</td>
+                    <td>Técnico solicitado</td>
+                    <td>Nota</td>
+                    <td>Problema resolvido ?</td>
+                    <td>Comentário</td>
+                    <td>Data de envio</td>
+                    <td>Data de resposta</td>
                 </thead>
                 <tbody id="tbody">
-                    <?php LoadClient();?>
+                    <?php LoadForms();?>
                 </tbody>
             </table>
         </div>
@@ -112,5 +113,4 @@ LoginValidation();
             }
         </script>
     </body>
-
     </html>
