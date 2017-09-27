@@ -39,7 +39,7 @@ LoginValidation();
                 </div>
             </div>
         </div>
-        <div id="allblock">
+        <div class="allblock" id="formtable">
             <div id="searchdiv">
                 <input type="text" placeholder="Ache os clientes e funcionários !" name="pesquisa" />
             </div>
@@ -47,11 +47,11 @@ LoginValidation();
                 <thead id="thead">
                     <td id="tdname">Nome do cliente</td>
                     <td>Técnico solicitado</td>
-                    <td>Nota</td>
+                    <td id="tdnota">Nota</td>
                     <td>Problema resolvido ?</td>
                     <td>Comentário</td>
-                    <td>Data de envio</td>
-                    <td>Data de resposta</td>
+                    <td class="tddata">Data de envio</td>
+                    <td class="tddata">Data de resposta</td>
                 </thead>
                 <tbody id="tbody">
                     <?php LoadForms();?>

@@ -187,22 +187,15 @@
     }
     /* END OF HEAD PAGE CSS CONTENT */
     
-    #allblock {
-        width: 800px;
-        margin: auto;
-        margin-top: 10px;
-    }
-    
     #searchdiv input {
         font-family: Lato;
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 14px;
-        width: 897px;
+        width: 100%;
         height: 39px;
         margin-bottom: 15px;
         outline: none;
-        margin-left: 20px;
         background-color: white;
         background-image: url('../Img/searchicon.png');
         background-position: 10px 10px;
@@ -216,8 +209,7 @@
         font-family: Lato;
     }
     
-    thead td,
-    #profilebody td {
+    thead td {
         background-color: #88CCF1;
         height: 60px;
         text-transform: uppercase;
@@ -228,10 +220,7 @@
         letter-spacing: 2px;
     }
     
-    #tdname,
-    #nametd {
-        width: 400px;
-    }
+
     
     .linkname {
         text-decoration: none;
@@ -250,11 +239,31 @@
         height: 500px;
         width: 800px;
     }
-    
-    table {
-        width: 900px;
+    .allblock {
+        width: 800px;
+        margin: auto;
+        margin-top: 10px;
+        align-content: center;
     }
     
+    #formtable{
+        width: 1200px; 
+    }
+    /*maintable*/
+    table {
+        width: 100%;
+    }
+    /*Table td specifications*/
+    #tdname,
+    #nametd {
+        width: 400px;
+    }
+    #tdnota{
+        width: 110px;
+    }
+    .tddata{
+        width: 130px;
+    }
     #textsearch {
         height: 30px;
     }

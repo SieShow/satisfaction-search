@@ -1,4 +1,5 @@
 <?php
+//Used in main.php
 include('DataBaseQuerys.php');
 function Customers(){
   echo GetNumberFromQuery("select count(*) from customer");

@@ -1,11 +1,19 @@
 <?php
-include('../PHP/DataBaseQuerys.php');
-include('../PHP/PageMainValidation.php');
-include_once('../PHP/Profile.php');
+include '../PHP/DataBaseQuerys.php';
+include '../PHP/PageMainValidation.php';
 
 LoginValidation();
 ProfileValidation();
-$prof = new Profile($_GET["profile"], $_GET["type"]);
+
+$prof;
+if($_GET["type"] == "c"){
+    include '../PHP/Class/Customer.php';
+    $prof = new Customer($_GET["profile"]);
+}
+else {
+    include '../PHP/Class/Employee.php';
+    $prof = new Employee($_GET["profile"]);
+}
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -26,7 +34,7 @@ $prof = new Profile($_GET["profile"], $_GET["type"]);
                 </div>
                 <div id="userinfo">
                     <img src="../Img/User-unknown.png">
-                    <label><?php echo $user ?></label>
+                    <label><?php echo $prof->GetName(); ?></label>
                 </div>     
         <a href="">Editar perfil</a>
         <a href="../PHP/Logout.php">Sair</a>
@@ -46,24 +54,28 @@ $prof = new Profile($_GET["profile"], $_GET["type"]);
     <div id="profilebody">
         <div id="content">
         <div id="sub-cont2">
-        <h2><?php  echo $prof->GetName(); ?></h2>
-        <label>Visitas Técnicas: <?php echo $prof->TotalOfVisits(); ?></label>
-        <label>Ultima visita técnica: <?php $prof->GetLastVisit(); ?></label>
-        <?php 
-        if($_GET["type"] == "c"){
-            echo "<label>Email:".$prof->GetEmails(). "</label>";
+        <?php
+        echo "<h2>".$prof->GetName()."</h2>";
+        echo "<label>Visitas Técnicas: ".$prof->GetTotalOfVisits()."</label>";
+        echo "<label>Código no VIP: ".$prof->GetV11_Code()."</label>";
+
+        if($_GET["type"] == "c")echo "<label>Email: ".$prof->GetEmails()."</label>";
+        else if($_GET["type"] == "e"){
+            echo "<label>Nota média: ".$prof->GetNote_avarage(). "</label>";
+            echo "<label>Média de solução de problemas: ".$prof->GetIssue_avarage(). "</label>";          
         }
         ?>
         </div>
         </div>
         <div class="content-sub">
         <h3>Histórico</h3>
-        <table>
-            <tr>
-                <?php  LoadTableColuns($_GET["type"]);               
-                LoadCustomerProfile($_GET["profile"], $prof->GetKind());
-                ?>
-            </tr>
+        <table bgcolor="#ECEAEA">
+            <thead id="thead">
+                <?php  LoadTableColuns($_GET["type"]);?>
+            </thead>
+            <tbody id="tbody" class="">
+                <?php $prof->LoadHistoric();?>
+            </tbody>
         </table>
         </div>
         </div>

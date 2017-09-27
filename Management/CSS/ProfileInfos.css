@@ -8,21 +8,28 @@
         h2 {
             color: #5594BF;
         }
-        
-        #profilebody td {
-            height: 40px;
-            font-size: 14px;
-        }
-        
         #profilebody {
             border: 1px solid #CDCDCD;
             margin: 0 auto;
             margin-top: 25px;
-            width: 800px;
-            height: 500px;
+            width: 950px;
+            overflow:auto;
+            display: table;
+            height: 620px;
             background-color: #fff;
         }
-        
+        #profilebody table {
+            width: 95%;
+        }
+        td{
+            height: 80px;
+        }
+        #nota{
+            width: 120px;
+        }
+        #nomecli{
+            width: 220px;
+        }
         #profilebody div {
             display: inline-block;
         }
@@ -52,10 +59,6 @@
         #content label,
         h3 {
             display: block;
-        }
-        
-        #profilebody table {
-            width: 750px;
         }
         
         .content-sub {

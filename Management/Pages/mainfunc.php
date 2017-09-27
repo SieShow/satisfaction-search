@@ -38,7 +38,7 @@ LoginValidation();
         </div>
     </div>
     </div>
-    <div id="allblock">
+    <div class="allblock">
         <div id="searchdiv">
     <input type="text" placeholder="Ache os funcionários !" name="pesquisa"/>
         </div>

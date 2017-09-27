@@ -1,26 +1,19 @@
-<?php 
-include_once('DataBaseQuerys.php');
-class Profile{
+<?php
+abstract class Entity{
 
     private $id;
-    private $kind;
     private $name;
+    private $visitas;
+    private $v11_id;
 
-    function __construct($i, $k){
+    function __construct($i){
         $this->id = $i;
-        $this->kind = GetTableReference($k);
+        $this->name = "";
     }
-
-    function GetId(){
-        return $this->id; 
-    }
-
-    function GetKind(){
-        return $this->kind;
-    }
-
-    function GetName(){
-        return GetNameFromBD($this->id, $this->kind);
-    }
-};
+    public abstract function GetID();
+    public abstract function GetName();
+    public abstract function GetV11_Code(); 
+    public abstract function GetTotalOfVisits();
+    public abstract function LoadHistoric();
+}
 ?>

@@ -10,27 +10,30 @@ $datesent = '';
             $customid = $_GET['custoid'];
             $emplid = $_GET['emplid'];
             $datesent = $_GET['datesent'];
-
     if(isset($_GET['star_note']) && isset($_GET['issue_solved']))
         {
             $today = date("Y/m/d");
-            $sql = "INSERT INTO form(commentary, idcustomer, idemployee, 
-            evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."'
-            ,".$customid.",".$emplid.",".$_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."')";
-
-            $connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
-
-        $result = $connection->query($sql);
-        if($result == 1){
-            $img = 1;
-        }
-        else{
-            header("location: http://www.mafrainformatica.com.br"); 
+            //$connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
+            $connection = mysqli_connect("localhost", "root", "123", "satisfactionbd");
+            $valinc = $connection->query("SELECT forms_answereds FROM customer WHERE V11_ID = $customid");       
+            $result = $valinc->fetch_assoc();
+            $valinc2 = $connection->query("SELECT visits FROM employee WHERE V11_code = $emplid");       
+            $result2 = $valinc2->fetch_assoc();
+            $newval = $result["forms_answereds"] + 1;
+            $newval2 = $result2["visits"] + 1;
+            $quer = "INSERT INTO form(commentary, idcustomer, idemployee, evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."',".$customid.",".$emplid.",".$_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."');";
+            $quer .= "UPDATE customer SET forms_answereds = ".$newval." WHERE V11_ID = $customid;";
+            $quer .= "UPDATE employee SET visits = $newval2 WHERE V11_code = $emplid;";
+            if($connection->multi_query($quer) === true){
+                $img = 1;
+            }
+            else{
+                header("location: http://www.mafrainformatica.com.br"); 
+            }
         }
 }
-}
-else{
-    header("location: http://www.mafrainformatica.com.br"); 
+    else{
+        header("location: http://www.mafrainformatica.com.br"); 
 }
 ?>
 <!doctype html>
@@ -45,7 +48,6 @@ else{
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="Things.js"></script>
     <link rel="shortcut icon" href="http://www.mafrainformatica.com/wp-content/uploads/2015/12/favicon.png" type="image/x-icon"
     />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
@@ -70,7 +72,15 @@ else{
                 <div class="modal-header" id="modalhead">
                     <span class="close">&times;</span>
                     <?php if($img == 0){echo "<h2>Enviando sua resposta...</h2>";}
-                    else{echo "<h2>Resposta enviada com sucesso!</h2>";}
+                    else{
+                        echo "<h2>Resposta enviada com sucesso!</h2>";
+                        echo "<script>
+                        setTimeout(KillPage, 2000);
+                        function KillPage(){
+                            window.location = 'http://www.mafrainformatica.com.br'; 
+                        }
+                        </script>";
+                    }
                     ?>
                 </div>
                 <div class="modal-body">

@@ -1,4 +1,5 @@
   <?php
+//String of database connection  
 $connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
 /**
 * Load Client table
@@ -9,7 +10,7 @@ function LoadClient(){
      if($result->num_rows > 0){
          while($row = $result->fetch_assoc()){
 
-             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".$row["name"]."</a></td>";
+             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
              
              $get = $connection->query("select count(*) from form where idcustomer = ".$row["idcustomer"]."");
              $getnum = $get->fetch_assoc();
@@ -79,6 +80,7 @@ function LoadEmpl(){
           }
        }
 }
+///Load Forms table
 function LoadForms(){
     global $connection;
     $result = $connection->query("select idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form order by idform asc");
@@ -90,9 +92,19 @@ function LoadForms(){
             $result2 = $connection->query("select name from employee where V11_code =". $row["idemployee"]);
             $row2 = $result2->fetch_assoc();
             echo "<td>".$row2["name"]."</td>";
-            echo "<td>".$row["evaluation_value"]."</td>";
-            echo "<td>".$row["issue_solve"]."</td>";
-            echo "<td>".$row["commentary"]."</td>";
+            if($row["evaluation_value"] == 5)  echo "<td>5 - Excelente</td>";
+            else if($row["evaluation_value"] == 4)  echo "<td>4 - Muito bom</td>";
+            else if($row["evaluation_value"] == 3)  echo "<td>3 - Bom</td>";
+            else if($row["evaluation_value"] == 2)  echo "<td>2 - Regular</td>";
+            else echo "<td>1 - Ruim</td>";
+                
+            if($row["issue_solve"] == "yes"){
+                echo "<td>Sim</td>";
+            }
+            else {
+                echo "<td>Não</td>";
+            }
+            echo "<td>".utf8_encode($row["commentary"])."</td>";
             echo "<td>".$row["request_sent"]."</td>";
             echo "<td>".$row["request_answered"]."</td>";
         }
@@ -116,6 +128,14 @@ function LoadCustomerProfile($id, $name){
         }
     }
 }
+function LoadDataFrom($id, $table){
+    global $connection;
+    $sql = "SELECT * FROM $table WHERE id$table = $id";
+    $result = $connection->query("SELECT * FROM $table WHERE id$table = $id");
+    $output = $result->fetch_assoc();
+    if($result->num_rows > 0){return $output;}
+    else{return null;}
+    }
 /**
 * Load table referenced to profile historic
 */
@@ -124,15 +144,16 @@ if($kind == "c"){
     echo "<td>Nome do técnico</td>";
 }
 else if($kind == "e"){
-    echo "<td>Nome do cliente</td>";
+    echo "<td id='nomecli'>Nome do cliente</td>";
 }
 else{
     echo "";
 }
-echo "<td>Nota</td>";
+echo "<td id='nota'>Nota</td>";
 echo "<td>Problema resolvido ?</td>";
 echo "<td>Comentário</td>";
-echo "<td>Data da visita</td>";
+echo "<td>Data de envio da pesquisa</td>";
+echo "<td>Data de resposta da pesquisa</td>";
 }
 
 function GetNumberFromQuery($sql1){
@@ -166,10 +187,30 @@ function GetEmailsFromBD($id, $table){
         return $single_mail;
     }
 }
-function GetLastVisitRecord($id, $table){
+function LoadHistoric($from, $id_vip){
     global $connection;
-    $get = $connection->query("SELECT count(*) FROM form WHERE id$table = $id");
-    $name = $get->fetch_assoc();
-    return $name["name"];
+    $result = $connection->query("SELECT idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form where id".$from." = $id_vip order by idform desc");
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            $result2 = $connection->query("select name from customer where V11_ID =".$row['idcustomer']);
+            $row2 = $result2->fetch_assoc();
+            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row2["name"]."</a></td>";
+            if($row["evaluation_value"] == 5)  echo "<td>5 - Excelente</td>";
+            else if($row["evaluation_value"] == 4)  echo "<td>4 - Muito bom</td>";
+            else if($row["evaluation_value"] == 3)  echo "<td>3 - Bom</td>";
+            else if($row["evaluation_value"] == 2)  echo "<td>2 - Regular</td>";
+            else echo "<td>1 - Ruim</td>";
+                
+            if($row["issue_solve"] == "yes"){
+                echo "<td>Sim</td>";
+            }
+            else {
+                echo "<td>Não</td>";
+            }
+            echo "<td>".utf8_encode($row["commentary"])."</td>";
+            echo "<td>".$row["request_sent"]."</td>";
+            echo "<td>".$row["request_answered"]."</td></tr>";
+        }
+    }
 }
 ?>
