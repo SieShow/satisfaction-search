@@ -6,7 +6,7 @@ $connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfacti
 */
 function LoadClient(){
      global $connection;
-     $result = $connection->query("select * from customer order by name asc");
+     $result = $connection->query("select * from customer order by name asc ");
      if($result->num_rows > 0){
          while($row = $result->fetch_assoc()){
 
@@ -38,7 +38,8 @@ function LoadClient(){
              else {
                 echo "<td>".$val."%</td>";
              }             
-             } 
+             }
+              
          }
      }
  /**
@@ -86,9 +87,9 @@ function LoadForms(){
     $result = $connection->query("select idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form order by idform asc");
      if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
-            $result2 = $connection->query("select name from customer where V11_ID =".$row['idcustomer']);
+            $result2 = $connection->query("select name, idcustomer from customer where V11_ID =".$row['idcustomer']);
             $row2 = $result2->fetch_assoc();
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row2["name"]."</a></td>";
+            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row2["idcustomer"]."&type=c'>".$row2["name"]."</a></td>";
             $result2 = $connection->query("select name from employee where V11_code =". $row["idemployee"]);
             $row2 = $result2->fetch_assoc();
             echo "<td>".$row2["name"]."</td>";
@@ -192,9 +193,9 @@ function LoadHistoric($from, $id_vip){
     $result = $connection->query("SELECT idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form where id".$from." = $id_vip order by idform desc");
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
-            $result2 = $connection->query("select name from customer where V11_ID =".$row['idcustomer']);
+            $result2 = $connection->query("select name, idcustomer from customer where V11_ID =".$row['idcustomer']);
             $row2 = $result2->fetch_assoc();
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row2["name"]."</a></td>";
+            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row2["idcustomer"]."&type=c'>".$row2["name"]."</a></td>";
             if($row["evaluation_value"] == 5)  echo "<td>5 - Excelente</td>";
             else if($row["evaluation_value"] == 4)  echo "<td>4 - Muito bom</td>";
             else if($row["evaluation_value"] == 3)  echo "<td>3 - Bom</td>";

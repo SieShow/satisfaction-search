@@ -228,13 +228,6 @@
         color: black;
     }
     
-    tbody tr {
-        height: 40px;
-        background-color: #fff;
-        font-size: 16px;
-        font-weight: 400;
-    }
-    
     #tabledivbody {
         height: 500px;
         width: 800px;
@@ -331,6 +324,16 @@
         -webkit-animation-duration: 0.4s;
         animation-name: animatetop;
         animation-duration: 0.4s
+    }
+        tbody tr {
+        height: 40px;
+        background-color: #fff;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    tbody tr:nth-child(even){
+        background-color: #D4F0FF;
     }
     /* Add Animation */
     
