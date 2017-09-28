@@ -56,6 +56,10 @@ LoginValidation();
                     <?php LoadClient();?>
                 </tbody>
             </table>
+            <div>
+                <button>Voltar</button>
+                <button>proximo</button>
+            </div>
         </div>
         <div id="conf">
             <form method="POST" action="" id="profileinfo">
