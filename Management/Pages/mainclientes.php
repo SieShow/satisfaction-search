@@ -1,7 +1,12 @@
 <?php
-include('../PHP/DataBaseQuerys.php');
-include('../PHP/updateprofile.php');
-include('../PHP/PageMainValidation.php');
+include '../PHP/DataBaseQuerys.php';
+include '../PHP/updateprofile.php';
+include '../PHP/PageMainValidation.php';
+include '../PHP/HTML_Load.php';
+$from_to = 1;
+if($_GET["pfg"] != null){
+$from_to = $_GET["pfg"];
+}
 LoginValidation();
 ?>
     <!DOCTYPE HTML>
@@ -53,13 +58,10 @@ LoginValidation();
                     <td>Efetividade(%)</td>
                 </thead>
                 <tbody id="tbody">
-                    <?php LoadClient();?>
+                    <?php LoadClient($from_to);?>
                 </tbody>
             </table>
-            <div>
-                <button>Voltar</button>
-                <button>proximo</button>
-            </div>
+           <?php Nex_PreviewButtons($_SESSION["numbercustomer"]); ?>
         </div>
         <div id="conf">
             <form method="POST" action="" id="profileinfo">
@@ -79,6 +81,22 @@ LoginValidation();
             </form>
         </div>
         <script>
+        document.getElementById('btnnext').onclick = function(){
+            $get = window.location.href.split("=");          
+             if($get.length > 0){
+                $val = ($get.length - 1) + 13;
+                window.location.href = "mainclientes.php?pfg="+$val;
+            }
+        }
+        document.getElementById('btnback').onclick = function(){
+            $get = window.location.href.split("=");          
+             if($get.length > 0){
+                $val = ($get.length - 1) - 13;
+                if($val < 0) $val = 0;
+                window.location.href = "mainclientes.php?pfg="+$val;
+            }
+        }
+
             var modal = document.getElementById('full-options-block');
             var img = document.getElementById('imgclick');
 

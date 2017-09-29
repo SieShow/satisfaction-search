@@ -4,9 +4,10 @@ $connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfacti
 /**
 * Load Client table
 */
-function LoadClient(){
+function LoadClient($from){
+    if($from == null) $from = 1;
      global $connection;
-     $result = $connection->query("select * from customer order by name asc limit 13");
+     $result = $connection->query("select * from customer order by name asc limit $from,13");
      if($result->num_rows > 0){
          while($row = $result->fetch_assoc()){
              echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";

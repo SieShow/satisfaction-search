@@ -3,6 +3,7 @@ include('../PHP/updateprofile.php');
 include('../PHP/Counter.php');
 include('../PHP/PageMainValidation.php');
 LoginValidation();
+echo $_SESSION['login'];
 ?>
 <!DOCTYPE HTML>
 <HTML>

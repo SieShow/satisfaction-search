@@ -6,7 +6,7 @@
         font-family: Verdana;
         margin: 0;
         padding: 0;
-        background-color: #EEEEEE;
+        background-color: #FAFAFA;
     }
     /* BEGINING OF HEAD PAGE CSS CONTENT */
     
@@ -333,7 +333,7 @@
     }
 
     tbody tr:nth-child(even){
-        background-color: #E8E8E8;
+        background-color: #FAFAFA;
     }
     /* Add Animation */
     
@@ -358,7 +358,30 @@
             opacity: 1;
         }
     }
-    
+    #tableend{
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #tableend button{
+        padding: 3px 15px;
+        margin: 10px;
+        background-color: white;
+        cursor: pointer;
+        border: none;
+        font-size: 16px;
+        display: inline-block;
+        color: black;
+        border: 2px solid #008CBA;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+    }
+    #tableend button:hover{
+        background-color: #008CBA;
+        color: white;
+    }
     #profileinfo img,
     label,
     .otinput {
