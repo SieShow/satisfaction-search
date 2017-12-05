@@ -2,6 +2,7 @@
 include('../PHP/updateprofile.php');
 include('../PHP/Counter.php');
 include('../PHP/PageMainValidation.php');
+include_once('..//PHP/Paginator.php');
 LoginValidation();
 ?>
 <!DOCTYPE HTML>
