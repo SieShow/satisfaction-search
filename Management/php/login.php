@@ -6,7 +6,10 @@ if(isset($_POST['btnlogin'])){
         $user = $_POST['login'];
         $pass = $_POST['passw'];
         $sql = "select idusers from users where name='$user' and password='$pass'";
-        $connection = mysqli_connect("localhost", "root", "123", "satisfactionbd");
+        //Conexão normal
+        //$connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
+        //Conexão teste
+        $connection = mysqli_connect("localhost", "root","",satisfactionbd);
         if(!$connection){
         header("location:Pages/conection_fail.html");
    }
@@ -17,11 +20,18 @@ if(isset($_POST['btnlogin'])){
             $_SESSION['password'] = $_POST['passw'];
             $row = $result->fetch_assoc();
             $_SESSION['ID'] = $row['idusers'];
-            header('location:../management/Pages/main.php');
+            header('location:Pages/main.php');
         }
         else{
-            $error="Usuário inválido";
+            $sql = "SELECT idusers from users where name = '$user'";
+            $result = $connection->query($sql);
+            if($result->num_rows > 0){
+                $erro = "Senha incorreta";
+            }
+            else{
+            $error="Usuário não cadastrado";
         }
+    }
         $connection->close();
     }
 }
