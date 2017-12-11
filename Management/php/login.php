@@ -1,4 +1,5 @@
 <?php
+include_once("class/Database.php");
 session_start();
 $error ='';
 if(isset($_POST['btnlogin'])){
@@ -9,8 +10,8 @@ if(isset($_POST['btnlogin'])){
         //Conexão normal
         //$connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
         //Conexão teste
-        $connection = mysqli_connect("localhost", "root","",satisfactionbd);
-        if(!$connection){
+        $connection = Database::getconnection();
+        if($connection === false){
         header("location:Pages/conection_fail.html");
    }
         $result = $connection->query($sql);

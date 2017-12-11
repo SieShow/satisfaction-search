@@ -1,8 +1,8 @@
 <?php
-include('../PHP/updateprofile.php');
-include('../PHP/Counter.php');
-include('../PHP/PageMainValidation.php');
-include_once('..//PHP/Paginator.php');
+include('../php/updateprofile.php');
+include('../php/Counter.php');
+include('../php/PageMainValidation.php');
+include_once('../php/Paginator.php');
 LoginValidation();
 ?>
 <!DOCTYPE HTML>

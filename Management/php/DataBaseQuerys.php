@@ -1,6 +1,16 @@
   <?php
+include_once('../php/class/Paginator.php');
+include_once('.../php/class/Database.php');
 //String of database connection  
-$connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
+$connection = Database::getConnection();
+
+$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
+$page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
+$links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
+
+//$Paginator  = new Paginator( $conn, $query );
+//$results    = $Paginator->getData( $page, $limit );
+
 /**
 * Load Client table
 */
