@@ -11,6 +11,9 @@ LoginValidation();
         <link href="../CSS/mainPagesStyle.css" rel="stylesheet" type="text/css" />
         <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+        <link href="../css/table.css" rel="stylesheet" type="text/css">
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
         <title>Gerenciamento</title>
     </head>
@@ -52,21 +55,8 @@ LoginValidation();
                     <td>Avaliação média</td>
                     <td>Efetividade(%)</td>
                 </thead>
-                <tbody id="tbody">
-                <div id="overlay"><div><img src="loading.gif" width="64px" height="64px"/></div></div>
-                    <div class="page-content">
-                        <div style="border-bottom: #F0F0F0 1px solid;margin-bottom: 15px;">
-                        Pagination Setting:<br> <select name="pagination-setting" onChange="changePagination(this.value);" class="pagination-setting" id="pagination-setting">
-                        <option value="all-links">Display All Page Link</option>
-                        <option value="prev-next">Display Prev Next Only</option>
-                        </select>
-                        </div>
-                        
-                        <div id="pagination-result">
-                        <input type="hidden" name="rowcount" id="rowcount" />
-                        </div>
-                    </div>
-                    <?php //LoadClient();?>
+                <tbody id="tbody">          
+                    <?php LoadClient();?>
                 </tbody>
             </table>
         </div>
@@ -125,5 +115,4 @@ LoginValidation();
             }
         </script>
     </body>
-
     </html>

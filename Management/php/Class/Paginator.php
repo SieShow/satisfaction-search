@@ -1,5 +1,5 @@
 <?php
-class PerPage {
+class Paginator {
 	public $perpage;
 	
 	function __construct() {
