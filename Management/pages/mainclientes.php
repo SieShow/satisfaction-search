@@ -1,20 +1,17 @@
 <?php
-include('../PHP/DataBaseQuerys.php');
-include('../PHP/updateprofile.php');
-include('../PHP/PageMainValidation.php');
+include('../php/DataBaseQuerys.php');
+include('../php/updateprofile.php');
+include('../php/PageMainValidation.php');
 LoginValidation();
 ?>
     <!DOCTYPE HTML>
     <HTML>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <link href="../CSS/mainPagesStyle.css" rel="stylesheet" type="text/css" />
-        <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
-        <link href="../css/table.css" rel="stylesheet" type="text/css">
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css" />
+    <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
         <title>Gerenciamento</title>
     </head>
     <body>
@@ -109,7 +106,6 @@ LoginValidation();
                     reader.onload = function(e) {
                         $('#profileimg').attr('src', e.target.result).width(120).height(120);
                     };
-
                     reader.readAsDataURL(input.files[0]);
                 }
             }
