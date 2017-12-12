@@ -1,79 +1,76 @@
-<?php 
-class Paginator{
-
-    private $conn;
-    private $limit;
-    private $page;
-    private $query;
-    private $total;
-
-    public function construct($conn, $query){
-        $this->conn = $conn;
-        $this->query = $query;
-
-        $rs = $this->conn->query($this->_query);
-        $this->total = $rs->num_rows;
-    }
-
-    public function getData($limit, $page){
-        $this->limit = $limit;
-        $this->page = $page;
-        if($this->limit == 'all'){
-            $query = $this->query;
-        }
-        else{
-            $query = $this->query."LIMIT".(($this->page-1)).",$this->limit";  
-        }
-        $rs = $this->conn->query($query);
-
-        while($row = $rs->fetch_assoc()){
-            $results[] = $row;
-        }
-        $result = new StoreClass();
-        $result->page   = $this->_page;
-        $result->limit  = $this->_limit;
-        $result->total  = $this->_total;
-        $result->data   = $results;
-
-        return $result;
-    }
-
-    public function createLinks( $links, $list_class ) {
-        if ( $this->_limit == 'all' ) {
-            return '';
-        }
-     
-        $last       = ceil( $this->_total / $this->_limit );
-     
-        $start      = ( ( $this->_page - $links ) > 0 ) ? $this->_page - $links : 1;
-        $end        = ( ( $this->_page + $links ) < $last ) ? $this->_page + $links : $last;
-     
-        $html       = '<ul class="' . $list_class . '">';
-     
-        $class      = ( $this->_page == 1 ) ? "disabled" : "";
-        $html       .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . ( $this->_page - 1 ) . '">&laquo;</a></li>';
-     
-        if ( $start > 1 ) {
-            $html   .= '<li><a href="?limit=' . $this->_limit . '&page=1">1</a></li>';
-            $html   .= '<li class="disabled"><span>...</span></li>';
-        }
-     
-        for ( $i = $start ; $i <= $end; $i++ ) {
-            $class  = ( $this->_page == $i ) ? "active" : "";
-            $html   .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . $i . '">' . $i . '</a></li>';
-        }
-     
-        if ( $end < $last ) {
-            $html   .= '<li class="disabled"><span>...</span></li>';
-            $html   .= '<li><a href="?limit=' . $this->_limit . '&page=' . $last . '">' . $last . '</a></li>';
-        }
-     
-        $class      = ( $this->_page == $last ) ? "disabled" : "";
-        $html       .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">&raquo;</a></li>';
-     
-        $html       .= '</ul>';
-     
-        return $html;
-    }
+<?php
+class PerPage {
+	public $perpage;
+	
+	function __construct() {
+		$this->perpage = 1;
+	}
+	
+	function getAllPageLinks($count,$href) {
+		$output = '';
+		if(!isset($_GET["page"])) $_GET["page"] = 1;
+		if($this->perpage != 0)
+			$pages  = ceil($count/$this->perpage);
+		if($pages>1) {
+			if($_GET["page"] == 1) 
+				$output = $output . '<span class="link first disabled">&#8810;</span><span class="link disabled">&#60;</span>';
+			else	
+				$output = $output . '<a class="link first" onclick="getresult(\'' . $href . (1) . '\')" >&#8810;</a><a class="link" onclick="getresult(\'' . $href . ($_GET["page"]-1) . '\')" >&#60;</a>';
+			
+			
+			if(($_GET["page"]-3)>0) {
+				if($_GET["page"] == 1)
+					$output = $output . '<span id=1 class="link current">1</span>';
+				else				
+					$output = $output . '<a class="link" onclick="getresult(\'' . $href . '1\')" >1</a>';
+			}
+			if(($_GET["page"]-3)>1) {
+					$output = $output . '<span class="dot">...</span>';
+			}
+			
+			for($i=($_GET["page"]-2); $i<=($_GET["page"]+2); $i++)	{
+				if($i<1) continue;
+				if($i>$pages) break;
+				if($_GET["page"] == $i)
+					$output = $output . '<span id='.$i.' class="link current">'.$i.'</span>';
+				else				
+					$output = $output . '<a class="link" onclick="getresult(\'' . $href . $i . '\')" >'.$i.'</a>';
+			}
+			
+			if(($pages-($_GET["page"]+2))>1) {
+				$output = $output . '<span class="dot">...</span>';
+			}
+			if(($pages-($_GET["page"]+2))>0) {
+				if($_GET["page"] == $pages)
+					$output = $output . '<span id=' . ($pages) .' class="link current">' . ($pages) .'</span>';
+				else				
+					$output = $output . '<a class="link" onclick="getresult(\'' . $href .  ($pages) .'\')" >' . ($pages) .'</a>';
+			}
+			
+			if($_GET["page"] < $pages)
+				$output = $output . '<a  class="link" onclick="getresult(\'' . $href . ($_GET["page"]+1) . '\')" >></a><a  class="link" onclick="getresult(\'' . $href . ($pages) . '\')" >&#8811;</a>';
+			else				
+				$output = $output . '<span class="link disabled">></span><span class="link disabled">&#8811;</span>';		
+		}
+		return $output;
+	}
+	function getPrevNext($count,$href) {
+		$output = '';
+		if(!isset($_GET["page"])) $_GET["page"] = 1;
+		if($this->perpage != 0)
+			$pages  = ceil($count/$this->perpage);
+		if($pages>1) {
+			if($_GET["page"] == 1) 
+				$output = $output . '<span class="link disabled first">Prev</span>';
+			else	
+				$output = $output . '<a class="link first" onclick="getresult(\'' . $href . ($_GET["page"]-1) . '\')" >Prev</a>';			
+			
+			if($_GET["page"] < $pages)
+				$output = $output . '<a  class="link" onclick="getresult(\'' . $href . ($_GET["page"]+1) . '\')" >Next</a>';
+			else				
+				$output = $output . '<span class="link disabled">Next</span>';		
+		}
+		return $output;
+	}
 }
 ?>

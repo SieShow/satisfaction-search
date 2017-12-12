@@ -8,8 +8,8 @@ $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
 $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
 $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
 
-//$Paginator  = new Paginator( $conn, $query );
-//$results    = $Paginator->getData( $page, $limit );
+$Paginator  = new Paginator( $conn, $query );
+$results    = $Paginator->getData( $page, $limit );
 
 /**
 * Load Client table

@@ -7,7 +7,7 @@ LoginValidation();
 <HTML>
 <head>
     <meta charset = "utf-8"/>
-    <link href="../CSS/MainPageBonito.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/mainPagesStyle.css" rel="stylesheet" type="text/css" />
     <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
     <title>Gerenciamento</title>

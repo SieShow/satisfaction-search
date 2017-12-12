@@ -19,4 +19,19 @@ class Database
         }
         return self::$db->connection;
     }
+
+	public static function runQuery($query) {
+		$result = mysqli_query(self::conn,$query);
+		while($row=mysqli_fetch_assoc($result)) {
+			$resultset[] = $row;
+		}		
+		if(!empty($resultset))
+			return $resultset;
+	}
+	
+	public static function numRows($query) {
+		$result  = mysqli_query(self::conn,$query);
+		$rowcount = mysqli_num_rows($result);
+		return $rowcount;	
+	}
 }
