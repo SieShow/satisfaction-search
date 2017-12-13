@@ -12,7 +12,8 @@ LoginValidation();
     <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
-        <title>Gerenciamento</title>
+    <link href="../css/table.css" rel="stylesheet" type="text/css"/>
+    <title>Gerenciamento</title>
     </head>
     <body>
         <div id="headpage">
@@ -53,9 +54,10 @@ LoginValidation();
                     <td>Efetividade(%)</td>
                 </thead>
                 <tbody id="tbody">          
-                    <?php LoadClient();?>
+                    <?php LoadClient(); ?>
                 </tbody>
             </table>
+            <?php loadClientLink(); ?>
         </div>
         <div id="conf">
             <form method="POST" action="" id="profileinfo">
