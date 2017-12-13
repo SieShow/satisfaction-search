@@ -7,9 +7,24 @@ $connection = Database::getConnection();
 /**
 * Load Client table
 */
+function loadClientLink(){
+    global $connection;
+
+    $result = $connection->query("SELECT count(*) as total from customer");
+    $data = $result->fetch_assoc();
+    echo "<div class='pagination'>";
+    for($i = 1; $i < $data["total"] / 10; $i++){
+        echo  "<a href='mainclientes.php?page=$i'>$i</a>";
+    }
+    echo "</div>";
+}
+function loadC($page){
+    global $connection;
+    $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit");
+}
 function LoadClient(){
      global $connection;
-     $result = $connection->query("select * from customer order by name asc");
+     $result = $connection->query("select * from customer order by name asc limit 10");
      if($result->num_rows > 0){
          while($row = $result->fetch_assoc()){
 
@@ -41,7 +56,7 @@ function LoadClient(){
              else {
                 echo "<td>".$val."%</td>";
              }             
-             } 
+             }
          }
      }
  /**
