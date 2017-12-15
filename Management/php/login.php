@@ -1,5 +1,5 @@
 <?php
-include_once("class/Database.php");
+include_once("Class/Database.php");
 session_start();
 $error ='';
 if(isset($_POST['btnlogin'])){
@@ -8,7 +8,7 @@ if(isset($_POST['btnlogin'])){
         $pass = $_POST['passw'];
         $sql = "select idusers from users where name='$user' and password='$pass'";
         //Conexão normal
-        //$connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
+        $connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
         //Conexão teste
         $connection = Database::getconnection();
         if($connection === false){

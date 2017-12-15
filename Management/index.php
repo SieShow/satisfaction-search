@@ -1,5 +1,5 @@
 <?php
-include('PHP/login.php');
+include('php/login.php');
 ?>
 <!DOCTYPE HTML>
 <html>
