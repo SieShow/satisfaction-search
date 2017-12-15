@@ -5,7 +5,7 @@ include('PHP/login.php');
 <html>
     <head>
         <meta charset="utf-8"; />
-        <link href="CSS/indexstyle.css" rel="stylesheet" type="text/css"/>
+        <link href="css/indexstyle.css" rel="stylesheet" type="text/css"/>
             <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
         <title>Login</title>
     </head>
