@@ -10,17 +10,30 @@ $connection = Database::getConnection();
 function loadClientLink(){
     global $connection;
 
-    $result = $connection->query("SELECT count(*) as total from customer");
-    $data = $result->fetch_assoc();
+    $sql = "SELECT * from customer";
+    $result =  mysqli_query($connection, $sql);
+    $number_of_results = mysqli_num_rows($result);
     echo "<div class='pagination'>";
-    for($i = 1; $i < $data["total"] / 10; $i++){
-        echo  "<a href='mainclientes.php?page=$i'>$i</a>";
+    for($i = 1; $i <= $number_of_results / 10; $i++){
+        echo  "<a href='mainclientes.php?pg=$i'>$i</a>";
     }
     echo "</div>";
 }
 function loadC($page){
     global $connection;
-    $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit");
+
+    $pageFirstResult = ($page-1)*10;
+
+    $query = "SELECT * FROM customer ORDER BY name asc limit".$pageFirstResult.",".$page;
+    $result = mysqli_query($connection, $query);
+
+    while($row = mysqli_fetch_array($result)){
+        echo "<td>".$row['name']."</td>";
+        echo "<td>".$row["forms_answereds"]."</td>";
+        echo "<td>".$row["tecnical_visits"]."</td>";
+        echo "<td>".$row["avaliation_avarage"]."</td>";
+        echo "<td>".$row["effectiviness"]."</td>";
+    }
 }
 function LoadClient(){
      global $connection;
