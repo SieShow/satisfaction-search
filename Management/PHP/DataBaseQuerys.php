@@ -7,9 +7,37 @@ $connection = Database::getConnection();
 /**
 * Load Client table
 */
+function loadClientLink(){
+    global $connection;
+
+    $sql = "SELECT * from customer";
+    $result =  mysqli_query($connection, $sql);
+    $number_of_results = mysqli_num_rows($result);
+    echo "<div class='pagination'>";
+    for($i = 1; $i <= $number_of_results / 10; $i++){
+        echo  "<a href='mainclientes.php?pg=$i'>$i</a>";
+    }
+    echo "</div>";
+}
+function loadC($page){
+    global $connection;
+
+    $pageFirstResult = ($page-1)*10;
+
+    $query = "SELECT * FROM customer ORDER BY name asc limit".$pageFirstResult.",".$page;
+    $result = mysqli_query($connection, $query);
+
+    while($row = mysqli_fetch_array($result)){
+        echo "<td>".$row['name']."</td>";
+        echo "<td>".$row["forms_answereds"]."</td>";
+        echo "<td>".$row["tecnical_visits"]."</td>";
+        echo "<td>".$row["avaliation_avarage"]."</td>";
+        echo "<td>".$row["effectiviness"]."</td>";
+    }
+}
 function LoadClient(){
      global $connection;
-     $result = $connection->query("select * from customer order by name asc");
+     $result = $connection->query("select * from customer order by name asc limit 10");
      if($result->num_rows > 0){
          while($row = $result->fetch_assoc()){
 
@@ -41,7 +69,7 @@ function LoadClient(){
              else {
                 echo "<td>".$val."%</td>";
              }             
-             } 
+             }
          }
      }
  /**
