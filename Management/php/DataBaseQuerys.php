@@ -10,11 +10,12 @@ $connection = Database::getConnection();
 function loadClientLink(){
     global $connection;
 
-    $result = $connection->query("SELECT count(*) as total from customer");
-    $data = $result->fetch_assoc();
+    $sql = "SELECT * from customer";
+    $result =  mysqli_query($connection, $sql);
+    $number_of_results = mysqli_num_rows($result);
     echo "<div class='pagination'>";
-    for($i = 1; $i < $data["total"] / 10; $i++){
-        echo  "<a href='mainclientes.php?page=$i'>$i</a>";
+    for($i = 1; $i <= $number_of_results / 10; $i++){
+        echo  "<a href='mainclientes.php?pg=$i'>$i</a>";
     }
     echo "</div>";
 }
