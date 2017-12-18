@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #3587A4;
+}
+h2, p, a{
+    margin-left: 20px;
+    color: #fff;
+    margin-top: 40px;
+}
+a{
+    display: flex;
+    width: 130px;
+    height: 40px;
+    border-radius: 1px;
+    padding: 12px 13px;
+    background-color: #033F5F;
+    text-decoration: none;
+}
+
