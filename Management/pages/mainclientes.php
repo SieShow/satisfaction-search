@@ -53,11 +53,18 @@ LoginValidation();
                     <td>Avaliação média</td>
                     <td>Efetividade(%)</td>
                 </thead>
-                <tbody id="tbody">          
-                    <?php loadC(2); ?>
+                <tbody id="tbody">        
+                    <?php
+                    if($_GET["pg"] == null || !is_numeric($_GET["pg"])){
+                        loadClient(1); 
+                    }   
+                    else{
+                        loadClient($_GET["pg"]);
+                    }
+                    ?>
                 </tbody>
             </table>
-            <?php loadClientLink(); ?>
+            <?php loadLink("SELECT * from customer"); ?>
         </div>
         <div id="conf">
             <form method="POST" action="" id="profileinfo">

@@ -7,21 +7,27 @@ $connection = Database::getConnection();
 /**
 * Load Client table
 */
-function loadClientLink(){
+function loadLink($sql){
     global $connection;
 
-    $sql = "SELECT * from customer";
     $result =  mysqli_query($connection, $sql);
     $number_of_results = mysqli_num_rows($result);
     echo "<div class='pagination'>";
-    for($i = 1; $i <= $number_of_results / 10; $i++){
-        echo  "<a href='mainclientes.php?pg=$i'>$i</a>";
+
+    for($page = 1; $page <= $number_of_results / 25; $page++){
+        echo  "<a href='mainclientes.php?pg=$page'>$page</a>";
     }
     echo "</div>";
 }
-function loadC($page){
+/**
+ * Load informations of client table
+ */
+function loadClient($page){
     global $connection;
-    $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit 10");
+
+    $startResult = ($page-1)*25;
+    $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit $startResult,25");
+
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
             
@@ -33,84 +39,60 @@ function loadC($page){
             }
     }
 }
-function LoadClient(){
-     global $connection;
-     $result = $connection->query("select * from customer order by name asc limit 10");
-     if($result->num_rows > 0){
-         while($row = $result->fetch_assoc()){
 
-             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
-             
-             $get = $connection->query("select count(*) from form where idcustomer = ".$row["idcustomer"]."");
-             $getnum = $get->fetch_assoc();
-             echo "<td>".$getnum["count(*)"]."</td>";
-             echo "<td>".$row["tecnical_visits"]."</td>";
-
-             $get = $connection->query("select AVG(evaluation_value) from form where idcustomer = ".$row["idcustomer"]."");
-             $evaluationavg = $get->fetch_assoc();
-             if($evaluationavg["AVG(evaluation_value)"] == null){
-                  echo "<td>0</td>";
-             }
-             else{
-             echo "<td>".$evaluationavg["AVG(evaluation_value)"]."%</td>";
-             }
-
-             $getans = $connection->query("select count(*) from form where idcustomer = ".$row["idcustomer"]." and issue_solve = 'sim'");
-             $getvalans = $getans->fetch_assoc();
-             $getall = $connection->query("select count(*) from form where idcustomer = ".$row["idcustomer"]."");
-             $total = $getall->fetch_assoc();
-             $val = ($getvalans["count(*)"]*100)/($total["count(*)"]);
-             $nan = is_nan($val);
-             if($nan){
-                 echo "<td>0</td>";
-             }
-             else {
-                echo "<td>".$val."%</td>";
-             }             
-             }
-         }
-     }
- /**
-* Load employee table
-*/     
-function LoadEmpl(){
+/**
+ * Load informations of employeers table
+ */
+function loadEmployers($page){
     global $connection;
-      $result = $connection->query("select * from employee order by name asc");
-       if($result->num_rows > 0){
-          while($row = $result->fetch_assoc()){
-              echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row["name"]."</a></td>";
-               
-              $get = $connection->query("select AVG(evaluation_value) from form where idemployee = ".$row["idemployee"]."");
-              $evaluationavg = $get->fetch_assoc();
-              if($evaluationavg["AVG(evaluation_value)"] == null){
-                   echo "<td>0</td>";
-              }
-              else{
-              echo "<td>".$evaluationavg["AVG(evaluation_value)"]."%</td>";
-              }
-
-              $getans = $connection->query("select count(*) from form where idemployee = ".$row["idemployee"]." and issue_solve = 'sim'");
-              $getvalans = $getans->fetch_assoc();
-              $getall = $connection->query("select count(*) from form where idemployee = ".$row["idemployee"]."");
-              $total = $getall->fetch_assoc();
-              if($getvalans["count(*)"] != 0){
-              $val = ($getvalans["count(*)"]*100)/($total["count(*)"]);
-              $nan = is_nan($val);
-              if($nan){
-                  echo "<td>0</td>";
-              }
-              else {
-                 echo "<td>".$val."%</td>";
-              }
-            }
-            else{
-                echo "<td>0</td>";
-            }             
-          }
-       }
+    
+    $startResult = ($page-1)*25;
+    $result = $connection->query("SELECT * FROM employee ORDER BY idform asc limit $startResult,25");
+    
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc())
+        {    
+             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
+             echo "<td>".$row["note_avarage"]."</td>";
+             echo "<td>".$row["issue_sol_avarage"]."%</td>";
+        }
+    }
 }
+
+function loadForms($page){
+    global $connection;
+    
+    $startResult = ($page-1)*25;
+    $result = $connection->query("SELECT * FROM forms ORDER BY idform asc limit $startResult,25");
+    
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc())
+        {    
+            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row["name"]."</a></td>";
+            echo "<td>".$row2["name"]."</td>";
+
+            if($row["evaluation_value"] == 5)  echo "<td>5 - Excelente</td>";
+            else if($row["evaluation_value"] == 4)  echo "<td>4 - Muito bom</td>";
+            else if($row["evaluation_value"] == 3)  echo "<td>3 - Bom</td>";
+            else if($row["evaluation_value"] == 2)  echo "<td>2 - Regular</td>";
+            else echo "<td>1 - Ruim</td>";
+
+            if($row["issue_solve"] == "yes"){
+                echo "<td>Sim</td>";
+            }
+            else {
+                echo "<td>Não</td>";
+            }
+
+            echo "<td>".utf8_encode($row["commentary"])."</td>";
+            echo "<td>".$row["request_sent"]."</td>";
+            echo "<td>".$row["request_answered"]."</td>";
+        }
+    }
+}
+
 ///Load Forms table
-function LoadForms(){
+function LoadFormss(){
     global $connection;
     $result = $connection->query("select idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form order by idform asc");
      if($result->num_rows > 0){
