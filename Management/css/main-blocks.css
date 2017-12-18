@@ -1,0 +1,104 @@
+html{
+    box-sizing: border-box;
+}
+.container{
+    margin-left: 20%;
+    margin-right: 15%;
+    margin-top: 25px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#subcontainer{
+    width: 94%;
+}
+.container h1{
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #D4D5D6;
+    font-size: 36px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+.block{
+    display: inline-block;
+    width: 29%;
+    height: 130px;
+    border-radius: 6px;
+    margin-bottom: 50px;
+    margin-right: 35px;
+}
+.align-content div{
+    display: inline-block;
+    margin-top: 9px;
+}
+.textright{
+    height: 100%;
+    text-align: right;
+    width: 73%;
+    color: #fff;
+}
+.huge{
+    font-size: 50px;
+}
+.sub-cont{
+    width: 65px;
+}
+.sub-cont img{
+    margin-left: 10px;
+}
+.blockfooter{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 10px;
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+}
+.footerlink{
+    text-decoration: none;
+}
+.blockfooter img{
+    width: 17px;
+    float: right;
+}
+#footerlink1:hover span{
+    color: #3D8B3D;
+}
+#footerlink1:hover img{
+    content:url("../Img/follow-button-green-hover.png")
+}
+#footerlink2:hover span{
+    color: #23527C;
+}
+#footerlink2:hover img{
+    content:url("../Img/follow-button-blue-hover.png")
+}
+#footerlink3:hover span{
+    color: #B52B27;
+}
+#footerlink3:hover img{
+    content:url("../Img/follow-button-red-hover.png")
+}
+#blockfooter1{
+    color:#59B259;
+    border: 1px solid #59B259;
+}
+#blockfooter2{
+    color:#337AB7;
+    border: 1px solid #337AB7;
+}
+#blockfooter3{
+    color:#D9534F;
+    border: 1px solid #D9534F;
+}
+#block1{
+    background-color: #59B259;
+}
+#block2{
+    background-color: #337AB7;
+}
+#block3{
+    background-color: #D9534F;
+}
