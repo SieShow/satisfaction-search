@@ -6,9 +6,6 @@ class Database
     private $connection;
 
     private function __construct() {
-        //Banco de teste
-        //$this->connection = mysqli_connect("localhost", "root", "", "satisfactionbd");
-        //Banco original
         $this->connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
     }
 

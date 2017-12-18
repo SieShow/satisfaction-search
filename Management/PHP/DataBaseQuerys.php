@@ -20,7 +20,17 @@ function loadClientLink(){
 }
 function loadC($page){
     global $connection;
-    $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit");
+    $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit 10");
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            
+             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
+             echo "<td>".$row["forms_answereds"]."</td>";
+             echo "<td>".$row["tecnical_visits"]."</td>";
+             echo "<td>".$row["evaluation_value"]."%</td>";
+             echo "<td>".$row["efetviness"]."%</td>";
+            }
+    }
 }
 function LoadClient(){
      global $connection;
@@ -173,7 +183,9 @@ echo "<td>Comentário</td>";
 echo "<td>Data de envio da pesquisa</td>";
 echo "<td>Data de resposta da pesquisa</td>";
 }
-
+/**
+ * carrega o número de registros das tabelas
+ */
 function GetNumberFromQuery($sql1){
     $sql = $sql1;
     global $connection;
@@ -188,14 +200,18 @@ function GetNumberFromQuery($sql1){
         return 0;
      }
 }
-
+/**
+ * carrega o nome de um usuario através do seu ID
+ */
 function GetNameFromBD($id, $table){
     global $connection;
     $get = $connection->query("SELECT name FROM $table WHERE id$table = $id");
     $name = $get->fetch_assoc();
     return $name["name"];
 }
-
+/**
+ * Carrega os emails registrados de um cliente
+ */
 function GetEmailsFromBD($id, $table){
     global $connection;
     $get = $connection->query("SELECT emails FROM $table WHERE id$table = $id");
@@ -205,6 +221,9 @@ function GetEmailsFromBD($id, $table){
         return $single_mail;
     }
 }
+/** 
+ * Carrega o historico de um cliente ou funcionário
+*/
 function LoadHistoric($from, $id_vip){
     global $connection;
     $result = $connection->query("SELECT idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form where id".$from." = $id_vip order by idform desc");

@@ -54,7 +54,7 @@ LoginValidation();
                     <td>Efetividade(%)</td>
                 </thead>
                 <tbody id="tbody">          
-                    <?php LoadClient(); ?>
+                    <?php loadC(2); ?>
                 </tbody>
             </table>
             <?php loadClientLink(); ?>
