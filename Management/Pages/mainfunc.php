@@ -1,6 +1,7 @@
 <?php
-include('../PHP/DataBaseQuerys.php');
-include('../PHP/PageMainValidation.php');
+include('../php/DataBaseQuerys.php');
+include('../php/updateprofile.php');
+include('../php/PageMainValidation.php');
 LoginValidation();
 ?>
 <!DOCTYPE HTML>
@@ -49,9 +50,19 @@ LoginValidation();
         <td>Média de efetividade do atendimento</td>
         </thead>
    <tbody id="tbody">
-    <?php LoadEmpl();?>
+    <?php  
+        if($_GET["pg"] == null || !is_numeric($_GET["pg"]))
+        {
+            loadEmployers(1); 
+        }   
+        else
+        {
+        loadEmployers($_GET["pg"]);
+        }
+    ?>
     </tbody>
     </table>
+      <?php loadLink("SELECT * from employee"); ?>
     </div>
     <script>
 var modal = document.getElementById('full-options-block');

@@ -54,9 +54,17 @@ LoginValidation();
                     <td class="tddata">Data de resposta</td>
                 </thead>
                 <tbody id="tbody">
-                    <?php LoadForms();?>
+                    <?php 
+                    if($_GET["pg"] == null || !is_numeric($_GET["pg"])){
+                    loadForms(1);
+                    }
+                    else{
+                        loadForms($_GET["pg"]);
+                    }
+                    ?>
                 </tbody>
             </table>
+            <?php loadLink("SELECT * from forms"); ?>$_ENV
         </div>
         <div id="conf">
             <form method="POST" action="" id="profileinfo">
