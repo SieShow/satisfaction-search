@@ -11,34 +11,11 @@ LoginValidation();
     <link href="../CSS/mainPagesStyle.css" rel="stylesheet" type="text/css" />
     <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <title>Gerenciamento</title>
 </head>
-<body>
-    <div id="headpage">
-        <div id="usernameoption">
-        <img src="../Img/User-unknown.png" id="imgclick" >
-        <div id="full-options-block">
-            <div id="arrow">
-                </div>
-                <div id="userinfo">
-                    <img src="../Img/User-unknown.png">
-                    <label><?php echo $user ?></label>
-                </div>     
-        <a href="">Editar perfil</a>
-        <a href="../PHP/Logout.php">Sair</a>
-        </div>
-        </div>
-    <div id="menu">
-        <div id="menuhorizontal">
-        <ul>
-            <li><a href="main.php">Inicial</a></li>
-            <li><a href="mainclientes.php">Clientes</a></li>
-            <li><a href="">Funcionários</a></li>
-            <li><a href="mainfomsanswereds.php">Formulários</a></li>
-            </ul>
-        </div>
-    </div>
-    </div>
+<body ng-app="">
+    <div ng-include="'header.html'"></div>
     <div class="allblock">
         <div id="searchdiv">
     <input type="text" placeholder="Ache os funcionários !" name="pesquisa"/>
@@ -64,23 +41,5 @@ LoginValidation();
     </table>
       <?php loadLink("SELECT * from employee"); ?>
     </div>
-    <script>
-var modal = document.getElementById('full-options-block');
-var img = document.getElementById('imgclick');
-
-document.onclick = function(e){
-    if(e.target == img){
-        if(modal.style.display == 'block'){
-        modal.style.display = 'none';
-    }
-    else{
-        modal.style.display = 'block';
-    }
-    }
-    else{
-          modal.style.display = 'none';
-    }
-}
-</script>
 </body>
 </html>
