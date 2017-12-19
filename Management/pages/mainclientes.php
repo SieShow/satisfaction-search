@@ -20,18 +20,15 @@ LoginValidation();
     <body ng-app="">
     <div ng-include="'header.html'"></div>
         <div class="allblock">
-            <div id="searchdiv">
-                <input type="text" placeholder="Ache os clientes e funcionários !" name="pesquisa" />
-            </div>
-            <table id="maintable">
-                <thead id="thead">
-                    <td id="tdname">Nome do cliente</td>
-                    <td>Formulários respondidos</td>
-                    <td>Visitas técnicas</td>
-                    <td>Avaliação média</td>
-                    <td>Efetividade(%)</td>
+            <table id="maintable" class="table-fill">
+                <thead class="text-left">
+                    <th id="tdname">Nome do cliente</th>
+                    <th>Formulários respondidos</th>
+                    <th>Visitas técnicas</th>
+                    <th>Avaliação média</th>
+                    <th>Efetividade(%)</th>
                 </thead>
-                <tbody id="tbody">        
+                <tbody class="table-hover">        
                     <?php
                     if($_GET["pg"] == null || !is_numeric($_GET["pg"])){
                         loadClient(1); 
