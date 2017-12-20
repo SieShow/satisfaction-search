@@ -27,7 +27,7 @@ if(isset($_POST['btnlogin'])){
             $sql = "SELECT idusers from users where name = '$user'";
             $result = $connection->query($sql);
             if($result->num_rows > 0){
-                $erro = "Senha incorreta";
+                $error = "Senha incorreta";
             }
             else{
             $error="Usuário não cadastrado";

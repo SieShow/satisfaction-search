@@ -1,5 +1,5 @@
 <?php
-include_once("php/login.php");
+include('php/login.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,47 +10,47 @@ include_once("php/login.php");
   <meta name="description" content="">
   <meta name="author" content="">
   <title>SB Admin - Start Bootstrap Template</title>
-  <!-- Bootstrap core CSS-->
   <link href="css/bootstrap.min3.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
   <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <style>
+  #btn{
+    cursor: pointer;
+  }
+  </style>
 </head>
-
 <body class="bg-dark">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="exampleInputEmail1">Usuário</label>
+            <input class="form-control" name="login" id="exampleInputEmail1" type="text" >
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+            <label for="exampleInputPassword1">Senha</label>
+            <input class="form-control" name="passw" id="exampleInputPassword1" type="password">
+            <span><?php echo $error; ?></span>
           </div>
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox"> Remember Password</label>
+                <!--<input class="form-check-input" type="checkbox"> Remember Password</label>-->
             </div>
           </div>
-          <a class="btn btn-primary btn-block" href="index.html">Login</a>
+          <input class="btn btn-primary btn-block" id="btn" name="btnlogin" type="submit" value="Entrar" />
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="register.html">Register an Account</a>
-          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+          <!--<a class="d-block small mt-3" href="register.html">Register an Account</a>
+          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>-->
         </div>
       </div>
     </div>
   </div>
-  <!-- Bootstrap core JavaScript-->
   <script src="jquery/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <!-- Core plugin JavaScript-->
   <script src="js/jquery.easing.min.js"></script>
 </body>
 </html>
