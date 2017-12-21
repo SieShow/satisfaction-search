@@ -19,38 +19,17 @@ else {
 <HTML>
 <head>
     <meta charset = "utf-8"/>
-    <link href="../CSS/mainPagesStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/ProfileInfos.css" rel="stylesheet" type="text/css" />
-    <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
+    <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css" />
+    <link href="../css/ProfileInfos.css" rel="stylesheet" type="text/css" />
+    <link href="../img/logo.ico" rel="icon" type"image/x-icon" />
+    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link href="../css/table.css" rel="stylesheet" type="text/css">
     <title>Gerenciamento</title>
 </head>
-<body>
-    <div id="headpage">
-        <div id="usernameoption">
-        <img src="../Img/User-unknown.png" id="imgclick" >
-        <div id="full-options-block">
-            <div id="arrow">
-                </div>
-                <div id="userinfo">
-                    <img src="../Img/User-unknown.png">
-                    <label><?php echo $prof->GetName(); ?></label>
-                </div>     
-        <a href="">Editar perfil</a>
-        <a href="../PHP/Logout.php">Sair</a>
-        </div>
-        </div>
-    <div id="menu">
-        <div id="menuhorizontal">
-        <ul>
-            <li><a href="main.php">Inicial</a></li>
-            <li><a href="mainclientes.php">Clientes</a></li>
-            <li><a href="mainfunc.php">Funcionários</a></li>
-            <li><a href="mainfomsanswereds.php">Formulários</a></li>
-            </ul>
-        </div>
-    </div>
-    </div>
+<body ng-app="">
+    <div ng-include="'header.html'"></div>
     <div id="profilebody">
         <div id="content">
         <div id="sub-cont2">
@@ -69,33 +48,15 @@ else {
         </div>
         <div class="content-sub">
         <h3>Histórico</h3>
-        <table bgcolor="#ECEAEA">
-            <thead id="thead">
+        <table id="maintable" class="table-fill">
+                <thead class="text-left">
                 <?php  LoadTableColuns($_GET["type"]);?>
             </thead>
-            <tbody id="tbody" class="">
+            <tbody class="table-hover">
                 <?php $prof->LoadHistoric();?>
             </tbody>
         </table>
         </div>
-        </div>
-    <script>
-var modal = document.getElementById('full-options-block');
-var img = document.getElementById('imgclick');
-
-document.onclick = function(e){
-    if(e.target == img){
-        if(modal.style.display == 'block'){
-        modal.style.display = 'none';
-    }
-    else{
-        modal.style.display = 'block';
-    }
-    }
-    else{
-          modal.style.display = 'none';
-    }
-}
-</script>
+    </div>
 </body>
 </html>

@@ -9,7 +9,7 @@ include('php/login.php');
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>SB Admin - Start Bootstrap Template</title>
+  <title>login | Gerenciamento</title>
   <link href="css/bootstrap.min3.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="css/sb-admin.css" rel="stylesheet">

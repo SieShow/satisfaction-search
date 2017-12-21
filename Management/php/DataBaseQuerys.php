@@ -72,9 +72,8 @@ function loadForms($page){
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row["customer_name"]."</a></td>";
-            echo "<td>".$row["employee_name"]."</td>";
-
+            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".$row["customer_name"]."</a></td>";
+            echo "<td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row["employee_name"]."</a></td>";
             if($row["val"] == 5)  echo "<td>5 - Excelente</td>";
             else if($row["val"] == 4)  echo "<td>4 - Muito bom</td>";
             else if($row["val"] == 3)  echo "<td>3 - Bom</td>";
