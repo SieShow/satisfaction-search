@@ -1,4 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+    
+.linkname {
+  text-decoration: none;
+  font-family: 'Lato';
+  color: #666B85;
+}
+
+.linkname:hover{
+  color:  white;
+}
 
 div.table-title {
 display: block;
@@ -8,28 +18,13 @@ display: block;
   width: 100%;
 }
 
-/*** Table Styles **/
-
-.table-fill {
-  background: white;
-  border-radius:3px;
-  border-collapse: collapse;
-  height: 200px;
-  margin: auto;
-  max-width: 800px;
-  padding:5px;
-  width: 160%;
-  box-shadow: 0 5px 10px rgba(6, 38, 182, 0.1);
-  animation: float 5s infinite;
-}
- 
 th {
   color:#D5DDE5;;
   background:#1b1e24;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
-  font-size:23px;
-  font-weight: 100;
+  font-size: 20px;
+  font-weight: 50;
   padding:16px;
   text-align:left;
   text-shadow: 0 1px 1px rgba(6, 38, 182, 0.1);
@@ -60,6 +55,11 @@ tr:hover td {
   border-top: 1px solid #22262e;
 }
  
+tr:hover .linkname{
+  background:#4E5066;
+  color:#FFFFFF;
+}
+
 tr:first-child {
   border-top:none;
 }
@@ -89,8 +89,8 @@ td {
   padding:20px;
   text-align:left;
   vertical-align:middle;
-  font-weight:300;
-  font-size:18px;
+  font-weight: 50;
+  font-size:19px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #C1C3D1;
 }

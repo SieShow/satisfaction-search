@@ -35,7 +35,7 @@ LoginValidation();
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge"><?php Customers(); ?></div>
                                     <div>Clientes</div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@ LoginValidation();
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge"><?php Employee()?></div>
                                     <div>Funcionários</div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ LoginValidation();
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
+                                    <div class="huge"><?php Forms(); ?></div>
                                     <div>Formulários</div>
                                 </div>
                             </div>

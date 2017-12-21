@@ -23,8 +23,8 @@ LoginValidation();
             <table id="maintable" class="table-fill">
                 <thead class="text-left">
                     <th id="tdname">Nome do cliente</th>
-                    <th>Formulários respondidos</th>
                     <th>Visitas técnicas</th>
+                    <th>Formulários respondidos</th>
                     <th>Avaliação média</th>
                     <th>Efetividade(%)</th>
                 </thead>

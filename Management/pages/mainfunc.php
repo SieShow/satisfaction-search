@@ -8,8 +8,9 @@ LoginValidation();
 <HTML>
 <head>
     <meta charset = "utf-8"/>
-    <link href="../CSS/mainPagesStyle.css" rel="stylesheet" type="text/css" />
+    <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css" />
     <link href="../Img/logo.ico" rel="icon" type"image/x-icon" />
+    <link href="../css/table.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <title>Gerenciamento</title>
@@ -17,16 +18,13 @@ LoginValidation();
 <body ng-app="">
     <div ng-include="'header.html'"></div>
     <div class="allblock">
-        <div id="searchdiv">
-    <input type="text" placeholder="Ache os funcionários !" name="pesquisa"/>
-        </div>
-    <table>
-        <thead id="thead">
-        <td id="nametd">Nome</td>
-        <td>Nota média</td>
-        <td>Média de efetividade do atendimento</td>
-        </thead>
-   <tbody id="tbody">
+    <table id="maintable" class="table-fill">
+                <thead class="text-left">
+                <th id="nametd">Nome</th>
+                <th>Nota média</th>
+                <th>Média de efetividade do atendimento</th>
+                </thead>
+   <tbody class="table-hover">
     <?php  
         if($_GET["pg"] == null || !is_numeric($_GET["pg"]))
         {

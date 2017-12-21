@@ -219,15 +219,7 @@
         font-weight: 100;
         letter-spacing: 2px;
     }
-    
 
-    
-    .linkname {
-        text-decoration: none;
-        font-family: 'Lato';
-        color: black;
-    }
-    
     tbody tr {
         height: 40px;
         background-color: #fff;

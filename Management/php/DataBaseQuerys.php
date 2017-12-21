@@ -32,10 +32,10 @@ function loadClient($page){
         while($row = $result->fetch_assoc()){
             
              echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
-             echo "<td>".$row["forms_answereds"]."</td>";
              echo "<td>".$row["tecnical_visits"]."</td>";
-             echo "<td>".$row["evaluation_value"]."%</td>";
-             echo "<td>".$row["efetviness"]."%</td>";
+             echo "<td>".$row["forms_answereds"]."</td>";
+             echo "<td>".$row["avaliation_avarage"]."</td>";
+             echo "<td>".$row["effectiviness"]."%</td>";
             }
     }
 }
@@ -47,7 +47,7 @@ function loadEmployers($page){
     global $connection;
     
     $startResult = ($page-1)*25;
-    $result = $connection->query("SELECT * FROM employee ORDER BY idform asc limit $startResult,25");
+    $result = $connection->query("SELECT * FROM employee ORDER BY idemployee asc limit $startResult,25");
     
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
@@ -63,64 +63,42 @@ function loadForms($page){
     global $connection;
     
     $startResult = ($page-1)*25;
-    $result = $connection->query("SELECT * FROM forms ORDER BY idform asc limit $startResult,25");
+    $result = $connection->query("SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
+     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
+      as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+      = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY idform asc limit
+       $startResult,25");
     
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row["name"]."</a></td>";
-            echo "<td>".$row2["name"]."</td>";
+            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row["customer_name"]."</a></td>";
+            echo "<td>".$row["employee_name"]."</td>";
 
-            if($row["evaluation_value"] == 5)  echo "<td>5 - Excelente</td>";
-            else if($row["evaluation_value"] == 4)  echo "<td>4 - Muito bom</td>";
-            else if($row["evaluation_value"] == 3)  echo "<td>3 - Bom</td>";
-            else if($row["evaluation_value"] == 2)  echo "<td>2 - Regular</td>";
+            if($row["val"] == 5)  echo "<td>5 - Excelente</td>";
+            else if($row["val"] == 4)  echo "<td>4 - Muito bom</td>";
+            else if($row["val"] == 3)  echo "<td>3 - Bom</td>";
+            else if($row["val"] == 2)  echo "<td>2 - Regular</td>";
             else echo "<td>1 - Ruim</td>";
 
-            if($row["issue_solve"] == "yes"){
+            if($row["solved"] == "yes"){
                 echo "<td>Sim</td>";
             }
             else {
                 echo "<td>Não</td>";
             }
-
-            echo "<td>".utf8_encode($row["commentary"])."</td>";
-            echo "<td>".$row["request_sent"]."</td>";
-            echo "<td>".$row["request_answered"]."</td>";
+            if($row["comment"] == null || $row["comment"] == ""){
+                echo "<td> - </td>";
+            }
+            else{
+                echo "<td>".utf8_encode($row["comment"])."</td>";
+            }
+            echo "<td>".$row["sent_date"]."</td>";
+            echo "<td>".$row["answered_date"]."</td>";
         }
     }
 }
 
-///Load Forms table
-function LoadFormss(){
-    global $connection;
-    $result = $connection->query("select idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form order by idform asc");
-     if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()){
-            $result2 = $connection->query("select name from customer where V11_ID =".$row['idcustomer']);
-            $row2 = $result2->fetch_assoc();
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row2["name"]."</a></td>";
-            $result2 = $connection->query("select name from employee where V11_code =". $row["idemployee"]);
-            $row2 = $result2->fetch_assoc();
-            echo "<td>".$row2["name"]."</td>";
-            if($row["evaluation_value"] == 5)  echo "<td>5 - Excelente</td>";
-            else if($row["evaluation_value"] == 4)  echo "<td>4 - Muito bom</td>";
-            else if($row["evaluation_value"] == 3)  echo "<td>3 - Bom</td>";
-            else if($row["evaluation_value"] == 2)  echo "<td>2 - Regular</td>";
-            else echo "<td>1 - Ruim</td>";
-                
-            if($row["issue_solve"] == "yes"){
-                echo "<td>Sim</td>";
-            }
-            else {
-                echo "<td>Não</td>";
-            }
-            echo "<td>".utf8_encode($row["commentary"])."</td>";
-            echo "<td>".$row["request_sent"]."</td>";
-            echo "<td>".$row["request_answered"]."</td>";
-        }
-    }
-}
 /**
 * Check in mainprofile's GET what is the table of database referenced
 */
