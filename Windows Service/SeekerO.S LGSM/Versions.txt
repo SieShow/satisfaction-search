@@ -1,0 +1,9 @@
+v.2.0
+-Alterado método Employee::Register(). Adicionado novo campo ao a query
+
+v2.0.1
+- Alterado tipo de retorno do método Email::Send(string from, string to, string from_password, string title, int cod_client, int cod_func) de bool para string. O erro (caso encontrado) será salvo no log de emails enviados
+- alterado local onde erro no envio de email. De "OperationLog.txt" para "EmailSentLog.txt"
+- Alterado framework fornecedora de envio de email "EASendMail" para a nativa .NET
+- Corrigido bug do email "ERROR CODE->Trial"
+- Corrigido falha em emails não funcionais. Emails que obtiveram falha no envio são removidos da lista(não são removidos do V11)
