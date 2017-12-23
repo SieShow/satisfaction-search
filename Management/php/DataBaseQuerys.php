@@ -74,7 +74,7 @@ function loadEmployers($page){
         {    
              echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
              echo "<td>".$row["note_avarage"]."</td>";
-             echo "<td>".$row["issue_sol_avarage"]."%</td>";
+             echo "<td>".$row["visits"]."</td>";
         }
     }
 }

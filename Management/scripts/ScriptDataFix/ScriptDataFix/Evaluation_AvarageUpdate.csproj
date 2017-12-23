@@ -50,6 +50,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptEffectiviness.cs" />
+    <Compile Include="ScriptEffectivnessEmployee.cs" />
     <Compile Include="ScriptNotaMedia.cs" />
   </ItemGroup>
   <ItemGroup>

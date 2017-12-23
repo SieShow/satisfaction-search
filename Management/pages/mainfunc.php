@@ -22,7 +22,7 @@ LoginValidation();
                 <thead class="text-left">
                 <th id="tdname">Nome</th>
                 <th>Nota média</th>
-                <th>Média de efetividade do atendimento</th>
+                <th>Visitas Técnicas</th>
                 </thead>
    <tbody class="table-hover">
     <?php  
