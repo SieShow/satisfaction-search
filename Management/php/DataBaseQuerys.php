@@ -40,6 +40,26 @@ function loadClient($page){
     }
 }
 
+function tratarComentario($commentary){
+    if($commentary == null || $commentary == "") return "-";
+    return utf8_encode(utf8_encode($commentary));
+}
+
+function tratarNotaDeAvaliacao($nota){
+    if($nota == 5)  return "5 - Excelente";
+    else if($nota == 4)  return "4 - Muito bom";
+    else if($nota == 3)  return "3 - Bom";
+    else if($nota == 2)  return "2 - Regular";
+    return "<td>1 - Ruim</td>";
+}
+
+function tratarSolucaoDoProblema($issue_solved){
+    if($issue_solved == "yes"){
+        return "Sim";
+    }
+    return "Não";
+}
+
 /**
  * Load informations of employeers table
  */
@@ -74,24 +94,9 @@ function loadForms($page){
         {    
             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".$row["customer_name"]."</a></td>";
             echo "<td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row["employee_name"]."</a></td>";
-            if($row["val"] == 5)  echo "<td>5 - Excelente</td>";
-            else if($row["val"] == 4)  echo "<td>4 - Muito bom</td>";
-            else if($row["val"] == 3)  echo "<td>3 - Bom</td>";
-            else if($row["val"] == 2)  echo "<td>2 - Regular</td>";
-            else echo "<td>1 - Ruim</td>";
-
-            if($row["solved"] == "yes"){
-                echo "<td>Sim</td>";
-            }
-            else {
-                echo "<td>Não</td>";
-            }
-            if($row["comment"] == null || $row["comment"] == ""){
-                echo "<td> - </td>";
-            }
-            else{
-                echo "<td>".utf8_encode($row["comment"])."</td>";
-            }
+            echo "<td>".tratarNotaDeAvaliacao($row["val"])."</td>";
+            echo "<td>".tratarSolucaoDoProblema($row["solved"])."</td>";
+            echo "<td>".tratarComentario($row["comment"]) ."</td>";
             echo "<td>".$row["sent_date"]."</td>";
             echo "<td>".$row["answered_date"]."</td>";
         }
@@ -99,7 +104,7 @@ function loadForms($page){
 }
 
 /**
-* Check in mainprofile's GET what is the table of database referenced
+* Check in mainprofile's GET where type is referencing
 */
 function GetTableReference($type){
     if($type == "c")return "customer";
@@ -107,6 +112,7 @@ function GetTableReference($type){
 }
 function LoadCustomerProfile($id, $name){
     global $connection;
+    
     $result = $connection->query("SELECT * FROM form WHERE id$name = $id");
      if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
@@ -118,30 +124,37 @@ function LoadCustomerProfile($id, $name){
 }
 function LoadDataFrom($id, $table){
     global $connection;
+    
     $sql = "SELECT * FROM $table WHERE id$table = $id";
     $result = $connection->query("SELECT * FROM $table WHERE id$table = $id");
     $output = $result->fetch_assoc();
-    if($result->num_rows > 0){return $output;}
-    else{return null;}
+    
+    if($result->num_rows > 0){
+        return $output;
     }
+    else{
+        return null;
+    }
+
+}
 /**
 * Load table referenced to profile historic
 */
 function LoadTableColuns($kind){
 if($kind == "c"){
-    echo "<td>Nome do técnico</td>";
+    echo "<th>Nome do técnico</th>";
 }
 else if($kind == "e"){
-    echo "<td id='nomecli'>Nome do cliente</td>";
+    echo "<th>Nome do cliente</th>";
 }
 else{
     echo "";
 }
-echo "<td id='nota'>Nota</td>";
-echo "<td>Problema resolvido ?</td>";
-echo "<td>Comentário</td>";
-echo "<td>Data de envio da pesquisa</td>";
-echo "<td>Data de resposta da pesquisa</td>";
+echo "<th id='nota'>Nota</th>";
+echo "<th>Problema resolvido ?</th>";
+echo "<th>Comentário</th>";
+echo "<th>Data de envio da pesquisa</th>";
+echo "<th>Data de resposta da pesquisa</th>";
 }
 /**
  * carrega o número de registros das tabelas
@@ -192,19 +205,9 @@ function LoadHistoric($from, $id_vip){
             $result2 = $connection->query("select name from customer where V11_ID =".$row['idcustomer']);
             $row2 = $result2->fetch_assoc();
             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row2["name"]."</a></td>";
-            if($row["evaluation_value"] == 5)  echo "<td>5 - Excelente</td>";
-            else if($row["evaluation_value"] == 4)  echo "<td>4 - Muito bom</td>";
-            else if($row["evaluation_value"] == 3)  echo "<td>3 - Bom</td>";
-            else if($row["evaluation_value"] == 2)  echo "<td>2 - Regular</td>";
-            else echo "<td>1 - Ruim</td>";
-                
-            if($row["issue_solve"] == "yes"){
-                echo "<td>Sim</td>";
-            }
-            else {
-                echo "<td>Não</td>";
-            }
-            echo "<td>".utf8_encode($row["commentary"])."</td>";
+            echo "<td>".tratarNotaDeAvaliacao($row["evaluation_value"])."</td>";
+            echo "<td>".tratarSolucaoDoProblema($row["issue_solve"])."</td>";
+            echo "<td>".tratarComentario($row["commentary"])."</td>";
             echo "<td>".$row["request_sent"]."</td>";
             echo "<td>".$row["request_answered"]."</td></tr>";
         }

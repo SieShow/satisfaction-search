@@ -19,13 +19,12 @@ else {
 <HTML>
 <head>
     <meta charset = "utf-8"/>
-    <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../css/ProfileInfos.css" rel="stylesheet" type="text/css" />
+    <link href="../css/profileInfos.css" rel="stylesheet" type="text/css" />
     <link href="../img/logo.ico" rel="icon" type"image/x-icon" />
-    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+    <link href="../css/table.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <link href="../css/table.css" rel="stylesheet" type="text/css">
     <title>Gerenciamento</title>
 </head>
 <body ng-app="">
@@ -49,7 +48,7 @@ else {
         <div class="content-sub">
         <h3>Histórico</h3>
         <table id="maintable" class="table-fill">
-                <thead class="text-left">
+            <thead class="text-left">
                 <?php  LoadTableColuns($_GET["type"]);?>
             </thead>
             <tbody class="table-hover">

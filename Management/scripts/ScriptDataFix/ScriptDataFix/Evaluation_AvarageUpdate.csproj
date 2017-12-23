@@ -45,8 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conection.cs" />
+    <Compile Include="Conection_Information.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptEffectiviness.cs" />
+    <Compile Include="ScriptNotaMedia.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

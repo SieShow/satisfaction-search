@@ -20,7 +20,7 @@ LoginValidation();
     <div class="allblock">
     <table id="maintable" class="table-fill">
                 <thead class="text-left">
-                <th id="nametd">Nome</th>
+                <th id="tdname">Nome</th>
                 <th>Nota média</th>
                 <th>Média de efetividade do atendimento</th>
                 </thead>
