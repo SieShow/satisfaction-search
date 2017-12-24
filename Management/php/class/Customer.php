@@ -11,10 +11,10 @@ class Customer extends Entity{
         parent::__construct($i);
         $getinfo = LoadDataFrom($i, "customer");
         $this->name = $getinfo["name"];
-        $this->email = $getinfo["note_avarage"];
-        $this->visitas = $getinfo[3];
-        $this->forms_respondidos = $getinfo[4];
-        $this->v11_id = $getinfo[5];
+        $this->email = $getinfo["emails"];
+        $this->visitas = $getinfo["tecnical_visits"];
+        $this->forms_respondidos = $getinfo["forms_answereds"];
+        $this->v11_id = $getinfo["V11_ID"];
     }
     public function GetID(){
         return $this->id;

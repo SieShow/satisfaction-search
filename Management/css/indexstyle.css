@@ -1,16 +1,18 @@
-html{
-    background-color:#3587A4;
+html {
+    background-color: #3587A4;
     font-family: Verdana;
 }
-form{
+
+form {
     width: 500px;
-     height: 202px;
-     margin: 0 auto; 
+    height: 202px;
+    margin: 0 auto;
     background-color: #ffffff;
     border-radius: 4px;
     margin-top: 160px;
 }
-#formcontents{
+
+#formcontents {
     display: inline-block;
     margin: 0 auto;
     position: relative;
@@ -19,12 +21,13 @@ form{
     margin-top: 50px;
     margin-left: 90px;
 }
-label, input{
+
+label, input {
     padding: 2px 2px 2px 2px;
     margin-top: 3px;
 }
 
-#subdiv{
+#subdiv {
     display: flex;
     justify-content: center;
     height: 80px;
@@ -32,19 +35,19 @@ label, input{
     margin: 0 auto;
 }
 
-#subdiv input{
+#subdiv input {
     background-color: #0271BC;
     width: 120px;
     height: 28px;
     border-radius: 2px;
-    border:none;
+    border: none;
     cursor: pointer;
     margin-top: 5px;
-    color:#ffffff;
+    color: #ffffff;
     position: absolute;
 }
 
-#subdiv span{
+#subdiv span {
     margin-top: 40px;
     font-size: 14px;
     color: red;

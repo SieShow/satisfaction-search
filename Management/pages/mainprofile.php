@@ -34,13 +34,16 @@ else {
         <div id="sub-cont2">
         <?php
         echo "<h2>".$prof->GetName()."</h2>";
-        echo "<label>Visitas Técnicas: ".$prof->GetTotalOfVisits()."</label>";
-        echo "<label>Código no VIP: ".$prof->GetV11_Code()."</label>";
+        echo "<label>Visitas Técnicas:  ".$prof->GetTotalOfVisits()."</label>";
+        if($_GET["type"] == "c"){
+            echo "<label>Formulários respondidos:  ".$prof->GetForms_Answereds()." </label>";
+        }
+        echo "<label>Código no VIP:  ".$prof->GetV11_Code()."</label>";
 
-        if($_GET["type"] == "c")echo "<label>Email: ".$prof->GetEmails()."</label>";
+        if($_GET["type"] == "c")echo "<label>Email:  ".$prof->GetEmails()."</label>";
         else if($_GET["type"] == "e"){
-            echo "<label>Nota média: ".$prof->GetNote_avarage(). "</label>";
-            echo "<label>Média de solução de problemas: ".$prof->GetIssue_avarage(). "</label>";          
+            echo "<label>Nota média:  ".$prof->GetNote_avarage(). "</label>";
+            echo "<label>Média de solução de problemas:  ".$prof->GetIssue_avarage(). "</label>";          
         }
         ?>
         </div>

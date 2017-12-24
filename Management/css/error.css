@@ -1,15 +1,18 @@
-*{
+* {
     box-sizing: border-box;
 }
-body{
+
+body {
     background-color: #3587A4;
 }
-h2, p, a{
+
+h2, p, a {
     margin-left: 20px;
     color: #fff;
     margin-top: 40px;
 }
-a{
+
+a {
     display: flex;
     width: 130px;
     height: 40px;
@@ -18,4 +21,3 @@ a{
     background-color: #033F5F;
     text-decoration: none;
 }
-

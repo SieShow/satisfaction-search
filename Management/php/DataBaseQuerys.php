@@ -42,7 +42,12 @@ function loadClient($page){
 
 function tratarComentario($commentary){
     if($commentary == null || $commentary == "") return "-";
-    return utf8_encode(utf8_encode($commentary));
+    $aux = substr($commentary, 0, 40);
+    
+    if(strlen($aux) < strlen($commentary)){
+        return $aux . "...";
+    }
+    return $aux;
 }
 
 function tratarNotaDeAvaliacao($nota){
@@ -88,7 +93,8 @@ function loadForms($page){
       as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
       = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY idform asc limit
        $startResult,25");
-    
+
+
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
@@ -96,9 +102,10 @@ function loadForms($page){
             echo "<td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row["employee_name"]."</a></td>";
             echo "<td>".tratarNotaDeAvaliacao($row["val"])."</td>";
             echo "<td>".tratarSolucaoDoProblema($row["solved"])."</td>";
-            echo "<td>".tratarComentario($row["comment"]) ."</td>";
+            echo "<td onclick='document.getElementById('id01').style.display='block''>".tratarComentario($row["comment"]) ."</td>";
             echo "<td>".$row["sent_date"]."</td>";
             echo "<td>".$row["answered_date"]."</td>";
+            
         }
     }
 }
@@ -125,7 +132,6 @@ function LoadCustomerProfile($id, $name){
 function LoadDataFrom($id, $table){
     global $connection;
     
-    $sql = "SELECT * FROM $table WHERE id$table = $id";
     $result = $connection->query("SELECT * FROM $table WHERE id$table = $id");
     $output = $result->fetch_assoc();
     
@@ -199,12 +205,32 @@ function GetEmailsFromBD($id, $table){
 */
 function LoadHistoric($from, $id_vip){
     global $connection;
-    $result = $connection->query("SELECT idcustomer, idemployee,evaluation_value,issue_solve,commentary, request_sent, request_answered from form where id".$from." = $id_vip order by idform desc");
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()){
-            $result2 = $connection->query("select name from customer where V11_ID =".$row['idcustomer']);
+
+    $identity = "id".$from;
+    $result = $connection->query("SELECT customer.idcustomer, employee.idemployee, evaluation_value,issue_solve,commentary, request_sent, request_answered from ((form
+    inner join customer on form.idcustomer = customer.V11_ID)
+    inner join employee on form.idemployee = employee.V11_code)
+    where form.".$identity."= $id_vip order by idform desc");
+
+    if($result->num_rows > 0)
+    {
+        while($row = $result->fetch_assoc())
+        {
+            if($from == "employee"){
+                $result2 = $connection->query("select name from customer where idcustomer =".$row["idcustomer"]);
+            }
+            else{
+                $result2 = $connection->query("select name from employee where idemployee =".$row["idemployee"]);
+            }
             $row2 = $result2->fetch_assoc();
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=e'>".$row2["name"]."</a></td>";
+
+            if($from == "employee"){
+                echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".$row2["name"]."</a></td>";
+            }
+            else{
+                echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row2["name"]."</a></td>";
+            }
+
             echo "<td>".tratarNotaDeAvaliacao($row["evaluation_value"])."</td>";
             echo "<td>".tratarSolucaoDoProblema($row["issue_solve"])."</td>";
             echo "<td>".tratarComentario($row["commentary"])."</td>";

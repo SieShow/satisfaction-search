@@ -1,4 +1,4 @@
-.conteudo{
+.conteudo {
     margin-top: 50px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
@@ -8,16 +8,19 @@
     background-color: #337ab7;
     border-color: #337ab7;
 }
+
 .panel-heading {
     padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
+
 .row {
     margin-left: 10%;
     margin-right: 10%;
 }
+
 .col-xs-3 {
     width: 25%;
 }
@@ -49,15 +52,19 @@
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
-.panel-primary{
+
+.panel-primary {
     border-color: #337AB7;
 }
-.panel-green{
+
+.panel-green {
     border-color: #5CB85C;
 }
-.panel-red{
+
+.panel-red {
     border-color: #D9534F;
 }
+
 .panel-footer {
     padding: 10px 15px;
     background-color: #f5f5f5;
@@ -88,26 +95,31 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.align-content div{
+.align-content div {
     display: inline-block;
     margin-top: 9px;
 }
-.textright{
+
+.textright {
     height: 100%;
     text-align: right;
     width: 73%;
     color: #fff;
 }
-.huge{
+
+.huge {
     font-size: 50px;
 }
-.sub-cont{
+
+.sub-cont {
     width: 65px;
 }
-.sub-cont img{
+
+.sub-cont img {
     margin-left: 10px;
 }
-.blockfooter{
+
+.blockfooter {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     padding: 10px;
@@ -116,28 +128,36 @@
     height: 50px;
     margin-top: 10px;
 }
-.footerlink{
+
+.footerlink {
     text-decoration: none;
 }
-.blockfooter img{
+
+.blockfooter img {
     width: 17px;
     float: right;
 }
-#footerlink1:hover span{
+
+#footerlink1:hover span {
     color: #3D8B3D;
 }
-#footerlink1:hover img{
-    content:url("../Img/follow-button-green-hover.png")
+
+#footerlink1:hover img {
+    content: url("../Img/follow-button-green-hover.png")
 }
-#footerlink2:hover span{
+
+#footerlink2:hover span {
     color: #23527C;
 }
-#footerlink2:hover img{
-    content:url("../Img/follow-button-blue-hover.png")
+
+#footerlink2:hover img {
+    content: url("../Img/follow-button-blue-hover.png")
 }
-#footerlink3:hover span{
+
+#footerlink3:hover span {
     color: #B52B27;
 }
-#footerlink3:hover img{
-    content:url("../Img/follow-button-red-hover.png")
+
+#footerlink3:hover img {
+    content: url("../Img/follow-button-red-hover.png")
 }
