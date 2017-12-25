@@ -11,7 +11,7 @@ namespace ScriptDataFix
     {
         static void Main(string[] args)
         {
-            ScriptNotaMediaEmployee.Run();
+           //ScriptNotaMediaEmployee.Run();
             Console.ReadKey();
         }
     }

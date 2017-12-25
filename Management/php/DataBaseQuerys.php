@@ -94,18 +94,19 @@ function loadForms($page){
       = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY idform asc limit
        $startResult,25");
 
-
     if($result->num_rows > 0){
+        $i = 0;
         while($row = $result->fetch_assoc())
         {    
             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".$row["customer_name"]."</a></td>";
             echo "<td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row["employee_name"]."</a></td>";
             echo "<td>".tratarNotaDeAvaliacao($row["val"])."</td>";
             echo "<td>".tratarSolucaoDoProblema($row["solved"])."</td>";
-            echo "<td onclick='document.getElementById('id01').style.display='block''>".tratarComentario($row["comment"]) ."</td>";
+            echo "<td data-toggle='modal' data-target='#myModal'>".tratarComentario($row["comment"]) ."</td>";
             echo "<td>".$row["sent_date"]."</td>";
             echo "<td>".$row["answered_date"]."</td>";
-            
+            echo "<div class='commentary-content' id='comment$i'>".$row['comment']."</div>";         
+            $i++;
         }
     }
 }
@@ -117,6 +118,7 @@ function GetTableReference($type){
     if($type == "c")return "customer";
     else return "employee";
 }
+
 function LoadCustomerProfile($id, $name){
     global $connection;
     
@@ -129,6 +131,7 @@ function LoadCustomerProfile($id, $name){
         }
     }
 }
+
 function LoadDataFrom($id, $table){
     global $connection;
     
@@ -143,19 +146,21 @@ function LoadDataFrom($id, $table){
     }
 
 }
+
 /**
 * Load table referenced to profile historic
 */
 function LoadTableColuns($kind){
-if($kind == "c"){
-    echo "<th>Nome do técnico</th>";
+    if($kind == "c"){
+        echo "<th>Nome do técnico</th>";
+    }
+    else if($kind == "e"){
+        echo "<th>Nome do cliente</th>";
+    }
+    else{
+        echo "";
 }
-else if($kind == "e"){
-    echo "<th>Nome do cliente</th>";
-}
-else{
-    echo "";
-}
+
 echo "<th id='nota'>Nota</th>";
 echo "<th>Problema resolvido ?</th>";
 echo "<th>Comentário</th>";
