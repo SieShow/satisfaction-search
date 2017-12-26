@@ -39,7 +39,7 @@ LoginValidation();
                     ?>
                 </tbody>
             </table>
-            <?php loadLink("SELECT * from customer"); ?>
+            <?php loadLink("SELECT * from customer", "mainclientes"); ?>
         </div>
     </body>
     </html>

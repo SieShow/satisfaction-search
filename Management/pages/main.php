@@ -40,9 +40,9 @@ LoginValidation();
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="mainclientes.php">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">Ir para página</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -62,9 +62,9 @@ LoginValidation();
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="mainfunc.php">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">Ir para página</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -84,9 +84,9 @@ LoginValidation();
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="mainfomsanswereds.php">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">Ir para página</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

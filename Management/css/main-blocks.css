@@ -17,8 +17,8 @@
 }
 
 .row {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 10px;
 }
 
 .col-xs-3 {
@@ -45,10 +45,10 @@
 }
 
 .panel {
-    margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid transparent;
     border-radius: 4px;
+    margin-bottom: 20px;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
@@ -109,6 +109,8 @@
 
 .huge {
     font-size: 50px;
+    margin-left: 10px;
+    cursor: default;
 }
 
 .sub-cont {

@@ -7,15 +7,15 @@ $connection = Database::getConnection();
 /**
 * Load Client table
 */
-function loadLink($sql){
+function loadLink($sql, $pagename){
     global $connection;
 
     $result =  mysqli_query($connection, $sql);
     $number_of_results = mysqli_num_rows($result);
     echo "<div class='pagination'>";
 
-    for($page = 1; $page <= $number_of_results / 25; $page++){
-        echo  "<a href='mainclientes.php?pg=$page'>$page</a>";
+    for($page = 1; $page <= $number_of_results / 15; $page++){
+        echo  "<a href='$pagename.php?pg=$page'>$page</a>";
     }
     echo "</div>";
 }

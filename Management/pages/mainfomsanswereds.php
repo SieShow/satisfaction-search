@@ -10,14 +10,10 @@ LoginValidation();
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css" />
         <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
-        <link href="../css/table.css" rel="stylesheet" type="text/css" />
-        <link href="../css/commentary-modal.css" rel="stylesheet" type="text/css">
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+        <link href="../css/table.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
         <title>Gerenciamento</title>
         </head>
         <body ng-app="">

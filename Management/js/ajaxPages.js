@@ -1,0 +1,18 @@
+$(document).ready(function(){
+    $("#mainbutton").click(function(){
+        $("#content-page").empty();
+        $("#content-page").load("mainclientes.php")
+    });    
+    $("#funcbutton").click(function(){
+        $("#content-page").empty();
+        $("#content-page").load("mainfunc.php")
+    });
+    $("#formsbutton").click(function(){
+        $("#content-page").empty();
+        $("#content-page").load("mainfomsanswereds.php")
+    });
+    $("#mainbutton").click(function(){
+        $("#content-page").empty();
+        $("#content-page").load("main.php")
+    });  
+});

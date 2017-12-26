@@ -37,7 +37,7 @@ LoginValidation();
     ?>
     </tbody>
     </table>
-      <?php loadLink("SELECT * from employee"); ?>
+      <?php loadLink("SELECT * from employee", "mainfunc"); ?>
     </div>
 </body>
 </html>
