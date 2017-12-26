@@ -7,7 +7,7 @@ LoginValidation();
     <!DOCTYPE HTML>
     <HTML>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta charset="UTF-8">
         <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css" />
         <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
         <link href="../css/table.css" rel="stylesheet" type="text/css"/>
@@ -40,7 +40,7 @@ LoginValidation();
                     ?>
                 </tbody>
             </table>
-            <?php loadLink("SELECT * from form"); ?>
+            <?php loadLink("SELECT * from form", "mainfomsanswereds"); ?>
         </div>
 </div>
   <!-- Modal -->

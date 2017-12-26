@@ -18,7 +18,7 @@ else {
 <!DOCTYPE HTML>
 <HTML>
 <head>
-    <meta charset = "utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <link href="../css/profileInfos.css" rel="stylesheet" type="text/css" />
     <link href="../img/logo.ico" rel="icon" type"image/x-icon" />
     <link href="../css/table.css" rel="stylesheet" type="text/css" />
