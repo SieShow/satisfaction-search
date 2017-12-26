@@ -35,7 +35,7 @@
                             <a class="nav-link" href="mainfomsanswereds.php">Formulários</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Logout</a>
+                             <a class="nav-link" href="../php/Logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>

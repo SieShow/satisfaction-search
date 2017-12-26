@@ -1,6 +1,6 @@
 <?php 
 include_once 'Entity.php';
-include_once '../PHP/DataBaseQuerys.php';
+include_once '../php/DataBaseQuerys.php';
 
 class Customer extends Entity{
 

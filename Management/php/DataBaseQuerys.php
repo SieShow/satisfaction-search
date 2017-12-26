@@ -27,11 +27,10 @@ function loadClient($page){
 
     $startResult = ($page-1)*25;
     $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit $startResult,25");
-    echo "SELECT * FROM customer ORDER BY name asc limit $startResult,25";
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
             
-             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
+             echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
              echo "<td>".$row["tecnical_visits"]."</td>";
              echo "<td>".$row["forms_answereds"]."</td>";
              echo "<td>".$row["avaliation_avarage"]."</td>";
@@ -76,7 +75,7 @@ function loadEmployers($page){
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
-             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
+             echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
              echo "<td>".$row["note_avarage"]."</td>";
              echo "<td>".$row["visits"]."</td>";
         }
@@ -96,8 +95,8 @@ function loadForms($page){
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["customer_name"])."</a></td>";
-            echo "<td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["employee_name"])."</a></td>";
+            echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["customer_name"])."</a></td>";
+            echo "<td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["employee_name"])."</a></td>";
             echo tratarNotaDeAvaliacao($row["val"]);
             echo "<td>".tratarSolucaoDoProblema($row["solved"])."</td>";
             echo formatarComentario($row["comment"]);
@@ -226,10 +225,10 @@ function LoadHistoric($from, $id_vip){
             $row2 = $result2->fetch_assoc();
 
             if($from == "employee"){
-                echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row2["name"])."</a></td>";
+                echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row2["name"])."</a></td>";
             }
             else{
-                echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row2["name"])."</a></td>";
+                echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row2["name"])."</a></td>";
             }
 
             echo tratarNotaDeAvaliacao($row["evaluation_value"]);

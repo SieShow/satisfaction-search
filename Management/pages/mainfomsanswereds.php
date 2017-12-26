@@ -1,8 +1,8 @@
 <?php
-include('../PHP/DataBaseQuerys.php');
-include('../PHP/updateprofile.php');
-include('../PHP/PageMainValidation.php');
+include('../php/DataBaseQuerys.php');
+include('../php/PageMainValidation.php');
 LoginValidation();
+error_reporting(0);
 ?>
     <!DOCTYPE HTML>
     <HTML>
@@ -17,7 +17,7 @@ LoginValidation();
         <title>Gerenciamento</title>
         </head>
         <body ng-app="">
-        <div ng-include="'header.html'"></div>
+        <div ng-include="'header.php'"></div>
         <div class="allblock" id="formtable">
         <table id="maintable" class="table-fill">
         <thead class="text-left">

@@ -1,9 +1,8 @@
 <?php
-include('../php/updateprofile.php');
 include('../php/Counter.php');
 include('../php/PageMainValidation.php');
-include_once('../php/Paginator.php');
 LoginValidation();
+error_reporting(0);
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -25,7 +24,7 @@ LoginValidation();
     <title>Gerenciamento</title>
 </head>
 <body ng-app="">
-<div ng-include="'header.html'"></div>
+<div ng-include="'header.php'"></div>
             <div class="row conteudo">
                 <div class="col-lg-3 col-md-6 subcontainer">
                     <div class="panel panel-primary">

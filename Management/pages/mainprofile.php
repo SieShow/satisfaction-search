@@ -1,17 +1,17 @@
 <?php
-include '../PHP/DataBaseQuerys.php';
-include '../PHP/PageMainValidation.php';
+include '../php/DataBaseQuerys.php';
+include '../php/PageMainValidation.php';
 
 LoginValidation();
 ProfileValidation();
-
+error_reporting(0);
 $prof;
 if($_GET["type"] == "c"){
-    include '../PHP/Class/Customer.php';
+    include '../php/class/Customer.php';
     $prof = new Customer($_GET["profile"]);
 }
 else {
-    include '../PHP/Class/Employee.php';
+    include '../php/class/Employee.php';
     $prof = new Employee($_GET["profile"]);
 }
 ?>
@@ -28,7 +28,7 @@ else {
     <title>Gerenciamento</title>
 </head>
 <body ng-app="">
-    <div ng-include="'header.html'"></div>
+    <div ng-include="'header.php'"></div>
     <div id="profilebody">
         <div id="content">
         <div id="sub-cont2">

@@ -21,7 +21,7 @@ if(isset($_POST['btnlogin'])){
             $_SESSION['password'] = $_POST['passw'];
             $row = $result->fetch_assoc();
             $_SESSION['ID'] = $row['idusers'];
-            header('location:Pages/main.php');
+            header('location:pages/main.php');
         }
         else{
             $sql = "SELECT idusers from users where name = '$user'";
