@@ -1,6 +1,6 @@
 <?php 
 include_once 'Entity.php';
-include_once '../PHP/DataBaseQuerys.php';
+include_once '../php/DataBaseQuerys.php';
 
 class Employee extends Entity{
 
@@ -10,7 +10,7 @@ class Employee extends Entity{
     function __construct($i){
         parent::__construct($i);
         $getinfo = LoadDataFrom($i, "employee");
-        $this->name = $getinfo["name"];
+        $this->name = utf8_encode($getinfo["name"]);
         $this->note_avarage = $getinfo["note_avarage"];
         $this->issue_avarage = $getinfo["issue_sol_avarage"];
         $this->v11_id = $getinfo["V11_code"];

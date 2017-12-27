@@ -1,13 +1,13 @@
 <?php
-include('../PHP/DataBaseQuerys.php');
-include('../PHP/updateprofile.php');
-include('../PHP/PageMainValidation.php');
+include('../php/DataBaseQuerys.php');
+include('../php/PageMainValidation.php');
 LoginValidation();
+error_reporting(0);
 ?>
     <!DOCTYPE HTML>
     <HTML>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta charset="UTF-8">
         <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css" />
         <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
         <link href="../css/table.css" rel="stylesheet" type="text/css"/>
@@ -17,7 +17,7 @@ LoginValidation();
         <title>Gerenciamento</title>
         </head>
         <body ng-app="">
-        <div ng-include="'header.html'"></div>
+        <div ng-include="'header.php'"></div>
         <div class="allblock" id="formtable">
         <table id="maintable" class="table-fill">
         <thead class="text-left">
@@ -40,7 +40,7 @@ LoginValidation();
                     ?>
                 </tbody>
             </table>
-            <?php loadLink("SELECT * from form"); ?>
+            <?php loadLink("SELECT * from form", "mainfomsanswereds"); ?>
         </div>
 </div>
   <!-- Modal -->

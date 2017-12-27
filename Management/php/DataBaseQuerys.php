@@ -14,7 +14,7 @@ function loadLink($sql, $pagename){
     $number_of_results = mysqli_num_rows($result);
     echo "<div class='pagination'>";
 
-    for($page = 1; $page <= $number_of_results / 15; $page++){
+    for($page = 1; $page <= round($number_of_results / 25); $page++){
         echo  "<a href='$pagename.php?pg=$page'>$page</a>";
     }
     echo "</div>";
@@ -27,11 +27,10 @@ function loadClient($page){
 
     $startResult = ($page-1)*25;
     $result = $connection->query("SELECT * FROM customer ORDER BY name asc limit $startResult,25");
-
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
             
-             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
+             echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["name"])."</a></td>";
              echo "<td>".$row["tecnical_visits"]."</td>";
              echo "<td>".$row["forms_answereds"]."</td>";
              echo "<td>".$row["avaliation_avarage"]."</td>";
@@ -40,22 +39,21 @@ function loadClient($page){
     }
 }
 
-function tratarComentario($commentary){
-    if($commentary == null || $commentary == "") return "-";
-    $aux = substr($commentary, 0, 40);
-    
-    if(strlen($aux) < strlen($commentary)){
-        return $aux . "...";
+function formatarComentario($commentary){
+    if($commentary == null || $commentary == "") {
+        return "<td>-</td>";
     }
-    return $aux;
+    else{
+        return "<td data-toggle='tooltip' title='".utf8_encode($commentary)."'>".utf8_encode($commentary)."</td>";
+    }
 }
 
 function tratarNotaDeAvaliacao($nota){
-    if($nota == 5)  return "5 - Excelente";
-    else if($nota == 4)  return "4 - Muito bom";
-    else if($nota == 3)  return "3 - Bom";
-    else if($nota == 2)  return "2 - Regular";
-    return "<td>1 - Ruim</td>";
+    if($nota == 5)  return "<td title = '5 - Excelente'>5 - Excelente</td>";
+    else if($nota == 4)  return "<td title = '4 - Muito bom'>4 - Muito bom</td>";
+    else if($nota == 3)  return "<td title = '3 - Bom'>3 - Bom</td>";
+    else if($nota == 2)  return "<td title = '2 - Regular'>2 - Regular</td>";
+    return "<td title = '1 - Ruim'>1 - Ruim</td>";
 }
 
 function tratarSolucaoDoProblema($issue_solved){
@@ -77,7 +75,7 @@ function loadEmployers($page){
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
-             echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
+             echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
              echo "<td>".$row["note_avarage"]."</td>";
              echo "<td>".$row["visits"]."</td>";
         }
@@ -95,18 +93,15 @@ function loadForms($page){
        $startResult,25");
 
     if($result->num_rows > 0){
-        $i = 0;
         while($row = $result->fetch_assoc())
         {    
-            echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".$row["customer_name"]."</a></td>";
-            echo "<td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row["employee_name"]."</a></td>";
-            echo "<td>".tratarNotaDeAvaliacao($row["val"])."</td>";
+            echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["customer_name"])."</a></td>";
+            echo "<td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["employee_name"])."</a></td>";
+            echo tratarNotaDeAvaliacao($row["val"]);
             echo "<td>".tratarSolucaoDoProblema($row["solved"])."</td>";
-            echo "<td data-toggle='modal' data-target='#myModal'>".tratarComentario($row["comment"]) ."</td>";
+            echo formatarComentario($row["comment"]);
             echo "<td>".$row["sent_date"]."</td>";
             echo "<td>".$row["answered_date"]."</td>";
-            echo "<div class='commentary-content' id='comment$i'>".$row['comment']."</div>";         
-            $i++;
         }
     }
 }
@@ -127,7 +122,7 @@ function LoadCustomerProfile($id, $name){
         while($row = $result->fetch_assoc()){
                 $get = $connection->query("SELECT name from $name where id$name = $id");              
                 $name = $get->fetch_assoc();
-                echo "<td>".$name["name"]."</td>";
+                echo "<td>".utf8_encode($name["name"])."</td>";
         }
     }
 }
@@ -191,7 +186,7 @@ function GetNameFromBD($id, $table){
     global $connection;
     $get = $connection->query("SELECT name FROM $table WHERE id$table = $id");
     $name = $get->fetch_assoc();
-    return $name["name"];
+    return utf8_encode($name["name"]);
 }
 /**
  * Carrega os emails registrados de um cliente
@@ -230,15 +225,15 @@ function LoadHistoric($from, $id_vip){
             $row2 = $result2->fetch_assoc();
 
             if($from == "employee"){
-                echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".$row2["name"]."</a></td>";
+                echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row2["name"])."</a></td>";
             }
             else{
-                echo "<tr><td><a class='linkname' href='../Pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".$row2["name"]."</a></td>";
+                echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row2["name"])."</a></td>";
             }
 
-            echo "<td>".tratarNotaDeAvaliacao($row["evaluation_value"])."</td>";
+            echo tratarNotaDeAvaliacao($row["evaluation_value"]);
             echo "<td>".tratarSolucaoDoProblema($row["issue_solve"])."</td>";
-            echo "<td>".tratarComentario($row["commentary"])."</td>";
+            echo formatarComentario($row["commentary"]);
             echo "<td>".$row["request_sent"]."</td>";
             echo "<td>".$row["request_answered"]."</td></tr>";
         }

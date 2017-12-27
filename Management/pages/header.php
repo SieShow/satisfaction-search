@@ -19,7 +19,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="main.php">Mafra Dashboard</a>
+                <a class="navbar-brand" href="main.php">Mafra Painel</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -35,7 +35,7 @@
                             <a class="nav-link" href="mainfomsanswereds.php">Formulários</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Logout</a>
+                             <a class="nav-link" href="../php/Logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>
