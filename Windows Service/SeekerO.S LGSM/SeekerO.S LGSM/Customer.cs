@@ -33,6 +33,7 @@ namespace SeekerO.S_LGSM
             command = new MySqlCommand("SELECT ema_cl1, www_cl1 from v11_mafra.cadastrosclientesfornecedoresrepresentadastransportadoras WHERE id__cl1 = " + id_vip, Conection.DeskConection);
             string add1, add2, aux2;
             string[] aux;
+
             using (MySqlDataReader read = command.ExecuteReader())
             {
                 while (read.Read())
@@ -78,7 +79,6 @@ namespace SeekerO.S_LGSM
                 Service1.LogWriteLine("ERROR GETNAME() FROM CUSTOMER CLASS AT LINE 78 ERROR->" + e.Message);
                 return "";
             }
-
         }
 
         public override int GetId()

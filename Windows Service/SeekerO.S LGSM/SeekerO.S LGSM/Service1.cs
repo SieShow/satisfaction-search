@@ -12,7 +12,9 @@ namespace SeekerO.S_LGSM
         {
             InitializeComponent();
         }
+
         private static StreamWriter log;
+
         /// <summary>
         /// Write in log file
         /// </summary>
@@ -22,6 +24,7 @@ namespace SeekerO.S_LGSM
             LogCheckCreation();
             log.WriteLine(DateTime.Now + "     " + msg);
         }
+
         /// <summary>
         /// Check if log file is already created
         /// </summary>
@@ -33,9 +36,11 @@ namespace SeekerO.S_LGSM
                 log.AutoFlush = true;
             }
         }
+
         Timer StartMainFunction, StartWaitList;
         public static int lastOS = 0, codOS, codcli, osstate, cod_fun;
         public static string nomfun;
+
         /// <summary>
         /// Vector used to add O.S that isn't finished yet
         /// </summary>
@@ -68,6 +73,7 @@ namespace SeekerO.S_LGSM
             LogWriteLine("Service starded");
             log.AutoFlush = true;
         }
+
         /// <summary>
         /// Main timer starts SatisfactionSenderSeeker()
         /// </summary>
@@ -77,6 +83,7 @@ namespace SeekerO.S_LGSM
         {
             SatisfactionSenderSeeker();
         }
+
         /// <summary>
         /// subtimer execute Checklist()
         /// </summary>
@@ -86,6 +93,7 @@ namespace SeekerO.S_LGSM
         {
             CheckList();
         }
+
         protected override void OnStop()
         {
             Conection.DeskConection.Close();
@@ -108,6 +116,7 @@ namespace SeekerO.S_LGSM
             log.Flush();
             log.Close();
         }
+
         /// <summary>
         /// Gets the last O.S and client code. Employee name and O.S state.
         /// </summary>
@@ -128,6 +137,7 @@ namespace SeekerO.S_LGSM
             sqlcommand.Cancel();
             Conection.DeskConection.Close();
         }
+
         /// <summary>
         /// Check if employee belong to tecnical group (code 4)
         /// </summary>
@@ -142,6 +152,7 @@ namespace SeekerO.S_LGSM
             Conection.DeskConection.Close();
             return getstate;
         }
+
         /// <summary>
         /// Get employee code 
         /// </summary>
@@ -160,6 +171,7 @@ namespace SeekerO.S_LGSM
                 LogWriteLine("CODE 123 EXECUTESCALAR ERROR. MSG->" + e.Message);
             }
         }
+
         /// <summary>
         /// Check if O.S is already finished. (Code 81 = unfinished; 83 = finished)
         /// </summary>
@@ -182,6 +194,7 @@ namespace SeekerO.S_LGSM
                 return 0;
             }
         }
+
         /// <summary>
         /// Coleta todas as informações necessárias da ultima O.S lançada, e verifica se deve enviar o email de satisfação
         /// </summary>
@@ -228,6 +241,7 @@ namespace SeekerO.S_LGSM
                 }
             }
         }
+
         /// <summary>
         /// Verify if O.S informations in List<>WaitList are done already 
         /// </summary>
@@ -259,6 +273,7 @@ namespace SeekerO.S_LGSM
             sqlcommand.Cancel();           
             Conection.DeskConection.Close();
         }
+
         /// <summary>
         /// Send O.S finished. Count how many erros the method send return. if no one email was sent, this method will return false
         /// </summary>
@@ -306,6 +321,7 @@ namespace SeekerO.S_LGSM
                 return false;
             }
         }
+
         /// <summary>
         /// Receives the O.S informations to send the email. If email sending was successful.
         /// The system check if it needs to register customer and/or employee.
@@ -342,6 +358,7 @@ namespace SeekerO.S_LGSM
             }
             return true;
         }
+
         /// <summary>
         /// Start when a instant check O.S is finished
         /// </summary>
@@ -352,6 +369,7 @@ namespace SeekerO.S_LGSM
             if (GreenSignalBody(custo, emp)) return true;
             else return false;
         }
+        
         /// <summary>
         /// Execute when a storaged O.S information are now, finished
         /// </summary>
