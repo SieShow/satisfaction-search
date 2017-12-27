@@ -81,9 +81,11 @@ tr:last-child td:first-child {
 tr:last-child td:last-child {
     border-bottom-right-radius: 3px;
 }
+
 .commentary-content{
     display: none;
 }
+
 td {
     background: #FFFFFF;
     padding: 20px;
@@ -92,6 +94,8 @@ td {
     font-weight: 50;
     font-size: 19px;
     max-width: 40px;
+    white-space:nowrap;
+    overflow:hidden;
     text-overflow: ellipsis; 
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #C1C3D1;
