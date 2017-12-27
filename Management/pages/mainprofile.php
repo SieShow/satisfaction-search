@@ -5,6 +5,7 @@ include '../php/PageMainValidation.php';
 LoginValidation();
 ProfileValidation();
 error_reporting(0);
+
 $prof;
 if($_GET["type"] == "c"){
     include '../php/class/Customer.php';

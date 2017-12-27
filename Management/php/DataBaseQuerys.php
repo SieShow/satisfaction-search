@@ -1,9 +1,7 @@
   <?php
-include_once('../php/class/Paginator.php');
 include_once('../php/class/Database.php');
 //String of database connection  
 $connection = Database::getConnection();
-
 /**
 * Load Client table
 */
@@ -38,7 +36,9 @@ function loadClient($page){
             }
     }
 }
-
+/**
+ * retorna a string formatada para ser gerado o html
+ */
 function formatarComentario($commentary){
     if($commentary == null || $commentary == "") {
         return "<td>-</td>";
@@ -62,7 +62,6 @@ function tratarSolucaoDoProblema($issue_solved){
     }
     return "Não";
 }
-
 /**
  * Load informations of employeers table
  */
@@ -105,7 +104,6 @@ function loadForms($page){
         }
     }
 }
-
 /**
 * Check in mainprofile's GET where type is referencing
 */
@@ -139,7 +137,6 @@ function LoadDataFrom($id, $table){
     else{
         return null;
     }
-
 }
 
 /**
@@ -155,7 +152,6 @@ function LoadTableColuns($kind){
     else{
         echo "";
 }
-
 echo "<th id='nota'>Nota</th>";
 echo "<th>Problema resolvido ?</th>";
 echo "<th>Comentário</th>";
