@@ -74,7 +74,7 @@ function loadEmployers($page){
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
-             echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
+             echo "<tr><td title='".utf8_encode($row["name"])."' ><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["name"])."</a></td>";
              echo "<td>".$row["note_avarage"]."</td>";
              echo "<td>".$row["visits"]."</td>";
         }
@@ -94,8 +94,8 @@ function loadForms($page){
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
-            echo "<tr><td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["customer_name"])."</a></td>";
-            echo "<td><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["employee_name"])."</a></td>";
+            echo "<tr><td title='".utf8_encode($row["customer_name"])."'><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idcustomer"]."&type=c'>".utf8_encode($row["customer_name"])."</a></td>";
+            echo "<td td tite='".utf8_encode($row["employee_name"])."'><a class='linkname' href='../pages/mainprofile.php?profile=".$row["idemployee"]."&type=e'>".utf8_encode($row["employee_name"])."</a></td>";
             echo tratarNotaDeAvaliacao($row["val"]);
             echo "<td>".tratarSolucaoDoProblema($row["solved"])."</td>";
             echo formatarComentario($row["comment"]);

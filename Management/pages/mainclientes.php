@@ -24,7 +24,7 @@ error_reporting(0);
                     <th>Visitas técnicas</th>
                     <th>Formulários respondidos</th>
                     <th>Avaliação média</th>
-                    <th>Efetividade(%)</th>
+                    <th title="representa a porcentagem de formulários respondidos em razão da quantidade de formulários enviados">Efetividade(%)</th>
                 </thead>
                 <tbody class="table-hover">        
                     <?php

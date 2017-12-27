@@ -5,27 +5,71 @@ $customid = '';
 $emplid = '';
 $datesent = '';
 
- if(isset($_GET['emplid']) && isset($_GET['custoid']) && isset($_GET['datesent']))
-{
-            $customid = $_GET['custoid'];
-            $emplid = $_GET['emplid'];
-            $datesent = $_GET['datesent'];
-    if(isset($_GET['star_note']) && isset($_GET['issue_solved']))
-        {
+ if(isset($_GET['emplid']) && isset($_GET['custoid']) && isset($_GET['datesent'])){
+
+        $customid = $_GET['custoid'];
+        $emplid = $_GET['emplid'];
+        $datesent = $_GET['datesent'];
+
+    if(isset($_GET['star_note']) && isset($_GET['issue_solved'])){
+
             $today = date("Y/m/d");
             //$connection = mysqli_connect("149.56.175.201", "user", "mafra1045@", "satisfactionbd");
             $connection = mysqli_connect("localhost", "root", "123", "satisfactionbd");
+            
+            //Informa a quantidade de formulários respondidos pelo cliente
             $valinc = $connection->query("SELECT forms_answereds FROM customer WHERE V11_ID = $customid");       
             $result = $valinc->fetch_assoc();
+
+            //Informa o número de visitas realizadas pelo técnico
             $valinc2 = $connection->query("SELECT visits FROM employee WHERE V11_code = $emplid");       
             $result2 = $valinc2->fetch_assoc();
+            
             $newval = $result["forms_answereds"] + 1;
             $newval2 = $result2["visits"] + 1;
-            $quer = "INSERT INTO form(commentary, idcustomer, idemployee, evaluation_value,issue_solve, request_sent, request_answered) VALUES ('".$_GET['commentary']."',".$customid.",".$emplid.",".$_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."');";
-            $quer .= "UPDATE customer SET forms_answereds = ".$newval." WHERE V11_ID = $customid;";
-            $quer .= "UPDATE employee SET visits = $newval2 WHERE V11_code = $emplid;";
-            if($connection->multi_query($quer) === true){
-                $img = 1;
+
+            //Salva o resultado do formulário
+            $query = "INSERT INTO form(commentary, idcustomer, idemployee, evaluation_value,issue_solve,".
+            " request_sent, request_answered) VALUES ('".$_GET['commentary']."',".$customid.",".$emplid.",".
+            $_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."');";
+            
+            // variável '$query' fará um update no número de visitas e no número de formulários respondidos 
+            $query .= "UPDATE customer SET forms_answereds = ".$newval." WHERE V11_ID = $customid;";
+            $query .= "UPDATE employee SET visits = $newval2 WHERE V11_code = $emplid;";
+            
+            if($connection->multi_query($query) === true){
+                //Pega a notá média de um cliente
+                $result_media =  mysqli_query($connection, "SELECT ROUND(avg(evaluation_value), 1) from".
+                " form where idcustomer = ".$customid."");
+
+                //Troca o ',' por '.'
+                str_replace(",", ".", $result_media);
+
+                //Adiciona ela em uma variável para executar todas as query juntas
+                $query = "UPDATE customer set avaliation_avarage = ".$result_media." where V11_ID = ".
+                $customid;
+
+                 //Nota média do funcionário
+                $result_media =  mysqli_query($connection, "SELECT ROUND(avg(evaluation_value), 1) from".
+                " form where idemployee = ".$emplid);
+                
+                //Troca o ',' por '.'
+                str_replace(",", ".", $result_media);
+
+                $query = "UPDATE employee set note_avarage = ".$result_media. "where v11_code =". 
+                $customid."";
+
+                $info_clinte = mysqli_query($connection,"SELECT tecnical_visits, forms_answereds from".
+                " customer where V11_ID = $customid");
+
+               $media_efetividade = $info_clinte["forms_answereds"] * 100 / $info_clinte["tecnical_visits"]; 
+               $query .= "UPDATE customer set effectiviness = " .$media_efetividade. " where V11_ID".
+               " = $customid";
+
+               //Roda as querys inseridas na variável
+               if($connection->multi_query($query) == true){
+                   $img = 1;
+               }
             }
             else{
                 header("location: http://www.mafrainformatica.com.br"); 
