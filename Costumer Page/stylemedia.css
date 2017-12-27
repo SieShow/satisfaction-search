@@ -1,90 +1,109 @@
-@media not screen and (min-width: 925px){
-    .buttondiv{
+@media not screen and (min-width: 925px) {
+    .buttondiv {
         position: absolute;
         right: 0;
         top: 0;
     }
 }
-@media not screen and (min-width: 800px){
-    .frmmain, .headdivcontainer, .headdivbottom{
-    width: 100%;
-    margin:0;
-    margin-top: 0;
-    font-size: 22px;
-    min-width: 100px; 
+
+@media not screen and (min-width: 800px) {
+    .frmmain, .headdivcontainer, .headdivbottom {
+        width: 100%;
+        margin: 0;
+        margin-top: 0;
+        font-size: 22px;
+        min-width: 100px;
     }
-    .required{
+
+    .required {
         display: none;
     }
-    img{
+
+    img {
         width: 10%;
     }
-    .frmmain{
+
+    .frmmain {
         position: absolute;
         height: 650px;
     }
-    .headdivcontainer{
+
+    .headdivcontainer {
         background-color: #fff;
     }
-    .squares{
-        padding:0;
+
+    .squares {
+        padding: 0;
     }
-    #lasttopic{
+
+    #lasttopic {
         margin-left: -30px;
     }
-    #lasttopic textarea{
+
+    #lasttopic textarea {
         width: 96%;
         margin-top: 3%;
     }
 }
-@media not screen and (min-width: 466px){
-    .topheader img{
+
+@media not screen and (min-width: 466px) {
+    .topheader img {
         width: 60%;
     }
 }
-@media not screen and (min-width: 426px){
-    .loader{
+
+@media not screen and (min-width: 426px) {
+    .loader {
         left: 31%;
     }
-    .modal-header h2{
+
+    .modal-header h2 {
         font-size: 25px;
     }
 }
-@media not screen and (min-width: 365px){
-    .topheader img{
+
+@media not screen and (min-width: 365px) {
+    .topheader img {
         width: 50%;
     }
 }
+
 /*IPHONE 5 */
-@media not screen and (min-width: 325px)
-{
-    .frmmain, .headdivcontainer, .headdivbottom{
+@media not screen and (min-width: 325px) {
+    .frmmain, .headdivcontainer, .headdivbottom {
         width: 100%;
-        margin:0;
+        margin: 0;
         margin-top: 0;
         height: 610px;
     }
-    .topheader img{
+
+    .topheader img {
         width: 50%;
     }
-    .headdivcontainer{
+
+    .headdivcontainer {
         background-color: #fff;
     }
-    .squares{
-        padding:0;
+
+    .squares {
+        padding: 0;
     }
-    #lasttopic{
+
+    #lasttopic {
         margin-left: -30px;
     }
-    #lasttopic textarea{
+
+    #lasttopic textarea {
         width: 96%;
     }
 }
-@media not screen and (min-width: 288px){
-    html{
+
+@media not screen and (min-width: 288px) {
+    html {
         width: 100%;
     }
-    .topheader img{
-       visibility: hidden;
+
+    .topheader img {
+        visibility: hidden;
     }
 }
