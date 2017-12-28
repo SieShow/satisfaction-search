@@ -24,47 +24,6 @@ if(!isset($_GET["lmt"])){
         <body ng-app="">
         <div ng-include="'header.php'"></div>
         <div class="allblock" id="formtable">
-        <div class="filter">
-        <label>Exibir          
-        <select onchange="window.location.href=this.value;">
-         <option value="mainfomsanswereds.php?lmt=5">5</option>
-         <option value="mainfomsanswereds.php?lmt=10">10</option>
-         <option value="mainfomsanswereds.php?lmt=15">15</option>
-         <option value="mainfomsanswereds.php?lmt=20">20</option>
-         <option value="mainfomsanswereds.php?lmt=25">25</option>
-         <option value="mainfomsanswereds.php?lmt=50">50</option>
-         <option value="mainfomsanswereds.php?lmt=100">100</option>
-         <option value="mainfomsanswereds.php?lmt=150">150</option>
-         <option value="mainfomsanswereds.php?lmt=200">200</option> 
-        </select>
-        Resultados
-        </label>
-        <button id="openfilters" onclick="displayFilter()">Mais filtros</button>
-        <ul id="filtro-avancado">
-          <div id="pointer-filtro"></div>
-          <form action="" method="POST">
-          <span>Por data de Envio:</span>
-          <li class="filtro-content" id="primeiro-filtro">
-            <span>De</span>
-            <input name="send-start" id="send-start" type="date">
-            <br>
-            <span>Até</span>
-            <input type="date" name="send-end" id="send-end">
-            <br>      
-          </li>
-          <span>Por data de Resposta:</span>
-          <li class="filtro-content">
-            <span>De</span>
-            <input type="date" name="ans-start" id="ans-start">
-            <br>
-            <span>Até</span>
-            <input type="date" name="ans-end">
-            <br>      
-          </li>
-          <button type="submit" onclick="search()" name="btnsearch">Procurar</button>
-          </form>
-        </ul>
-        </div>
         <table id="maintable" class="table-fill">
         <thead class="text-left">
                     <th id="tdname" onclick="sortTable(0)">Nome do cliente</th>

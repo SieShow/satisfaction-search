@@ -161,9 +161,12 @@ td.text-right {
 }
 
 .filter{
-  float: right;
+    left: 90%;
 }
-
+.filter-body{
+    float: right;
+    width: 400px;
+}
 .filter label{
     margin-left: 2px;
     margin-right: 2px;

@@ -8,13 +8,15 @@
         <link href="../css/mainPagesStyle.css" rel="stylesheet" type="text/css"/>
         <link href="../img/logo.ico" rel="icon" type "image/x-icon"/>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/table.css" rel="stylesheet">
         <link href="../css/full-width-pics.css" rel="stylesheet">
         <link href="../css/sb-admin-2.css" rel="stylesheet">
         <link href="../css/bootstrap.min2.css" rel="stylesheeet">
         <link href="../css/main-blocks.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     </head>
-    <body>
+    <body ng-app="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="main.php">Mafra Painel</a>
@@ -39,8 +41,8 @@
                 </div>
             </div>
         </nav>
+        <div ng-include="'filter.html'"></div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script src="../js/jquery.min.js"></script>
         <script src="../js/bootstrap.bundle.min.js"></script>
     </body>
