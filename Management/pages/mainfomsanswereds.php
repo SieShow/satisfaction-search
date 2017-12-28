@@ -34,7 +34,7 @@ error_reporting(0);
         </label>
         <button id="openfilters">Mais filtros</button>
         <ul id="filtro-avancado">
-          <form action="">
+          <form action="" method="POST">
           <span>Por data de inicio</span>
           <li class="filtro-content">
             <span>De</span>
