@@ -99,6 +99,9 @@ function loadEmployers($page){
 function formatDate($string){
    return date("d/m/Y", strtotime($string));
 }
+function formatDateForQuery($string){
+    return str_replace("/", "-", $string);
+}
 /**
  * Carrega a tabela de formulário possuindo a data de envio do formulário como filtro
  */
@@ -108,8 +111,20 @@ function loadFormsByAnswerDateAsFilter($page, $limit, $date_start, $date_end){
     $queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
      as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
-     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_answered between " .$date_start.
-      " and " .$date_end . "ORDER BY customer.name asc limit $startResult,$limit";
+     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_answered between '" .formatDateForQuery($date_start).
+      "' and '" .formatDateForQuery($date_end) . "' ORDER BY customer.name asc limit $startResult,$limit";
+
+    formRunqueryAndDisplay($queryString);
+}
+function loadFormByAnswerAndSendAsFilter($page, $limit, $date_sent_start, $date_sent_end, $date_ans_start, $date_ans_end){
+    
+    $startResult = ($page-1)*$limit;
+    $queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
+    form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
+     as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_answered between '" .formatDateForQuery($date_ans_start).
+      "' and '" .formatDateForQuery($date_ans_end) . "' and form.request_sent between '".formatDateForQuery($date_sent_start).
+      "' and '".formatDateForQuery($date_sent_end)."'  ORDER BY customer.name asc limit $startResult,$limit";
 
     formRunqueryAndDisplay($queryString);
 }
@@ -122,8 +137,8 @@ function loadFormsBySendDateAsFilter($page, $limit, $date_start, $date_end){
     $queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
      as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
-     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_sent between " .formatDate($date_start).
-      " and " .formatDate($date_end) . " ORDER BY customer.name asc limit $startResult,$limit";
+     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_sent between '" .formatDateForQuery($date_start).
+      "' and '" .formatDateForQuery($date_end) . "' ORDER BY customer.name asc limit $startResult,$limit";
 
     formRunqueryAndDisplay($queryString);
 }
@@ -133,7 +148,7 @@ function loadFormsBySendDateAsFilter($page, $limit, $date_start, $date_end){
 function formRunqueryAndDisplay($queryString){
     
     global $connection;
-    echo $queryString;
+
     $result = $connection->query($queryString);
     
     if($result->num_rows > 0){

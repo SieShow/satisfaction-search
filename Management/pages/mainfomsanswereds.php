@@ -39,48 +39,70 @@ if(!isset($_GET["lmt"])){
         </select>
         Resultados
         </label>
-        <button id="openfilters">Mais filtros</button>
+        <button id="openfilters" onclick="displayFilter()">Mais filtros</button>
         <ul id="filtro-avancado">
+          <div id="pointer-filtro"></div>
           <form action="" method="POST">
-          <span>Por data de Envia</span>
-          <li class="filtro-content">
+          <span>Por data de Envio:</span>
+          <li class="filtro-content" id="primeiro-filtro">
             <span>De</span>
-            <input name="send-start" type="date">
+            <input name="send-start" id="send-start" type="date">
             <br>
             <span>Até</span>
-            <input type="date" name="send-end" id="datepicker">
+            <input type="date" name="send-end" id="send-end">
             <br>      
           </li>
-          <span>Por data de Resposta</span>
+          <span>Por data de Resposta:</span>
           <li class="filtro-content">
             <span>De</span>
-            <input type="date" name="ans-start">
+            <input type="date" name="ans-start" id="ans-start">
             <br>
             <span>Até</span>
             <input type="date" name="ans-end">
             <br>      
           </li>
-          <button type="submit" name="btnsearch">Procurar</button>
+          <button type="submit" onclick="search()" name="btnsearch">Procurar</button>
           </form>
         </ul>
         </div>
         <table id="maintable" class="table-fill">
         <thead class="text-left">
-                    <th id="tdname">Nome do cliente</th>
-                    <th>Técnico solicitado</th>
-                    <th id="tdnota">Nota</th>
-                    <th>Problema resolvido ?</th>
-                    <th>Comentário</th>
-                    <th class="tddata">Data de envio</th>
-                    <th class="tddata">Data de resposta</th>
+                    <th id="tdname" onclick="sortTable(0)">Nome do cliente</th>
+                    <th onclick="sortTable(1)">Técnico solicitado</th>
+                    <th onclick="sortTable(2)" id="tdnota">Nota</th>
+                    <th onclick="sortTable(3)">Problema resolvido ?</th>
+                    <th onclick="sortTable(4)">Comentário</th>
+                    <th onclick="sortTable(5)" class="tddata">Data de envio</th>
+                    <th onclick="sortTable(6)" class="tddata">Data de resposta</th>
                 </thead>
                 <tbody  class="table-hover">
                     <?php 
-                    if(isset($_POST["btnsearch"])){
-                      if(isset($_POST["send-start"]) && isset($_POST["send-end"]))
+                    if(isset($_POST["btnsearch"]))
+                    {
+                     if((isset($_POST["ans-start"]) && isset($_POST["ans-end"])) &&
+                      ($_POST["ans-start"] != "" && $_POST["ans-end"] != "") && 
+                      ((isset($_POST["send-start"]) && isset($_POST["send-end"])) &&
+                       ($_POST["send-start"] != "" && $_POST["send-end"] != "")))
+                       {
+                        loadFormByAnswerAndSendAsFilter($_GET["pg"], $_GET["lmt"], $_POST["send-start"], $_POST["send-end"],
+                         $_POST["ans-start"], $_POST["send-end"]);
+                      }
+
+                      else if((isset($_POST["send-start"]) && isset($_POST["send-end"])) &&
+                       ($_POST["send-start"] != "" && $_POST["send-end"] != ""))
                       {
                         loadFormsBySendDateAsFilter($_GET["pg"], $_GET["lmt"],
                          $_POST["send-start"], $_POST["send-end"]);
+                      }
+
+                      else if((isset($_POST["ans-start"]) && isset($_POST["ans-end"])) &&
+                      $_POST["ans-start"] != "" && $_POST["ans-end"] != "")
+                      {
+                          loadFormsByAnswerDateAsFilter($_GET["pg"], $_GET["lmt"],
+                         $_POST["ans-start"], $_POST["ans-end"]);
+                      }
+                      else{
+                           loadForms($_GET["pg"], $_GET["lmt"]);
                       }
                     }
                     else{
@@ -110,6 +132,7 @@ if(!isset($_GET["lmt"])){
     </div>
   </div>
 </div>
+        <script src="../js/tablejs.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
 </body>

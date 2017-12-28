@@ -177,7 +177,7 @@ td.text-right {
 }
 
 #openfilters{
-    background-color: #008CBA; /* Green */
+    background-color: #008CBA;
     border: none;
     color: white;
     padding: 7px 16px;
@@ -191,6 +191,7 @@ td.text-right {
 }
 
 #filtro-avancado{
+    display: none;
     right: 5%;
     padding: 17px;
     height: 260px;
@@ -199,6 +200,61 @@ td.text-right {
     position:absolute;
     border-radius: 3px;
     border: 2px solid rgba(0, 139, 186, 0.603);
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+@-webkit-keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+#pointer-filtro{
+    content: "";
+    position: absolute;
+    bottom: 100.8%;
+    right: 15%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 139, 186, 0.603) transparent;
 }
 
 #filtro-avancado button{
@@ -207,15 +263,24 @@ td.text-right {
     margin-top: 10px;
     width: 250px;
     position:absolute;
-    background-color: #008CBA; /* Green */
-    border: none;
-    color: white;
-    padding: 7px 16px;
+    padding: 7px 5px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 3px;
+    background-color: white;
+    border: 2px solid #0cade2;
+    border-radius: 35px;
+    color: #0cade2;
+    outline:none;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#filtro-avancado button:hover{
+    background-color: #0cade2;
+    color: white;
 }
 
 #filtro-avancado input{
@@ -233,4 +298,8 @@ td.text-right {
 .filtro-content input{
     margin-left: 5px;
     margin-right: 5px;
+}
+
+#primeiro-filtro {
+    padding-bottom: 15px;
 }
