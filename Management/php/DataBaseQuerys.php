@@ -93,19 +93,49 @@ function loadEmployers($page){
         }
     }
 }
+/**
+ * Formata a string de data para o formato pt-br
+ */
+function formatDate($string){
+   return date("d/m/Y", strtotime($string));
+}
+/**
+ * Carrega a tabela de formulário possuindo a data de envio do formulário como filtro
+ */
+function loadFormsByAnswerDateAsFilter($page, $limit, $date_start, $date_end){
 
-function loadForms($page, $limit){
-    global $connection;
-    
     $startResult = ($page-1)*$limit;
     $queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
      as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
-     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY customer.name asc limit
-      $startResult,$limit";
+     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_answered between " .$date_start.
+      " and " .$date_end . "ORDER BY customer.name asc limit $startResult,$limit";
 
+    formRunqueryAndDisplay($queryString);
+}
+/**
+ * Carrega a tabela de formulário possuindo a data de envio do formulário como filtro
+ */
+function loadFormsBySendDateAsFilter($page, $limit, $date_start, $date_end){
+
+    $startResult = ($page-1)*$limit;
+    $queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
+    form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
+     as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_sent between " .formatDate($date_start).
+      " and " .formatDate($date_end) . " ORDER BY customer.name asc limit $startResult,$limit";
+
+    formRunqueryAndDisplay($queryString);
+}
+/**
+ * Exibe o resultado proveniente da query de pesquisa na tabela Forms
+ */
+function formRunqueryAndDisplay($queryString){
+    
+    global $connection;
+    echo $queryString;
     $result = $connection->query($queryString);
-
+    
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
         {    
@@ -114,10 +144,21 @@ function loadForms($page, $limit){
             echo tratarNotaDeAvaliacao($row["val"]);
             echo "<td>".tratarSolucaoDoProblema($row["solved"])."</td>";
             echo formatarComentario($row["comment"]);
-            echo "<td>".$row["sent_date"]."</td>";
-            echo "<td>".$row["answered_date"]."</td>";
+            echo "<td>". formatDate($row["sent_date"])."</td>";
+            echo "<td>".formatDate($row["answered_date"])."</td>";
         }
     }
+}
+function loadForms($page, $limit){
+    
+    $startResult = ($page-1)*$limit;
+    $queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
+    form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
+     as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY customer.name asc limit
+      $startResult,$limit";  
+    
+    formRunqueryAndDisplay($queryString);
 }
 /**
 * Check in mainprofile's GET where type is referencing

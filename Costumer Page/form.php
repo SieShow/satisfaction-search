@@ -30,7 +30,7 @@ $datesent = '';
 
             //Salva o resultado do formulário
             $query = "INSERT INTO form(commentary, idcustomer, idemployee, evaluation_value,issue_solve,".
-            " request_sent, request_answered) VALUES ('".$_GET['commentary']."',".$customid.",".$emplid.",".
+            " request_sent, request_answered) VALUES ('".utf8_encode($_GET['commentary'])."',".$customid.",".$emplid.",".
             $_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."');";
             
             // variável '$query' fará um update no número de visitas e no número de formulários respondidos 

@@ -2,7 +2,14 @@
 include('../php/DataBaseQuerys.php');
 include('../php/PageMainValidation.php');
 LoginValidation();
-error_reporting(0);
+
+if(!isset($_GET["pg"])){
+  $_GET["pg"] = 1;
+}
+if(!isset($_GET["lmt"])){
+  $_GET["lmt"] = 25;
+}
+
 ?>
     <!DOCTYPE HTML>
     <HTML>
@@ -35,25 +42,25 @@ error_reporting(0);
         <button id="openfilters">Mais filtros</button>
         <ul id="filtro-avancado">
           <form action="" method="POST">
-          <span>Por data de inicio</span>
+          <span>Por data de Envia</span>
           <li class="filtro-content">
             <span>De</span>
-            <input name="de-inicio" type="date">
+            <input name="send-start" type="date">
             <br>
             <span>Até</span>
-            <input type="date" name="ate-inicio" id="datepicker">
+            <input type="date" name="send-end" id="datepicker">
             <br>      
           </li>
           <span>Por data de Resposta</span>
           <li class="filtro-content">
             <span>De</span>
-            <input type="date" name="de-resposta">
+            <input type="date" name="ans-start">
             <br>
             <span>Até</span>
-            <input type="date" name="ate-resposta">
+            <input type="date" name="ans-end">
             <br>      
           </li>
-          <button>Procurar</button>
+          <button type="submit" name="btnsearch">Procurar</button>
           </form>
         </ul>
         </div>
@@ -69,7 +76,16 @@ error_reporting(0);
                 </thead>
                 <tbody  class="table-hover">
                     <?php 
-                    loadForms(validatePage($_GET["pg"]), validateLimit($_GET["lmt"]));
+                    if(isset($_POST["btnsearch"])){
+                      if(isset($_POST["send-start"]) && isset($_POST["send-end"]))
+                      {
+                        loadFormsBySendDateAsFilter($_GET["pg"], $_GET["lmt"],
+                         $_POST["send-start"], $_POST["send-end"]);
+                      }
+                    }
+                    else{
+                      loadForms($_GET["pg"], $_GET["lmt"]);
+                    }              
                     ?>
                 </tbody>
             </table>
