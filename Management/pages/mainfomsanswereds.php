@@ -17,6 +17,46 @@ error_reporting(0);
         <body ng-app="">
         <div ng-include="'header.php'"></div>
         <div class="allblock" id="formtable">
+        <div class="filter">
+        <label>Exibir          
+        <select onchange="window.location.href=this.value;">
+         <option value="mainfomsanswereds.php?lmt=5">5</option>
+         <option value="mainfomsanswereds.php?lmt=10">10</option>
+         <option value="mainfomsanswereds.php?lmt=15">15</option>
+         <option value="mainfomsanswereds.php?lmt=20">20</option>
+         <option value="mainfomsanswereds.php?lmt=25">25</option>
+         <option value="mainfomsanswereds.php?lmt=50">50</option>
+         <option value="mainfomsanswereds.php?lmt=100">100</option>
+         <option value="mainfomsanswereds.php?lmt=150">150</option>
+         <option value="mainfomsanswereds.php?lmt=200">200</option> 
+        </select>
+        Resultados
+        </label>
+        <button id="openfilters">Mais filtros</button>
+        <ul id="filtro-avancado">
+          <form action="">
+          <span>Por data de inicio</span>
+          <li class="filtro-content">
+            <span>De</span>
+            <input name="de-inicio" type="date">
+            <br>
+            <span>Até</span>
+            <input type="date" name="ate-inicio" id="datepicker">
+            <br>      
+          </li>
+          <span>Por data de Resposta</span>
+          <li class="filtro-content">
+            <span>De</span>
+            <input type="date" name="de-resposta">
+            <br>
+            <span>Até</span>
+            <input type="date" name="ate-resposta">
+            <br>      
+          </li>
+          <button>Procurar</button>
+          </form>
+        </ul>
+        </div>
         <table id="maintable" class="table-fill">
         <thead class="text-left">
                     <th id="tdname">Nome do cliente</th>
@@ -29,16 +69,13 @@ error_reporting(0);
                 </thead>
                 <tbody  class="table-hover">
                     <?php 
-                    if($_GET["pg"] == null || !is_numeric($_GET["pg"])){
-                    loadForms(1);
-                    }
-                    else{
-                        loadForms($_GET["pg"]);
-                    }
+                    loadForms(validatePage($_GET["pg"]), validateLimit($_GET["lmt"]));
                     ?>
                 </tbody>
             </table>
-            <?php loadLink("SELECT * from form", "mainfomsanswereds"); ?>
+            <?php 
+                loadLink("SELECT * from form", "mainfomsanswereds", validateLimit($_GET["lmt"]));
+            ?>
         </div>
 </div>
   <!-- Modal -->

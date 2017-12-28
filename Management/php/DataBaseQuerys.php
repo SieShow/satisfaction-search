@@ -5,17 +5,30 @@ $connection = Database::getConnection();
 /**
 * Load Client table
 */
-function loadLink($sql, $pagename){
+function loadLink($sql, $pagename, $limit){
     global $connection;
-
     $result =  mysqli_query($connection, $sql);
     $number_of_results = mysqli_num_rows($result);
-    echo "<div class='pagination'>";
 
-    for($page = 1; $page <= round($number_of_results / 25); $page++){
-        echo  "<a href='$pagename.php?pg=$page'>$page</a>";
+    echo "<div class='pagination'>";
+    for($page = 1; $page <= round($number_of_results / $limit); $page++){
+        echo  "<a href='$pagename.php?pg=$page&lmt=$limit'>$page</a>";
     }
     echo "</div>";
+}
+
+function validatePage($limit){
+    if($_GET["pg"] == null || !is_numeric($_GET["pg"])){
+        return 1;
+      }
+    return $_GET["pg"];
+}
+
+function validateLimit($limit){
+    if($_GET["lmt"] == null || !is_numeric($_GET["lmt"])){
+       return 25;
+    }
+     return $_GET["lmt"];
 }
 /**
  * Load informations of client table
@@ -81,15 +94,17 @@ function loadEmployers($page){
     }
 }
 
-function loadForms($page){
+function loadForms($page, $limit){
     global $connection;
     
-    $startResult = ($page-1)*25;
-    $result = $connection->query("SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
-     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
-      as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
-      = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY idform asc limit
-       $startResult,25");
+    $startResult = ($page-1)*$limit;
+    $queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
+    form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
+     as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+     = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY customer.name asc limit
+      $startResult,$limit";
+
+    $result = $connection->query($queryString);
 
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc())
