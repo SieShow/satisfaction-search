@@ -32,11 +32,14 @@ function search() {
     var sendend = document.getElementById("send-end");
     var ansstart = document.getElementById("ans-start");
     var ansend = document.getElementById("ans-end");
+    var btnsearch = document.getElementById("openfilters");
 
     if ((sendstart.value == "" && sendend.value == "") && (ansstart.value == "" && ansend.value == "")) {
         sendstart.required = true;
         ansstart.required = true;
+        btnsearch.disabled = true;      
     } else {
+        btnsearch.disabled = false;
         if (sendstart.value != "" || sendend.value != "") {
             if (sendstart.value == "") {
                 sendstart.required = true;
