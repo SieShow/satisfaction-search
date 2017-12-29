@@ -19,17 +19,21 @@ if(!isset($_GET["lmt"])){
         <link href="../Img/logo.ico" rel="icon" type "image/x-icon" />
         <link href="../css/table.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet" />
+        <script src="../js/tablejs.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
         <title>Gerenciamento</title>
         </head>
         <body ng-app="">
         <div ng-include="'header.php'"></div>
+        <div ng-include="'filter.html'"></div>
         <div class="allblock" id="formtable">
         <table id="maintable" class="table-fill">
         <thead class="text-left">
                     <th id="tdname" onclick="sortTable(0)">Nome do cliente</th>
-                    <th onclick="sortTable(1)">Técnico solicitado</th>
+                    <th onclick="sortTable(1)" class="td-tecnico">Técnico solicitado</th>
                     <th onclick="sortTable(2)" id="tdnota">Nota</th>
-                    <th onclick="sortTable(3)">Problema resolvido ?</th>
+                    <th onclick="sortTable(3)" class="td-problema">Problema resolvido ?</th>
                     <th onclick="sortTable(4)">Comentário</th>
                     <th onclick="sortTable(5)" class="tddata">Data de envio</th>
                     <th onclick="sortTable(6)" class="tddata">Data de resposta</th>
@@ -75,24 +79,5 @@ if(!isset($_GET["lmt"])){
             ?>
         </div>
 </div>
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-        </div>
-        <div class="modal-body">
-          <p>This is a small modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-        <script src="../js/tablejs.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
 </body>
 </html>

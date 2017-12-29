@@ -1,10 +1,15 @@
 <?php
 include '../php/DataBaseQuerys.php';
 include '../php/PageMainValidation.php';
-
 LoginValidation();
 ProfileValidation();
-error_reporting(0);
+
+if(!isset($_GET["pg"])){
+    $_GET["pg"] = 1;
+  }
+  if(!isset($_GET["lmt"])){
+    $_GET["lmt"] = 25;
+  }
 
 $prof;
 if($_GET["type"] == "c"){
@@ -61,5 +66,8 @@ else {
         </table>
         </div>
     </div>
+        <script src="../js/tablejs.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
 </body>
 </html>

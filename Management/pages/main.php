@@ -2,7 +2,6 @@
 include('../php/Counter.php');
 include('../php/PageMainValidation.php');
 LoginValidation();
-error_reporting(0);
 ?>
 <!DOCTYPE HTML>
 <HTML>

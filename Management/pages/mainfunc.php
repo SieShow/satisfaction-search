@@ -2,7 +2,14 @@
 include('../php/DataBaseQuerys.php');
 include('../php/PageMainValidation.php');
 LoginValidation();
-error_reporting(0);
+
+if(!isset($_GET["pg"])){
+    $_GET["pg"] = 1;
+  }
+  if(!isset($_GET["lmt"])){
+    $_GET["lmt"] = 25;
+  }
+  
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -12,6 +19,7 @@ error_reporting(0);
     <link href="../img/logo.ico" rel="icon" type"image/x-icon" />
     <link href="../css/table.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <title>Gerenciamento</title>
 </head>
@@ -37,7 +45,7 @@ error_reporting(0);
     ?>
     </tbody>
     </table>
-      <?php loadLink("SELECT * from employee", "mainfunc"); ?>
+      <?php loadLink("SELECT * from employee", "mainfunc", validateLimit($_GET["lmt"])); ?>
     </div>
 </body>
 </html>
