@@ -1,6 +1,7 @@
 <?php
-include('../php/Counter.php');
-include('../php/PageMainValidation.php');
+include '../php/Counter.php';
+include_once '../php/PageMainValidation.php';
+
 LoginValidation();
 ?>
 <!DOCTYPE HTML>

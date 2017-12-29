@@ -1,14 +1,9 @@
 <?php
-include('../php/DataBaseQuerys.php');
-include('../php/PageMainValidation.php');
-LoginValidation();
+include '../php/DataBaseQuerys.php';
+include_once '../php/PageMainValidation.php';
+include_once '../php/validacaoPaginaELimite.php';
 
-if(!isset($_GET["pg"])){
-  $_GET["pg"] = 1;
-}
-if(!isset($_GET["lmt"])){
-  $_GET["lmt"] = 25;
-}
+LoginValidation();
 
 ?>
     <!DOCTYPE HTML>
@@ -27,7 +22,7 @@ if(!isset($_GET["lmt"])){
             $(function() {
 	             $("table").tablesorter({debug: true});
             });
-</script>
+        </script>
         <title>Gerenciamento</title>
         </head>
         <body ng-app="">
@@ -40,7 +35,7 @@ if(!isset($_GET["lmt"])){
                     <th class="td-tecnico">Técnico solicitado</th>
                     <th id="tdnota">Nota</th>
                     <th class="td-problema">Problema resolvido ?</th>
-                    <th>Comentário</th>
+                    <th class="td-comentario">Comentário</th>
                     <th class="tddata">Data de envio</th>
                     <th class="tddata">Data de resposta</th>
                 </thead>
@@ -51,7 +46,7 @@ if(!isset($_GET["lmt"])){
                 </tbody>
             </table>
             <?php 
-                loadLink("SELECT * from form", "mainfomsanswereds", validateLimit($_GET["lmt"]));
+                loadLink("SELECT * from form", "mainfomsanswereds", $_GET["lmt"]);
             ?>
         </div>
 </div>

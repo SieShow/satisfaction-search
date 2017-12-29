@@ -57,12 +57,12 @@ function tratarPaginaELimiteDeEmForms()
 /**
  * Load informations of client table
  */
-function loadClient($page)
+function loadClient($page, $limit)
 {
 	global $connection;
 	
-	$startResult = ($page - 1) * 25;
-	$result      = $connection->query("SELECT * FROM customer ORDER BY name asc limit $startResult,25");
+	$startResult = ($page - 1) * $limit;
+	$result      = $connection->query("SELECT * FROM customer ORDER BY name asc limit $startResult,$limit");
 	if ($result->num_rows > 0)
 	{
 		while ($row = $result->fetch_assoc())
@@ -391,6 +391,6 @@ function LoadHistoric($from, $id_vip)
 			echo "<td>" . $row["request_sent"] . "</td>";
 			echo "<td>" . $row["request_answered"] . "</td></tr>";
 		}
-	}
+    }
 }
 ?>

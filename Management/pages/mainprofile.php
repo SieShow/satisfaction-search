@@ -1,25 +1,12 @@
 <?php
 include '../php/DataBaseQuerys.php';
 include '../php/PageMainValidation.php';
+include_once '../php/validacaoPaginaELimite.php';
+
 LoginValidation();
 ProfileValidation();
 
-if(!isset($_GET["pg"])){
-    $_GET["pg"] = 1;
-  }
-  if(!isset($_GET["lmt"])){
-    $_GET["lmt"] = 25;
-  }
-
-$prof;
-if($_GET["type"] == "c"){
-    include '../php/class/Customer.php';
-    $prof = new Customer($_GET["profile"]);
-}
-else {
-    include '../php/class/Employee.php';
-    $prof = new Employee($_GET["profile"]);
-}
+$prof = getEntity($_GET["profile"]);
 ?>
 <!DOCTYPE HTML>
 <HTML>

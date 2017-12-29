@@ -191,6 +191,7 @@ td.text-right {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 3px;
+    outline:none;
 }
 
 #filtro-avancado{
@@ -255,7 +256,7 @@ td.text-right {
     bottom: 100.8%;
     right: 15%;
     margin-left: -5px;
-    border-width: 5px;
+    border-width: 10px;
     border-style: solid;
     border-color: transparent transparent rgba(0, 139, 186, 0.603) transparent;
 }
@@ -307,15 +308,10 @@ td.text-right {
     padding-bottom: 15px;
 }
 
-.thread-fix-th th{
-    padding: 12px;
-}
-
 table.tablesorter thead tr .header {
     background-image: url('../img/bg.png');
     background-repeat: no-repeat;
     background-position: center right;
-    cursor: pointer;
 }
 
 table.tablesorter thead tr .headerSortUp {
@@ -326,3 +322,35 @@ table.tablesorter thead tr .headerSortDown {
     background-image: url('../img/desc.png');
 }
 
+.td-comentario{
+    width: 140px;
+}
+
+/*Table td specifications*/
+
+#tdname,
+#nametd {
+    width: 260px;
+}
+
+#tdnota {
+    width: 110px;
+}
+
+.tddata {
+    width: 150px;
+}
+
+/*maintable*/
+
+table {
+    width: 100%;
+}
+
+.td-problema {
+    width: 150px;
+}
+
+.td-tecnico {
+    width: 150px;
+}

@@ -1,14 +1,9 @@
 <?php
-include('../php/DataBaseQuerys.php');
-include('../php/PageMainValidation.php');
+include '../php/DataBaseQuerys.php';
+include_once '../php/PageMainValidation.php';
+include_once '../php/validacaoPaginaELimite.php';
+
 LoginValidation();
-if(!isset($_GET["pg"])){
-    $_GET["pg"] = 1;
-  }
-  if(!isset($_GET["lmt"])){
-    $_GET["lmt"] = 25;
-  }
-  
 ?>
     <!DOCTYPE HTML>
     <HTML>
@@ -21,12 +16,18 @@ if(!isset($_GET["pg"])){
     <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+    <script type="text/javascript" src="../js/jquery.tablesorter.js"></script>
+    <script type="text/javascript">
+            $(function() {
+	             $("table").tablesorter({debug: true});
+            });
+    </script>
     <title>Gerenciamento</title>
     </head>
     <body ng-app="">
     <div ng-include="'header.php'"></div>
         <div class="allblock">
-            <table id="maintable" class="table-fill">
+            <table id="maintable" class="table-fill tablesorter">
                 <thead class="text-left">
                     <th id="tdname">Nome do cliente</th>
                     <th>Visitas técnicas</th>
@@ -36,16 +37,11 @@ if(!isset($_GET["pg"])){
                 </thead>
                 <tbody class="table-hover">        
                     <?php
-                    if($_GET["pg"] == null || !is_numeric($_GET["pg"])){
-                        loadClient(1); 
-                    }   
-                    else{
-                        loadClient($_GET["pg"]);
-                    }
+                        loadClient($_GET["pg"], $_GET["lmt"]);
                     ?>
                 </tbody>
             </table>
-            <?php loadLink("SELECT * from customer", "mainclientes", validateLimit($_GET["lmt"])); ?>
+            <?php loadLink("SELECT * from customer", "mainclientes", $_GET["lmt"]); ?>
         </div>
     </body>
     </html>
