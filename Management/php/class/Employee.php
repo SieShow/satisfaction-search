@@ -16,6 +16,7 @@ class Employee extends Entity{
         $this->v11_id = $getinfo["V11_code"];
         $this->visitas = $getinfo["visits"];
     }
+
     public function GetID(){
         return $this->id;
     }

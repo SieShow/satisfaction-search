@@ -205,7 +205,8 @@ function formRunqueryAndDisplay($queryString)
 	{
 		while ($row = $result->fetch_assoc())
 		{
-            echo "<tr><td title='" . utf8_encode($row["customer_name"]) . "'><a class='linkname' href='../pages/mainprofile.php?profile="
+			echo "<tr><td title='Visualizar formulário completo'><a href='#'><img src='../img/info.png' alt='Visualizar formulário'></a></td>";
+            echo "<td title='" . utf8_encode($row["customer_name"]) . "'><a class='linkname' href='../pages/mainprofile.php?profile="
              . $row["idcustomer"] . "&type=c'>" . utf8_encode($row["customer_name"]) . "</a></td>";
             echo "<td td tite='" . utf8_encode($row["employee_name"]) . "'><a class='linkname' href='../pages/mainprofile.php?profile=" 
             . $row["idemployee"] . "&type=e'>" . utf8_encode($row["employee_name"]) . "</a></td>";
@@ -221,8 +222,7 @@ function formRunqueryAndDisplay($queryString)
  * Carrega as informações da tabela form na pagina HTML
  */
 function loadForms($page, $limit)
-{
-	
+{	
 	$startResult = ($page - 1) * $limit;
 	$queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
@@ -258,7 +258,9 @@ function LoadCustomerProfile($id, $name)
 		}
 	}
 }
-
+/**
+ * Retorna as informações referente a uma tabela com um íd
+ */
 function LoadDataFrom($id, $table)
 {
 	global $connection;
@@ -275,7 +277,29 @@ function LoadDataFrom($id, $table)
 		return null;
 	}
 }
-
+/**
+ * Retorna as informações refente a uma tabela usando o código VIP para pesquisa
+ */
+function LoadDataFromVIP($id, $table){
+	global $connection;
+	
+	if($table == "employee"){
+		$result = $connection->query("SELECT * FROM $table WHERE V11_code = $id");
+	}
+	else{
+		$result = $connection->query("SELECT * FROM $table WHERE V11_ID = $id");
+	}
+	$output = $result->fetch_assoc();
+	
+	if ($result->num_rows > 0)
+	{
+		return $output;
+	}
+	else
+	{
+		return null;
+	}
+}
 /**
  * Load table referenced to profile historic
  */

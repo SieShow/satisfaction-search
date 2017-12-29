@@ -354,3 +354,7 @@ table {
 .td-tecnico {
     width: 150px;
 }
+
+.not-background{
+    background-image: none;
+}

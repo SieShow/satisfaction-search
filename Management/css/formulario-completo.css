@@ -1,0 +1,46 @@
+.full-form{
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  height: 100%;
+  position: relative;
+  margin: auto;
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 40px;
+  display: block;
+  padding-left: 5px;
+  padding-top: 5px;
+  word-wrap: break-word;
+}
+.full-form h1{
+    color: #5594BF;
+    margin-bottom: 10px;
+}
+.full-form button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.green{
+    background-color: #22913c;
+}
+
+.blue{
+    background-color: #249bad;
+}
+
+.commentary{
+    padding: 5px;
+    width: 98%;
+    margin: auto;
+    margin-bottom: 10px;
+    border: 1px solid #40404125;
+    border-radius: 3px;
+}
