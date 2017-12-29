@@ -17,18 +17,38 @@ function loadLink($sql, $pagename, $limit){
     echo "</div>";
 }
 
-function validatePage($limit){
-    if($_GET["pg"] == null || !is_numeric($_GET["pg"])){
-        return 1;
-      }
-    return $_GET["pg"];
-}
+function tratarPaginaELimiteDeEmForms(){
+                    if(isset($_POST["btnsearch"]))
+                    {
+                     if((isset($_POST["ans-start"]) && isset($_POST["ans-end"])) &&
+                      ($_POST["ans-start"] != "" && $_POST["ans-end"] != "") && 
+                      ((isset($_POST["send-start"]) && isset($_POST["send-end"])) &&
+                       ($_POST["send-start"] != "" && $_POST["send-end"] != "")))
+                       {
+                        loadFormByAnswerAndSendAsFilter($_GET["pg"], $_GET["lmt"], $_POST["send-start"], $_POST["send-end"],
+                         $_POST["ans-start"], $_POST["send-end"]);
+                      }
 
-function validateLimit($limit){
-    if($_GET["lmt"] == null || !is_numeric($_GET["lmt"])){
-       return 25;
-    }
-     return $_GET["lmt"];
+                      else if((isset($_POST["send-start"]) && isset($_POST["send-end"])) &&
+                       ($_POST["send-start"] != "" && $_POST["send-end"] != ""))
+                      {
+                        loadFormsBySendDateAsFilter($_GET["pg"], $_GET["lmt"],
+                         $_POST["send-start"], $_POST["send-end"]);
+                      }
+
+                      else if((isset($_POST["ans-start"]) && isset($_POST["ans-end"])) &&
+                      $_POST["ans-start"] != "" && $_POST["ans-end"] != "")
+                      {
+                          loadFormsByAnswerDateAsFilter($_GET["pg"], $_GET["lmt"],
+                         $_POST["ans-start"], $_POST["ans-end"]);
+                      }
+                      else{
+                           loadForms($_GET["pg"], $_GET["lmt"]);
+                      }
+                    }
+     else{
+        loadForms($_GET["pg"], $_GET["lmt"]);
+    }   
 }
 /**
  * Load informations of client table
@@ -60,7 +80,9 @@ function formatarComentario($commentary){
         return "<td data-toggle='tooltip' title='".utf8_encode($commentary)."'>".utf8_encode($commentary)."</td>";
     }
 }
-
+/**
+ * Trata a string referente a nota
+ */
 function tratarNotaDeAvaliacao($nota){
     if($nota == 5)  return "<td title = '5 - Excelente'>5 - Excelente</td>";
     else if($nota == 4)  return "<td title = '4 - Muito bom'>4 - Muito bom</td>";
@@ -68,7 +90,9 @@ function tratarNotaDeAvaliacao($nota){
     else if($nota == 2)  return "<td title = '2 - Regular'>2 - Regular</td>";
     return "<td title = '1 - Ruim'>1 - Ruim</td>";
 }
-
+/**
+ * Formata a string referente a tabela 'solução dos problemas'
+ */
 function tratarSolucaoDoProblema($issue_solved){
     if($issue_solved == "yes"){
         return "Sim";
@@ -164,6 +188,9 @@ function formRunqueryAndDisplay($queryString){
         }
     }
 }
+/**
+ * Carrega as informações da tabela form na pagina HTML
+ */
 function loadForms($page, $limit){
     
     $startResult = ($page-1)*$limit;
