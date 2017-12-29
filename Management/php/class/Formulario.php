@@ -15,8 +15,8 @@ class Formulario{
     private $request_asnwered;
 
     function __constructor($id){
-        $retono = getDataFrom($id, "form");
         $this->idform = $id;
+        $retono = LoadDataFrom($id, "form");
         $this->commentary = $retorno["commentary"];
         $this->customer = new Customer($retorno["idcustomer"]);
         $this->employee = new Employee($retorno["idemployee"]);

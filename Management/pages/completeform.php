@@ -2,8 +2,10 @@
 include '../php/DataBaseQuerys.php';
 include_once '../php/PageMainValidation.php';
 include_once '../php/validacaoPaginaELimite.php';
+include_once '../php/class/Formulario.php';
 
 LoginValidation();
+$instance = new Formulario($_GET["id"]);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -21,7 +23,7 @@ LoginValidation();
 <body ng-app="">
     <div ng-include="'header.php'"></div>
     <div class="full-form">
-        <h1>Nome do cliente</h1>
+        <h1><?php echo $instance->getIdForm();?></h1>
         <p>Técnico: </p>
         <p>Nota: </p>
         <p>Data de envio do formulário: </p>

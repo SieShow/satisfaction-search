@@ -159,7 +159,7 @@ function loadFormsByAnswerDateAsFilter($page, $limit, $date_start, $date_end)
 	$startResult = ($page - 1) * $limit;
 	$queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
-     as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+     as sent_date, form.idform, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
      = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_answered between '"
       . formatDateForQuery($date_start) . "' and '" . formatDateForQuery($date_end) . "' ORDER BY customer.name asc limit $startResult,$limit";
 	
@@ -167,12 +167,11 @@ function loadFormsByAnswerDateAsFilter($page, $limit, $date_start, $date_end)
 }
 function loadFormByAnswerAndSendAsFilter($page, $limit, $date_sent_start, $date_sent_end, $date_ans_start,
  $date_ans_end)
-{
-	
+{	
 	$startResult = ($page - 1) * $limit;
 	$queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
-     as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+     as sent_date, form.idform, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
      = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_answered between '"
       . formatDateForQuery($date_ans_start) . "' and '" . formatDateForQuery($date_ans_end) . "' and form.request_sent between '" . formatDateForQuery($date_sent_start) . "' and '" . formatDateForQuery($date_sent_end) . "'  ORDER BY customer.name asc limit $startResult,$limit";
 	
@@ -183,10 +182,9 @@ function loadFormByAnswerAndSendAsFilter($page, $limit, $date_sent_start, $date_
  */
 function loadFormsBySendDateAsFilter($page, $limit, $date_start, $date_end)
 {
-	
 	$startResult = ($page - 1) * $limit;
 	$queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
-    form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
+    form.evaluation_value as val, form.idform, form.issue_solve as solved, form.commentary as comment, form.request_sent
      as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
      = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) where form.request_sent between '" . formatDateForQuery($date_start) . "' and '" . formatDateForQuery($date_end) . "' ORDER BY customer.name asc limit $startResult,$limit";
 	
@@ -205,7 +203,7 @@ function formRunqueryAndDisplay($queryString)
 	{
 		while ($row = $result->fetch_assoc())
 		{
-			echo "<tr><td title='Visualizar formulário completo'><a href='#'><img src='../img/info.png' alt='Visualizar formulário'></a></td>";
+			echo "<tr><td title='Visualizar formulário completo'><a href='../pages/completeform.php?id=".$row["idform"]."'><img src='../img/info.png' alt='Visualizar formulário'></a></td>";
             echo "<td title='" . utf8_encode($row["customer_name"]) . "'><a class='linkname' href='../pages/mainprofile.php?profile="
              . $row["idcustomer"] . "&type=c'>" . utf8_encode($row["customer_name"]) . "</a></td>";
             echo "<td td tite='" . utf8_encode($row["employee_name"]) . "'><a class='linkname' href='../pages/mainprofile.php?profile=" 
@@ -226,7 +224,7 @@ function loadForms($page, $limit)
 	$startResult = ($page - 1) * $limit;
 	$queryString = "SELECT customer.idcustomer, employee.idemployee, customer.name as customer_name, employee.name as employee_name,
     form.evaluation_value as val, form.issue_solve as solved, form.commentary as comment, form.request_sent
-     as sent_date, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
+     as sent_date, form.idform, form.request_answered as answered_date from ((form inner join customer on form.idcustomer 
      = customer.V11_ID)inner join employee on form.idemployee = employee.V11_code) ORDER BY customer.name asc limit
       $startResult,$limit";
 	
@@ -266,6 +264,7 @@ function LoadDataFrom($id, $table)
 	global $connection;
 	
 	$result = $connection->query("SELECT * FROM $table WHERE id$table = $id");
+	echo "SELECT * FROM $table WHERE id$table = $id";
 	$output = $result->fetch_assoc();
 	
 	if ($result->num_rows > 0)
