@@ -32,8 +32,12 @@ $instance = new Formulario($_GET["id"]);
         <div class="commentary">
         <p><?php echo $instance->getCommentary() ?></p>
         </div>
-        <button class="blue">Perfil do Cliente</button>
-        <button class="green">Perfil do Funcionário</button>
+        <form action="mainprofile.php?id="<?php $instance->getCustomer()->getID(); ?>>
+            <button class="blue">Perfil do Cliente</button>
+        </form>
+        <form action="">
+            <button class="green">Perfil do Funcionário</button>
+        </form>
     </div>
 </body>
 </html>
