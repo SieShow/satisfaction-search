@@ -311,7 +311,7 @@ td.text-right {
 table.tablesorter thead tr .header {
     background-image: url('../img/bg.png');
     background-repeat: no-repeat;
-    background-position: center right;
+    background-position: 94% 50%;
 }
 
 table.tablesorter thead tr .headerSortUp {
@@ -324,6 +324,10 @@ table.tablesorter thead tr .headerSortDown {
 
 .td-comentario{
     width: 140px;
+}
+
+.tdinfos{
+    width: 60px;
 }
 
 /*Table td specifications*/

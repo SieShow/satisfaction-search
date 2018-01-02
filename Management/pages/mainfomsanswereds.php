@@ -31,7 +31,7 @@ LoginValidation();
         <div class="allblock" id="formtable">
         <table id="maintable" class="table-fill tablesorter">
         <thead class="text-left">
-                    <th class="not-background">Info</th>
+                    <th class="not-background tdinfos">Info</th>
                     <th id="tdname">Nome do cliente</th>
                     <th class="td-tecnico">Técnico solicitado</th>
                     <th id="tdnota">Nota</th>
