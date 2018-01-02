@@ -8,7 +8,7 @@ class Employee extends Entity{
     private $issue_avarage;
 
     function __construct($i){
-        parent::__construct($i);
+        $this->id = $i;
         $getinfo = LoadDataFrom($i, "employee");
         $this->name = utf8_encode($getinfo["name"]);
         $this->note_avarage = $getinfo["note_avarage"];

@@ -358,3 +358,8 @@ table {
 .not-background{
     background-image: none;
 }
+h1{
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+}

@@ -8,7 +8,7 @@ class Customer extends Entity{
     private $forms_respondidos;
 
     function __construct($i){
-        parent::__construct($i);
+        $this->id = $i;
         $getinfo = LoadDataFrom($i, "customer");
         $this->name = utf8_encode($getinfo["name"]);
         $this->email = utf8_encode($getinfo["emails"]);

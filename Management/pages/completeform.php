@@ -6,6 +6,8 @@ include_once '../php/class/Formulario.php';
 
 LoginValidation();
 $instance = new Formulario($_GET["id"]);
+$customer_url = "mainprofile.php?profile=".$instance->getCustomer()->GetID()."&type=c";
+$employee_url = "mainprofile.php?profile=".$instance->getEmployee()->GetID()."&type=e";
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -32,10 +34,10 @@ $instance = new Formulario($_GET["id"]);
         <div class="commentary">
         <p><?php echo $instance->getCommentary() ?></p>
         </div>
-        <form action="mainprofile.php?id="<?php $instance->getCustomer()->getID(); ?>>
+        <form <?php echo "action=".$customer_url; ?> method="POST">
             <button class="blue">Perfil do Cliente</button>
         </form>
-        <form action="">
+        <form <?php echo "action=".$employee_url; ?> method="POST">
             <button class="green">Perfil do Funcionário</button>
         </form>
     </div>
