@@ -264,15 +264,10 @@ function LoadDataFrom($id, $table)
 	global $connection;
 	
 	$result = $connection->query("SELECT * FROM $table WHERE id$table = $id");
-	echo "SELECT * FROM $table WHERE id$table = $id";
-	$output = $result->fetch_assoc();
-	
-	if ($result->num_rows > 0)
-	{
-		return $output;
+	if ($result->num_rows > 0){
+		return $result->fetch_assoc();
 	}
-	else
-	{
+	else{
 		return null;
 	}
 }

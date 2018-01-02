@@ -1,7 +1,7 @@
 <?php
 include_once '../php/DataBaseQuerys.php';
-include_once 'Employee.php';
-include_once 'Customer.php';
+include_once 'Employee_VIP.php';
+include_once 'Customer_VIP.php';
 
 class Formulario{
 
@@ -14,16 +14,16 @@ class Formulario{
     private $request_sent;
     private $request_asnwered;
 
-    function __constructor($id){
+    function __construct($id){
         $this->idform = $id;
-        $retono = LoadDataFrom($id, "form");
-        $this->commentary = $retorno["commentary"];
-        $this->customer = new Customer($retorno["idcustomer"]);
-        $this->employee = new Employee($retorno["idemployee"]);
+        $retorno = LoadDataFrom($id, "form");
+        $this->commentary = utf8_encode($retorno["commentary"]);
+        $this->customer = new Customer_VIP($retorno["idcustomer"]);
+        $this->employee = new Employee_VIP($retorno["idemployee"]);
         $this->evaluation_value = $retorno["evaluation_value"];
         $this->issue_solve = $retorno["issue_solve"];
-        $this->request_sent = $retorno["request_sent"];
-        $this->request_answered["request_answered"];
+        $this->request_sent = formatDate($retorno["request_sent"]);
+        $this->request_answered = formatDate($retorno["request_answered"]);
     }
 
     public function getIdForm(){
@@ -55,7 +55,7 @@ class Formulario{
     }
 
     public function getResquest_Answered(){
-        return $this->request_asnwered;
+        return $this->request_answered;
     }
 }
 ?>

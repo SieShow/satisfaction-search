@@ -23,14 +23,14 @@ $instance = new Formulario($_GET["id"]);
 <body ng-app="">
     <div ng-include="'header.php'"></div>
     <div class="full-form">
-        <h1><?php echo $instance->getIdForm();?></h1>
-        <p>Técnico: </p>
-        <p>Nota: </p>
-        <p>Data de envio do formulário: </p>
-        <p>Data de resposta: </p>
-        <p>Comentário: </p>
+        <h1><?php echo $instance->getCustomer()->GetName();?></h1>
+        <p>Técnico: <?php echo $instance->getEmployee()->getName(); ?> </p>
+        <p>Nota: <?php echo $instance->getEvaluation_solve() ?> </p>
+        <p>Data de envio do formulário: <?php echo $instance->getRequest_Sent() ?></p>
+        <p>Data de resposta: <?php echo $instance->getResquest_Answered() ?> </p>
+        <p>Comentário:</p>
         <div class="commentary">
-        <p></p>
+        <p><?php echo $instance->getCommentary() ?></p>
         </div>
         <button class="blue">Perfil do Cliente</button>
         <button class="green">Perfil do Funcionário</button>
