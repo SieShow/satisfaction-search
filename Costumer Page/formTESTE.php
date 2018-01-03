@@ -4,6 +4,7 @@ $img = 0;
 $customid = '';
 $emplid = '';
 $datesent = '';
+$file = fopen("querys.txt", "w");
 
 if(isset($_GET['emplid']) && isset($_GET['custoid']) && isset($_GET['datesent']))
 {
@@ -20,40 +21,45 @@ if(isset($_GET['emplid']) && isset($_GET['custoid']) && isset($_GET['datesent'])
            //Informa a quantidade de formulários respondidos pelo cliente
            $valinc = $connection->query("SELECT forms_answereds FROM customer WHERE V11_ID = $customid");       
            $result = $valinc->fetch_assoc();
+           fwrite($file, "SELECT forms_answereds FROM customer WHERE V11_ID = $customid");
 
            //Informa o número de visitas realizadas pelo técnico
            $valinc2 = $connection->query("SELECT visits FROM employee WHERE V11_code = $emplid");       
            $result2 = $valinc2->fetch_assoc();
-           
-           $newval = $result["forms_answereds"] + 1;
-           $newval2 = $result2["visits"] + 1;
+           fwrite($file, "SELECT visits FROM employee WHERE V11_code = $emplid\n");
+
+           $newval = intval($result["forms_answereds"]) + 1;
+           $newval2 = intval($result2["visits"]) + 1;
+
+           fwrite($file, $newval."\n");
+           fwrite($file, $newval2."\n");
 
            //Salva o resultado do formulário
            $query = "INSERT INTO form(commentary, idcustomer, idemployee, evaluation_value,issue_solve,".
            " request_sent, request_answered) VALUES ('".utf8_encode($_GET['commentary'])."',".$customid.",".$emplid.",".
            $_GET['star_note'].",'".$_GET['issue_solved']."','".$datesent."', '".$today."');";
-           
+
            // variável '$query' fará um update no número de visitas e no número de formulários respondidos 
            $query .= "UPDATE customer SET forms_answereds = ".$newval." WHERE V11_ID = $customid;";
-           $query .= "UPDATE employee SET visits = $newval2 WHERE V11_code = $emplid;";
-           
+           fwrite($file, $query."\n");
            if($connection->multi_query($query) === true)
            {
                //Pega a notá média de um cliente
                $result_media =  mysqli_query($connection, "SELECT ROUND(avg(evaluation_value), 1) from".
                " form where idcustomer = ".$customid."");
-
+               fwrite($file, "SELECT ROUND(avg(evaluation_value), 1) from".
+               " form where idcustomer = ".$customid."\n");
                //Troca o ',' por '.'
                str_replace(",", ".", $result_media);
 
                //Adiciona ela em uma variável para executar todas as query juntas
                $query = "UPDATE customer set avaliation_avarage = ".$result_media." where V11_ID = ".
                $customid;
-
+               fwrite($file, $query."\n");
                 //Nota média do funcionário
                $result_media =  mysqli_query($connection, "SELECT ROUND(avg(evaluation_value), 1) from".
                " form where idemployee = ".$emplid);
-               
+               fwrite($file, $result_media."\n");
                //Troca o ',' por '.'
                str_replace(",", ".", $result_media);
 
@@ -63,11 +69,13 @@ if(isset($_GET['emplid']) && isset($_GET['custoid']) && isset($_GET['datesent'])
                $info_clinte = mysqli_query($connection,"SELECT tecnical_visits, forms_answereds from".
                " customer where V11_ID = $customid");
 
-              $media_efetividade = $info_clinte["forms_answereds"] * 100 / $info_clinte["tecnical_visits"]; 
+              $media_efetividade = intval($info_clinte["forms_answereds"]) * 100 / intval($info_clinte["tecnical_visits"]); 
               $query .= "UPDATE customer set effectiviness = " .$media_efetividade. " where V11_ID".
               " = $customid";
-
+              fwrite($file, $query."\n");
+              fwrite($file, "\n");
               //Roda as querys inseridas na variável
+              fclose($file);
               if($connection->multi_query($query) == true){ $img = 1;}
            }
            else{ header("location: http://www.mafrainformatica.com.br"); }
@@ -287,7 +295,7 @@ if(isset($_GET['emplid']) && isset($_GET['custoid']) && isset($_GET['datesent'])
                     var custoid = document.getElementById('custoids').value;
                     var datesent = document.getElementById('datesents').value;
                     var comment = document.getElementById('txtopnion').value;
-                    window.location.href = "form.php?star_note=" +starvalue+"\u0026issue_solved="
+                    window.location.href = "formTESTE.php?star_note=" +starvalue+"\u0026issue_solved="
                     +issue_solve+"\u0026commentary="+comment+"\u0026emplid="+empid+"\u0026custoid="+custoid+"\u0026datesent="+datesent+"\u0026passnext=3f3af326d6552aeb7524c72e5b31d5a8";
                 }
             });

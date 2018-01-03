@@ -1,0 +1,9 @@
+SELECT forms_answereds FROM customer WHERE V11_ID = 666SELECT visits FROM employee WHERE V11_code = 666
+2
+2
+INSERT INTO form(commentary, idcustomer, idemployee, evaluation_value,issue_solve, request_sent, request_answered) VALUES ('',666,666,1,'yes','2010-01-01', '2018/01/02');UPDATE customer SET forms_answereds = 2 WHERE V11_ID = 666;UPDATE employee SET visits = 2 WHERE V11_code = 666;
+SELECT ROUND(avg(evaluation_value), 1) from form where idcustomer = 666
+UPDATE customer set avaliation_avarage =  where V11_ID = 666
+
+UPDATE employee set note_avarage = where v11_code =666UPDATE customer set effectiviness = NAN where V11_ID = 666
+
