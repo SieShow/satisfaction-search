@@ -411,4 +411,32 @@ function LoadHistoric($from, $id_vip)
 		}
     }
 }
+
+/**
+ * Altera a senha do usuário
+ *
+ * @param [type] $newpass
+ * @param [type] $passconfirm
+ * @param [type] $userid
+ * @return void
+ */
+function changepwd($newpass, $passconfirm, $userid){
+	global $connection;
+	if($newpass == $passconfirm)
+	{
+		if($connection->query("UPDATE users set password = '".$newpass. "' where idusers = ".$userid) === true){
+			return "<div class='alert alert-success' role='alert'>
+  					Senha alterada com sucesso
+				</div>";
+		}
+		return "<div class='alert alert-danger' role='alert'>
+					Não foi  possível alterar a senha;
+  				</div>";
+	}
+	else{
+		return "<div class='alert alert-warning' role='alert'>
+					As senhas não são iguais.
+	  			</div>";
+	}
+}
 ?>

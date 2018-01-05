@@ -35,6 +35,9 @@
                             <a class="nav-link" href="mainfomsanswereds.php">Formulários</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="alterarpwd.php">Alterar Senha</a>
+                        </li>
+                        <li class="nav-item">
                              <a class="nav-link" href="../php/Logout.php">Logout</a>
                         </li>
                     </ul>
