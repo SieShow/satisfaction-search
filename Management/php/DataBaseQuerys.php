@@ -2,6 +2,7 @@
 include_once('../php/class/Database.php');
 //String of database connection  
 $connection = Database::getConnection();
+
 /**
  * Load Client table
  */
@@ -54,6 +55,7 @@ function tratarPaginaELimiteDeEmForms()
 		loadForms($_GET["pg"], $_GET["lmt"]);
 	}
 }
+
 /**
  * Load informations of client table
  */
