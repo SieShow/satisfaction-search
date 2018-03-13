@@ -18,15 +18,11 @@ LoginValidation();
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
         <script type="text/javascript" src="../js/jquery.tablesorter.js"></script>
         <script src="../js/tablejs.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                $('table').tablesorter({ headers: { 0: { sorter: false}}});
-            });
-        </script>
+        <script src="../js/sorttable.js"></script>
         <title>Gerenciamento</title>
         </head>
         <body ng-app="">
-        <div ng-include="'header.php'"></div>
+        <div ng-include="'header.php'"></div>''
         <div ng-include="'filter.html'"></div>
         <div class="allblock" id="formtable">
         <table id="maintable" class="table-fill tablesorter">
